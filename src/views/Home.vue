@@ -1,91 +1,21 @@
 <template>
   <header>
     <MenuSandwich />
-    <h1>Home principal</h1>
-    <!-- <div>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-      <h1>Home principal</h1>
-    </div> -->
   </header>
+  <Content>
+    <MainTitle text="Filtrar Dados" />
+  </Content>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import MenuSandwich from "@/components/Navbar/MenuSandwich.vue";
+import Content from "@/components/Content.vue";
+import MainTitle from "@/components/Titles/MainTitle.vue";
 
 export default defineComponent({
   name: "HomeView",
-  components: { MenuSandwich },
+  components: { MenuSandwich, Content, MainTitle },
 });
 </script>
 

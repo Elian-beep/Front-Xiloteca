@@ -18,5 +18,6 @@ export default defineComponent({
 }
 body, html {
   font-family: "Inter", sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /*pode ser transparent também*/
 }
 </style>

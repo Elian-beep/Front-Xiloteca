@@ -57,7 +57,7 @@ export default defineComponent({
   left: -150px;
   width: 60vw;
   opacity: 0;
-  height: 100%;
+  height: 1008px;
   background: #f3f3f3;
 
   transition-property: all;
@@ -122,5 +122,8 @@ label span:nth-child(3) {
 #checkbox-menu:checked + label span:nth-child(3) {
   transform: rotate(45deg);
   top: 8px;
+}
+
+@media screen and (min-width: 481px) {
 }
 </style>
