@@ -1,7 +1,7 @@
 <template>
   <li>
     <i :class="icon" ></i>
-    <button>{{title}}</button>
+    <router-link :to="toHref" >{{title}}</router-link>
   </li>
 </template>
   
@@ -18,10 +18,14 @@ export default defineComponent({
     title: {
         type: String,
         required: true
+    },
+    toHref: {
+      type: String,
+      required: true
     }
   }
 });
 </script>
   
-<script>
-</script>
+<style>
+</style>

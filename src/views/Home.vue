@@ -14,5 +14,5 @@ export default defineComponent({
 });
 </script>
 
-<script>
-</script>
+<style>
+</style>
