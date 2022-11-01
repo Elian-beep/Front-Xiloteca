@@ -1,7 +1,8 @@
 <template>
   <header>
     <MenuSandwich />
-    <div>
+    <h1>Home principal</h1>
+    <!-- <div>
       <h1>Home principal</h1>
       <h1>Home principal</h1>
       <h1>Home principal</h1>
@@ -74,7 +75,7 @@
       <h1>Home principal</h1>
       <h1>Home principal</h1>
       <h1>Home principal</h1>
-    </div>
+    </div> -->
   </header>
 </template>
 
@@ -88,5 +89,5 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 </style>

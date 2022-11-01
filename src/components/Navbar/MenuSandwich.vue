@@ -54,21 +54,22 @@ export default defineComponent({
 
 .items-menu {
   position: absolute;
-  left: -100px;
-  width: 50vw;
+  left: -150px;
+  width: 60vw;
   opacity: 0;
-  height: 100vh;
+  height: 100%;
+  background: #f3f3f3;
 
   transition-property: all;
   transition-duration: 200ms;
   transition-timing-function: ease-out;
-
-  background: green;
 }
 
 .items-menu.isOpen {
   opacity: 1;
   left: 0px;
+
+  box-shadow: 0px 10px 20px rgba(33, 49, 64, 0.25);
 }
 
 #checkbox-menu {
@@ -89,7 +90,7 @@ label {
 label span {
   position: absolute;
   display: block;
-  height: 5px;
+  height: 3px;
   width: 100%;
   border-radius: 30px;
   background: #213140;

@@ -1,7 +1,7 @@
 <template>
   <li>
     <i :class="icon" ></i>
-    <router-link :to="toHref" >{{title}}</router-link>
+    <router-link class="link-menu" :to="toHref" >{{title}}</router-link>
   </li>
 </template>
   
@@ -28,5 +28,16 @@ export default defineComponent({
 </script>
   
 <style scoped>
+li{
+  padding: 16px 24px;
+  border-bottom: .5px solid #213140;
+  font-size: 16px;
+  color: #213140;
+}
 
+.link-menu{
+  text-decoration: none;
+  color: #213140;
+  margin-left: 16px;
+}
 </style>
