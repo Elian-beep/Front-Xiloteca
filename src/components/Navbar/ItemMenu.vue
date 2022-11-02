@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li :class="{ 'selected' : selected }">
     <i :class="icon" ></i>
     <router-link class="link-menu" :to="toHref" >{{title}}</router-link>
   </li>
@@ -22,6 +22,10 @@ export default defineComponent({
     toHref: {
       type: String,
       required: true
+    },
+    selected: {
+      type: Boolean,
+      required: false
     }
   }
 });
@@ -30,7 +34,7 @@ export default defineComponent({
 <style scoped>
 li{
   padding: 16px 24px;
-  border-bottom: .5px solid #213140;
+  border-bottom: .1px solid #213140;
   font-size: 16px;
   color: #213140;
 }
@@ -39,5 +43,10 @@ li{
   text-decoration: none;
   color: #213140;
   margin-left: 16px;
+}
+
+li.selected{
+  border-left: 10px solid #213140;
+  background: #D9D9D9;
 }
 </style>

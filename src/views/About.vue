@@ -1,5 +1,5 @@
 <template>
-    <MenuSandwich />
+    <MenuSandwich :isHome="false" :isAbout="true" />
     <h1>Sobre a xiloteca</h1>
 </template>
 

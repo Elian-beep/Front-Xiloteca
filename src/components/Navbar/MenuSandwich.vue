@@ -9,8 +9,9 @@
       </label>
     </div>
     <ul class="items-menu" :class="{ isOpen: isOpen }">
-      <ItemMenu :to-href="'/'" title="Início" icon="fa-solid fa-house" />
+      <ItemMenu :selected="isHome" :to-href="'/'" title="Início" icon="fa-solid fa-house" />
       <ItemMenu
+        :selected="isAbout"
         :toHref="'/about'"
         title="Sobre a Xiloteca"
         icon="fa-sharp fa-solid fa-circle-info"
@@ -31,6 +32,16 @@ import ItemMenu from "./ItemMenu.vue";
 export default defineComponent({
   name: "MenuSandwich",
   components: { ItemMenu },
+  props: {
+    isHome:{
+      type: Boolean,
+      required: false
+    },
+    isAbout:{
+      type: Boolean,
+      required: false
+    }
+  },
   data() {
     return {
       isOpen: false, //Iso deve ser false

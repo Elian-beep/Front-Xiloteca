@@ -1,6 +1,6 @@
 <template>
   <header>
-    <MenuSandwich />
+    <MenuSandwich :isHome="true" :isAbout="false" />
   </header>
   <Content>
     <MainTitle text="Filtrar Dados" />
