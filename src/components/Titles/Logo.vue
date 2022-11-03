@@ -1,5 +1,5 @@
 <template>
-  <div class="area-logo">
+  <div class="area-logo" :class="{ isVisible: isVisible }">
     <h1>Xiloteca</h1>
     <span>Centro de Estudos Superiores de Itacoatiara - CESIT</span>
   </div>
@@ -10,12 +10,25 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "LogoXiloteca",
+  props: {
+    isVisible: {
+      type: Boolean,
+      required: true,
+    },
+  },
 });
 </script>
 
 <style>
 .area-logo {
   display: none;
+}
+
+.area-logo.isVisible {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .area-logo h1 {

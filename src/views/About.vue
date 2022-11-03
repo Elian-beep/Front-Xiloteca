@@ -1,10 +1,10 @@
 <template>
   <header>
-    <Logo />
+    <Logo :isVisible="false" />
     <MenuSandwich :isHome="false" :isAbout="true" :isLogin="false" />
   </header>
   <Content>
-    <h1>Sobre a xiloteca</h1>
+    <MainTitle text="Sobre a Xiloteca" />
   </Content>
 </template>
 
@@ -13,10 +13,11 @@ import { defineComponent } from "vue";
 import MenuSandwich from "@/components/Navbar/MenuSandwich.vue";
 import Logo from "@/components/Titles/Logo.vue";
 import Content from "@/components/Content.vue";
+import MainTitle from "@/components/Titles/MainTitle.vue";
 
 export default defineComponent({
   name: "AboutView",
-  components: { MenuSandwich, Logo, Content },
+  components: { MenuSandwich, Logo, Content, MainTitle },
 });
 </script>
 

@@ -77,6 +77,7 @@ export default defineComponent({
 
 .items-menu {
   background: #FAFAFA;
+  z-index: 99;
   position: absolute;
   left: -200px;
   width: 60vw;

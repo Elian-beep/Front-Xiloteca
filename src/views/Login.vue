@@ -1,10 +1,11 @@
 <template>
   <header>
-    <Logo />
+    <Logo :isVisible="false" class="logo" />
     <MenuSandwich :isHome="false" :isAbout="false" :isLogin="true" />
   </header>
   <Content>
-    <h1>Login</h1>
+    <Logo :isVisible="true" />
+    <MainTitle text="Sobre a Xiloteca" />
   </Content>
 </template>
 
@@ -13,10 +14,11 @@ import { defineComponent } from "vue";
 import MenuSandwich from "@/components/Navbar/MenuSandwich.vue";
 import Logo from "@/components/Titles/Logo.vue";
 import Content from "@/components/Content.vue";
+import MainTitle from "@/components/Titles/MainTitle.vue";
 
 export default defineComponent({
   name: "LoginView",
-  components: { MenuSandwich, Logo, Content },
+  components: { MenuSandwich, Logo, Content, MainTitle },
 });
 </script>
 
