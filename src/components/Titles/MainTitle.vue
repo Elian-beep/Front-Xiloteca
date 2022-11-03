@@ -23,4 +23,23 @@ h2 {
   color: #213140;
   text-align: center;
 }
+
+@media screen and (min-width: 481px) {
+  /*TABLET*/
+  h2{
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  /*LAPTOP*/
+
+}
+
+@media screen and (min-width: 1024px){
+  /* DESKTOP */
+  h2{
+    font-size: 48px;
+  }
+}
 </style>

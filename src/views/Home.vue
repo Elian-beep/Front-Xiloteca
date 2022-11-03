@@ -5,7 +5,6 @@
   </header>
   <Content>
     <MainTitle text="Filtrar Dados" />
-    sdfgsdf
   </Content>
 </template>
 

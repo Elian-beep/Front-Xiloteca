@@ -30,4 +30,11 @@ export default defineComponent({
     border-bottom: 0.5px solid #213140;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  /* DESKTOP */
+  header{
+    justify-content: space-around;
+  }
+}
 </style>

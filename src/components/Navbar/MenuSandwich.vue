@@ -175,7 +175,8 @@ label span:nth-child(3) {
 @media screen and (min-width: 1024px){
   /* DESKTOP */
   .items-menu{
-    gap: 24px;
+    width: 600px;
+    gap: 56px;
     height: 80px;
   }
 }

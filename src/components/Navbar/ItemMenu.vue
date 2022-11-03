@@ -66,6 +66,16 @@ li.selected{
   }
 }
 
+@media screen and (min-width: 769px) {
+  li:hover{
+    cursor: pointer;
+    border-left: .5px solid #D9D9D9;
+    border-right: .5px solid #D9D9D9;
+    transition: .1s ease-in-out;
+    padding: 16px;
+  }
+}
+
 @media screen and (min-width: 1024px){
   /* DESKTOP */
   li{
