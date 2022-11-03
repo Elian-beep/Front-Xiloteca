@@ -1,5 +1,5 @@
 <template>
-  <h1>{{text}}</h1>
+  <h2>{{text}}</h2>
 </template>
   
 <script lang="ts">
@@ -17,7 +17,7 @@ export default defineComponent({
 </script>
   
 <style scoped>
-h1 {
+h2 {
   font-weight: 600;
   font-size: 20px;
   color: #213140;

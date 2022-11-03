@@ -1,0 +1,47 @@
+<template>
+  <div class="area-logo">
+    <h1>Xiloteca</h1>
+    <span>Centro de Estudos Superiores de Itacoatiara - CESIT</span>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "LogoXiloteca",
+});
+</script>
+
+<style>
+.area-logo {
+  display: none;
+}
+
+.area-logo h1 {
+  font-weight: 700;
+  font-size: 24px;
+  color: #213140;
+  margin: 0;
+  display: inline;
+}
+
+.area-logo span {
+  font-weight: 400;
+  font-size: 10px;
+  margin: 0;
+  color: #213140;
+}
+
+@media screen and (min-width: 769px) {
+  /* LAPTOP */
+  .area-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    margin-left: 24px;
+  }
+}
+</style>

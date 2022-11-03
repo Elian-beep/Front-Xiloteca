@@ -18,5 +18,12 @@ main{
     width: 100vw;
     padding: 16px 24px;
 }
+
+@media screen and (min-width: 481px){
+  main{
+    height: 100vh;
+    width: 100%;
+  }
+}
 </style>
   

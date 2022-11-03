@@ -49,4 +49,27 @@ li.selected{
   border-left: 10px solid #213140;
   background: #D9D9D9;
 }
+
+@media screen and (min-width: 481px){
+  /* TABLET */
+  li{
+    padding: 0;
+    list-style: none;
+    border: none;
+    margin: auto;
+  }
+
+  li.selected{
+    border: none;
+    background: none;
+    border-bottom: 1px solid #213140;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  /* DESKTOP */
+  li{
+    font-size: 20px;
+  }
+}
 </style>

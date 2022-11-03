@@ -1,5 +1,5 @@
 <template>
-  <div class="areaBtnSandwich">
+  <div class="areaBtnSandwich" :class="{ 'isOpen': isOpen }">
     <div class="btnSandwich">
       <input @click="clickMenu" type="checkbox" id="checkbox-menu" />
       <label for="checkbox-menu">
@@ -8,8 +8,13 @@
         <span></span>
       </label>
     </div>
-    <ul class="items-menu" :class="{ isOpen: isOpen }">
-      <ItemMenu :selected="isHome" :to-href="'/'" title="Início" icon="fa-solid fa-house" />
+    <ul class="items-menu" :class="{ 'isOpen': isOpen }">
+      <ItemMenu
+        :selected="isHome"
+        :to-href="'/'"
+        title="Início"
+        icon="fa-solid fa-house"
+      />
       <ItemMenu
         :selected="isAbout"
         :toHref="'/about'"
@@ -17,6 +22,7 @@
         icon="fa-sharp fa-solid fa-circle-info"
       />
       <ItemMenu
+      :selected="isLogin"
         :toHref="'/login'"
         title="Fazer Login"
         icon="fa-solid fa-circle-user"
@@ -33,11 +39,15 @@ export default defineComponent({
   name: "MenuSandwich",
   components: { ItemMenu },
   props: {
-    isHome:{
+    isHome: {
       type: Boolean,
-      required: false
+      required: false,
     },
-    isAbout:{
+    isAbout: {
+      type: Boolean,
+      required: false,
+    },
+    isLogin: {
       type: Boolean,
       required: false
     }
@@ -56,20 +66,22 @@ export default defineComponent({
 </script>
 
 <style>
-.btnSandwich {
+.areaBtnSandwich {
   width: 100%;
-  background: #fafafa;
-  padding: 16px 24px;
   border-bottom: 0.5px solid #213140;
 }
 
+.btnSandwich {
+  padding: 16px 24px;
+}
+
 .items-menu {
+  background: #FAFAFA;
   position: absolute;
-  left: -150px;
+  left: -200px;
   width: 60vw;
   opacity: 0;
   height: 1008px;
-  background: #f3f3f3;
 
   transition-property: all;
   transition-duration: 200ms;
@@ -136,5 +148,35 @@ label span:nth-child(3) {
 }
 
 @media screen and (min-width: 481px) {
+  /*TABLET*/
+  .btnSandwich{
+    display: none;
+  }
+
+  .items-menu{
+    position: static;
+    opacity: 1;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  /*LAPTOP*/
+  .areaBtnSandwich{
+    width: 500px;
+    border: none;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  /* DESKTOP */
+  .items-menu{
+    gap: 24px;
+    height: 80px;
+  }
 }
 </style>
