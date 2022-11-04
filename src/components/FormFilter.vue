@@ -24,15 +24,18 @@
       <button class="btnSearch" type="submit">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
+      <OrderFill />
     </div>
   </form>
 </template>
   
 <script lang="ts">
 import { defineComponent } from "vue";
+import OrderFill from "./OrderFill.vue";
 
 export default defineComponent({
   name: "FormFill",
+  components: { OrderFill },
 });
 </script>
   
@@ -75,15 +78,16 @@ export default defineComponent({
   flex-wrap: wrap;
   gap: 16px;
   margin-top: 24px;
-  height: 33px;
+  justify-content: end;
 }
 
 .inptText {
   width: 80%;
-  background: #f3f3f3;
-  border: 0.5px solid #213140;
+  border: none;
+  height: 33px;
+  border-bottom: 0.5px solid #213140;
   border-radius: 2px;
-  padding-left: 24px;
+  padding-left: 8px;
   outline: none;
 }
 
@@ -99,6 +103,6 @@ export default defineComponent({
   border-radius: 2px;
   font-weight: 400;
   font-size: 14px;
-  color: #FAFAFA;
+  color: #fafafa;
 }
 </style>

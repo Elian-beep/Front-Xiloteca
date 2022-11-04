@@ -39,7 +39,7 @@ h2 {
 @media screen and (min-width: 1024px){
   /* DESKTOP */
   h2{
-    font-size: 48px;
+    font-size: 42px;
   }
 }
 </style>

@@ -79,7 +79,7 @@ export default defineComponent({
   background: #FAFAFA;
   z-index: 99;
   position: absolute;
-  left: -200px;
+  left: -250px;
   width: 60vw;
   opacity: 0;
   height: 1008px;
