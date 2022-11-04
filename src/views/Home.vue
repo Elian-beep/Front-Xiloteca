@@ -8,6 +8,9 @@
     <section class="area-formFilter">
       <FormFilter />
     </section>
+    <section class="area-table">
+      <SubTitle text="Amostras" />
+    </section>
   </Content>
 </template>
 
@@ -18,25 +21,32 @@ import Content from "@/components/Content.vue";
 import MainTitle from "@/components/Titles/MainTitle.vue";
 import Logo from "@/components/Titles/Logo.vue";
 import FormFilter from "@/components/FormFilter.vue";
-
+import SubTitle from "@/components/Titles/SubTitle.vue";
 
 export default defineComponent({
   name: "HomeView",
-  components: { MenuSandwich, Content, MainTitle, Logo, FormFilter },
+  components: { MenuSandwich, Content, MainTitle, Logo, FormFilter, SubTitle },
 });
 </script>
 
 <style scoped>
-
-.area-formFilter{
+.area-formFilter {
   margin-top: 12px;
   width: 100%;
 }
 
-@media screen and (min-width: 481px){
+.area-table {
+  margin-top: 16px;
+}
+
+@media screen and (min-width: 481px) {
   /* TABLET */
-  .area-formFilter{
+  .area-formFilter {
     margin-top: 40px;
+  }
+
+  .area-table {
+    margin-top: 24px;
   }
 }
 
@@ -52,7 +62,7 @@ export default defineComponent({
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
-  header{
+  header {
     justify-content: space-around;
   }
 }
