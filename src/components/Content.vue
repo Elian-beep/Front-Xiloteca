@@ -34,5 +34,12 @@ main{
     padding: 32px 56px;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  /* DESKTOP */
+  main{
+    padding: 56px 96px;
+  }
+}
 </style>
   

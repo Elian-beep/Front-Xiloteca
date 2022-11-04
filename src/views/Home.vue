@@ -33,6 +33,13 @@ export default defineComponent({
   width: 100%;
 }
 
+@media screen and (min-width: 481px){
+  /* TABLET */
+  .area-formFilter{
+    margin-top: 40px;
+  }
+}
+
 @media screen and (min-width: 769px) {
   /* LAPTOP */
   header {

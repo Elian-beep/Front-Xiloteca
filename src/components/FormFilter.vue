@@ -138,14 +138,14 @@ export default defineComponent({
     justify-content: space-between;
   }
 
-  .area-opc{
-    width: 50%;
+  .area-radios{
+    width: 40%;
     max-width: 520px;
   }
 
   .area-search{
     width: 80%;
-    max-width: 700px;
+    max-width: 750px;
     gap: 10px;
     justify-content: end;
   }
@@ -158,6 +158,15 @@ export default defineComponent({
     width: 10%;
     max-width: 40px;
   }
+}
 
+@media screen and (min-width: 1024px){
+  form{
+    justify-content: space-evenly;
+  }
+  /* DESKTOP */
+  .inptText::placeholder{
+    font-size: 18px;
+  }
 }
 </style>

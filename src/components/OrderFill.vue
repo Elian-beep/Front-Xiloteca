@@ -44,4 +44,8 @@ select {
     max-width: 120px;
   }
 }
+
+@media screen and (min-width: 1024px){
+  /* DESKTOP */
+}
 </style>
