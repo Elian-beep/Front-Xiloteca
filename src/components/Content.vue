@@ -15,6 +15,8 @@ export default defineComponent({
 <style scoped>
 main{
     height: 1008px;
+    max-height: 1008px;
+    overflow-y: scroll;
     width: 100vw;
     padding: 16px 24px;
 }

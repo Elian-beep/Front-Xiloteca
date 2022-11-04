@@ -10,6 +10,7 @@
     </section>
     <section class="area-table">
       <SubTitle text="Amostras" />
+      <TableSample />
     </section>
   </Content>
 </template>
@@ -22,10 +23,11 @@ import MainTitle from "@/components/Titles/MainTitle.vue";
 import Logo from "@/components/Titles/Logo.vue";
 import FormFilter from "@/components/FormFilter.vue";
 import SubTitle from "@/components/Titles/SubTitle.vue";
+import TableSample from "@/components/TableSample.vue";
 
 export default defineComponent({
   name: "HomeView",
-  components: { MenuSandwich, Content, MainTitle, Logo, FormFilter, SubTitle },
+  components: { MenuSandwich, Content, MainTitle, Logo, FormFilter, SubTitle, TableSample },
 });
 </script>
 
