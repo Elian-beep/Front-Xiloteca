@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th>Nome Vulgar</th>
+        <th class="inTablet">Nome Científico</th>
         <th>Ver mais</th>
       </tr>
     </thead>
@@ -10,12 +11,14 @@
     <tbody>
       <tr>
         <td>Sabia Amarelo de Crevo</td>
+        <td class="inTablet">Laetia procera ( Peop) Eickl</td>
         <td>
           <button><i class="fa-solid fa-caret-down"></i></button>
         </td>
       </tr>
       <tr>
         <td>Angelim Rajado</td>
+        <td class="inTablet">Micropholis spruceana (Mart.et.Mig) Pierre</td>
         <td>
           <button><i class="fa-solid fa-caret-down"></i></button>
         </td>
@@ -53,34 +56,43 @@ export default defineComponent({
   color: #213140;
 }
 
-.tableSample tbody tr{
-    height: 40px;
-    border-top: 1px solid rgba(33, 49, 64, 0.5);
+.tableSample tbody tr {
+  height: 40px;
+  border-top: 1px solid rgba(33, 49, 64, 0.5);
 }
 
-.tableSample tbody tr button{
-    border: none;
-    background: none;
-    font-size: 16px;
+.tableSample tbody tr button {
+  border: none;
+  background: none;
+  font-size: 16px;
 }
 
-.tableSample tbody tr button:hover{
-    border: .5px solid #213140;
-    padding: 2px 4px;
-    border-radius: 2px;
-    cursor: pointer;
+.tableSample tbody tr button:hover {
+  border: 0.5px solid #213140;
+  padding: 2px 4px;
+  border-radius: 2px;
+  cursor: pointer;
 }
 
-.tableSample tbody tr:hover>td{
-    background: rgba(33, 49, 64, 0.75);
-    cursor: pointer;
-    color: #FAFAFA;
+.tableSample tbody tr:hover > td {
+  background: rgba(33, 49, 64, 0.75);
+  cursor: pointer;
+  color: #fafafa;
 }
 
-.tableSample tbody tr:nth-child(even){
-    background: #F3F3F3;
+.tableSample tbody tr:nth-child(even) {
+  background: #f3f3f3;
 }
 
+.inTablet {
+  display: none;
+}
 
+@media screen and (min-width: 481px) {
+  /* TABLET */
+  .inTablet {
+    display: block;
+  }
+}
 </style>
   
