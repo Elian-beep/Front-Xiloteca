@@ -27,5 +27,12 @@ main{
     padding: 24px 48px;
   }
 }
+
+@media screen and (min-width: 769px){
+  /* LAPTOP */
+  main{
+    padding: 32px 56px;
+  }
+}
 </style>
   

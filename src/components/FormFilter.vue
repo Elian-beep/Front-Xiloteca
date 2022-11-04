@@ -129,6 +129,35 @@ export default defineComponent({
   .btnSearch{
     width: 10%;
   }
+}
+
+@media screen and (min-width: 769px) {
+  /* LAPTOP */
+  form{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .area-opc{
+    width: 50%;
+    max-width: 520px;
+  }
+
+  .area-search{
+    width: 80%;
+    max-width: 700px;
+    gap: 10px;
+    justify-content: end;
+  }
+
+  .inptText{
+    width: 87%;
+  }
+
+  .btnSearch{
+    width: 10%;
+    max-width: 40px;
+  }
 
 }
 </style>

@@ -36,4 +36,12 @@ select {
     width: 26%;
   }
 }
+
+@media screen and (min-width: 769px) {
+  /* LAPTOP */
+  select{
+    width: 35%;
+    max-width: 120px;
+  }
+}
 </style>
