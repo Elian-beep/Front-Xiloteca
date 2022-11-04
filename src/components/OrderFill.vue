@@ -29,4 +29,11 @@ select {
   font-weight: 400;
   font-size: 14px;
 }
+
+@media screen and (min-width: 481px){
+  /* TABLET */
+  select{
+    width: 26%;
+  }
+}
 </style>

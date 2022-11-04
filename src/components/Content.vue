@@ -20,9 +20,11 @@ main{
 }
 
 @media screen and (min-width: 481px){
+  /* TABLET */
   main{
     height: 100vh;
     width: 100%;
+    padding: 24px 48px;
   }
 }
 </style>

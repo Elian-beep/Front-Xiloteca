@@ -55,7 +55,7 @@ export default defineComponent({
 
 .area-opc input {
   all: unset;
-  height: 16px;
+  height: 14px;
   width: 16px;
   border-radius: 2px;
   border: 0.5px solid #213140;
@@ -68,7 +68,7 @@ export default defineComponent({
 
 .area-opc label {
   width: 100%;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   color: #213140;
 }
@@ -104,5 +104,31 @@ export default defineComponent({
   font-weight: 400;
   font-size: 14px;
   color: #fafafa;
+}
+
+@media screen and (min-width: 481px) {
+  /* TABLET */
+  .area-opc input {
+    width: 18px;
+    height: 16px;
+  }
+
+  .area-opc label {
+    font-size: 16px;
+  }
+
+  .area-search{
+    justify-content: space-between;
+    gap: 3%;
+  }
+
+  .inptText{
+    width: 57%;
+  }
+
+  .btnSearch{
+    width: 10%;
+  }
+
 }
 </style>
