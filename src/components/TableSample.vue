@@ -9,16 +9,9 @@
     </thead>
 
     <tbody>
-      <tr>
-        <td>Sabia Amarelo de Crevo</td>
-        <td class="inTablet">Laetia procera ( Peop) Eickl</td>
-        <td>
-          <button><i class="fa-solid fa-caret-down"></i></button>
-        </td>
-      </tr>
-      <tr>
-        <td>Angelim Rajado</td>
-        <td class="inTablet">Micropholis spruceana (Mart.et.Mig) Pierre</td>
+      <tr v-for="sample of samples" :key="sample._id">
+        <td>{{ sample.nomeVulgar }}</td>
+        <td class="inTablet">{{ sample.nomeCientifico }}</td>
         <td>
           <button><i class="fa-solid fa-caret-down"></i></button>
         </td>
@@ -27,11 +20,55 @@
   </table>
 </template>
   
-<script lang="ts">
+<script>
 import { defineComponent } from "vue";
+import Samples from "../services/samples.js";
 
 export default defineComponent({
   name: "TableSample",
+  data() {
+    return {
+      sample: {
+        id: "",
+        cod: "",
+        lamina: "",
+        herb: "",
+        familia: "",
+        nomeCientifico: "",
+        nomeVulgar: "",
+        procedencia: "",
+        coletor: "",
+        dataColeta: "",
+        determinador: "",
+        remetente: "",
+        desc: "",
+        obs: "",
+      },
+      samples: []
+    };
+  },
+  mounted(){
+    this.list('')
+  },
+  methods: {
+    list(opcShowSample) {
+        if (opcShowSample == 'Oa') {
+            console.log("Exibir em ordem alfabética");
+        }else if (opcShowSample == 'Ar') {
+            console.log("Exibir os adicionados recentemente");
+        }else if (opcShowSample == 'Ma') {
+            console.log("Exibir os mais antigos");
+        }else{
+            console.log("Está exibindo todos");
+            this.listAll();
+        }
+    },
+    listAll() {
+      Samples.findAll().then((response) => {
+        this.samples = response.data;
+      });
+    },
+  },
 });
 </script>
 
@@ -68,15 +105,12 @@ export default defineComponent({
 }
 
 .tableSample tbody tr button:hover {
-  border: 0.5px solid #213140;
-  padding: 2px 4px;
-  border-radius: 2px;
+  color: #fafafa;
   cursor: pointer;
 }
 
 .tableSample tbody tr:hover > td {
   background: rgba(33, 49, 64, 0.75);
-  cursor: pointer;
   color: #fafafa;
 }
 
@@ -91,7 +125,7 @@ export default defineComponent({
 @media screen and (min-width: 481px) {
   /* TABLET */
   .inTablet {
-    display: block;
+    display: table-cell;
   }
 }
 </style>
