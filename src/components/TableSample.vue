@@ -4,6 +4,7 @@
       <tr>
         <th>Nome Vulgar</th>
         <th class="inTablet">Nome Científico</th>
+        <th class="inLaptop">Família</th>
         <th>Ver mais</th>
       </tr>
     </thead>
@@ -12,6 +13,7 @@
       <tr v-for="sample of samples" :key="sample._id">
         <td>{{ sample.nomeVulgar }}</td>
         <td class="inTablet">{{ sample.nomeCientifico }}</td>
+        <td class="inLaptop">{{ sample.familia }}</td>
         <td>
           <button><i class="fa-solid fa-caret-down"></i></button>
         </td>
@@ -118,13 +120,20 @@ export default defineComponent({
   background: #f3f3f3;
 }
 
-.inTablet {
+.inTablet, .inLaptop {
   display: none;
 }
 
 @media screen and (min-width: 481px) {
   /* TABLET */
   .inTablet {
+    display: table-cell;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  /* LAPTOP */
+  .inLaptop{
     display: table-cell;
   }
 }
