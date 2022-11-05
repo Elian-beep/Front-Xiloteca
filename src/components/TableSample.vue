@@ -5,6 +5,7 @@
         <th>Nome Vulgar</th>
         <th class="inTablet">Nome Científico</th>
         <th class="inLaptop">Família</th>
+        <th class="inDesktop">Coletor</th>
         <th>Ver mais</th>
       </tr>
     </thead>
@@ -14,6 +15,7 @@
         <td>{{ sample.nomeVulgar }}</td>
         <td class="inTablet">{{ sample.nomeCientifico }}</td>
         <td class="inLaptop">{{ sample.familia }}</td>
+        <td class="inDesktop">{{ sample.coletor }}</td>
         <td>
           <button><i class="fa-solid fa-caret-down"></i></button>
         </td>
@@ -46,24 +48,24 @@ export default defineComponent({
         desc: "",
         obs: "",
       },
-      samples: []
+      samples: [],
     };
   },
-  mounted(){
-    this.list('')
+  mounted() {
+    this.list("all");
   },
   methods: {
     list(opcShowSample) {
-        if (opcShowSample == 'Oa') {
-            console.log("Exibir em ordem alfabética");
-        }else if (opcShowSample == 'Ar') {
-            console.log("Exibir os adicionados recentemente");
-        }else if (opcShowSample == 'Ma') {
-            console.log("Exibir os mais antigos");
-        }else{
-            console.log("Está exibindo todos");
-            this.listAll();
-        }
+      if (opcShowSample == "Oa") {
+        console.log("Exibir em ordem alfabética");
+      } else if (opcShowSample == "Ar") {
+        console.log("Exibir os adicionados recentemente");
+      } else if (opcShowSample == "Ma") {
+        console.log("Exibir os mais antigos");
+      } else if (opcShowSample == "all"){
+        console.log("Está exibindo todos");
+        this.listAll();
+      }
     },
     listAll() {
       Samples.findAll().then((response) => {
@@ -120,7 +122,9 @@ export default defineComponent({
   background: #f3f3f3;
 }
 
-.inTablet, .inLaptop {
+.inTablet,
+.inLaptop,
+.inDesktop {
   display: none;
 }
 
@@ -133,7 +137,14 @@ export default defineComponent({
 
 @media screen and (min-width: 769px) {
   /* LAPTOP */
-  .inLaptop{
+  .inLaptop {
+    display: table-cell;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /* DESKTOP */
+  .inDesktop {
     display: table-cell;
   }
 }
