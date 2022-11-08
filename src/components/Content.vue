@@ -21,26 +21,32 @@ main{
     padding: 16px 24px;
 }
 
+main::-webkit-scrollbar{
+  display: none;
+}
+
 @media screen and (min-width: 481px){
   /* TABLET */
   main{
     height: 100vh;
     width: 100%;
-    padding: 24px 48px;
+    padding: 24px 40px;
   }
 }
 
 @media screen and (min-width: 769px){
   /* LAPTOP */
   main{
-    padding: 32px 56px;
+    padding: 32px 80px;
+    /* background: blue; */
   }
 }
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
   main{
-    padding: 56px 96px;
+    padding: 48px 96px;
+    /* background: green; */
   }
 }
 </style>

@@ -33,7 +33,7 @@ export default defineComponent({
 
 .area-logo h1 {
   font-weight: 700;
-  font-size: 24px;
+  font-size: 28px;
   color: #213140;
   margin: 0;
   display: inline;
@@ -55,6 +55,22 @@ export default defineComponent({
     justify-content: center;
     width: 250px;
     margin-left: 24px;
+  }
+
+  .area-logo h1 {
+    font-size: 28px;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  /* DESKTOP */
+  .area-logo h1{
+    font-size: 32px;
+  }
+
+  .area-logo span{
+    font-size: 12px;
+    text-align: center;
   }
 }
 </style>

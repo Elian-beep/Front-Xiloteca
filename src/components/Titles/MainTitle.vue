@@ -31,15 +31,10 @@ h2 {
   }
 }
 
-@media screen and (min-width: 769px) {
-  /*LAPTOP*/
-
-}
-
 @media screen and (min-width: 1024px){
   /* DESKTOP */
   h2{
-    font-size: 42px;
+    font-size: 40px;
   }
 }
 </style>

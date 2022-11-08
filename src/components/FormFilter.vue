@@ -124,6 +124,7 @@ export default defineComponent({
 
   .inptText{
     width: 57%;
+    font-size: 14px;
   }
 
   .btnSearch{
@@ -139,7 +140,7 @@ export default defineComponent({
   }
 
   .area-radios{
-    width: 40%;
+    width: 45%;
     max-width: 520px;
   }
 
@@ -151,7 +152,8 @@ export default defineComponent({
   }
 
   .inptText{
-    width: 87%;
+    width: 85%;
+    font-size: 16px;
   }
 
   .btnSearch{
@@ -166,6 +168,10 @@ export default defineComponent({
   }
   /* DESKTOP */
   .inptText::placeholder{
+    font-size: 18px;
+  }
+
+  .area-opc label{
     font-size: 18px;
   }
 }

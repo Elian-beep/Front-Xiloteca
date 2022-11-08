@@ -171,6 +171,10 @@ label span:nth-child(3) {
     width: 500px;
     border: none;
   }
+  
+  .items-menu{
+    height: 93px;
+  }
 }
 
 @media screen and (min-width: 1024px){

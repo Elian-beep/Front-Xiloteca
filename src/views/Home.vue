@@ -44,7 +44,7 @@ export default defineComponent({
 @media screen and (min-width: 481px) {
   /* TABLET */
   .area-formFilter {
-    margin-top: 40px;
+    margin-top: 22px;
   }
 
   .area-table {
@@ -60,12 +60,20 @@ export default defineComponent({
     background: #fafafa;
     border-bottom: 0.5px solid #213140;
   }
+
+  .area-formFilter{
+    margin-top: 32px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
   header {
     justify-content: space-around;
+  }
+
+  .area-formFilter{
+    margin-top: 48px;
   }
 }
 </style>
