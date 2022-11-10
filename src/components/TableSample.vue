@@ -23,15 +23,26 @@
     </tbody>
   </table>
 
-  <div>
-    <button type="button" v-if="page != 1" @click="page--">
-      Anterior
+  <div class="area-pagination">
+    <button class="pag-btnArrow" type="button" v-if="page != 1" @click="page--">
+      <i class="fa-solid fa-chevron-left"></i>
     </button>
-    <button type="button" v-for="pageNumber in pages.slice(oage-1, page+5)" :key="pageNumber" @click="page = pageNumber">
-      {{pageNumber}}
+    <button
+      v-for="pageNumber in pages.slice(page - 1, page + 4)"
+      :key="pageNumber"
+      class="isPage"
+      type="button"
+      @click="page = pageNumber"
+    >
+      {{ pageNumber }}
     </button>
-    <button type="button" v-if="page < pages.length" @click="page++">
-      Próximo
+    <button
+      class="pag-btnArrow"
+      type="button"
+      v-if="page < pages.length"
+      @click="page++"
+    >
+      <i class="fa-solid fa-chevron-right"></i>
     </button>
   </div>
 </template>
@@ -62,8 +73,9 @@ export default defineComponent({
       },
       samples: [],
       page: 1,
-      perPage: 1,
-      pages: []
+      perPage: 5,
+      pages: [],
+      isPage: true,
     };
   },
   mounted() {
@@ -77,7 +89,7 @@ export default defineComponent({
         console.log("Exibir os adicionados recentemente");
       } else if (opcShowSample == "Ma") {
         console.log("Exibir os mais antigos");
-      } else if (opcShowSample == "all"){
+      } else if (opcShowSample == "all") {
         console.log("Está exibindo todos");
         this.listAll();
       }
@@ -87,34 +99,35 @@ export default defineComponent({
         this.samples = response.data;
       });
     },
-    paginate(samples){
+    paginate(samples) {
       let page = this.page;
       let perPage = this.perPage;
-      let from = (page * perPage) - perPage;
-      let to = (page * perPage);
+      let from = page * perPage - perPage;
+      let to = page * perPage;
+      console.log(`Página na tabela: ${page}`);
       return samples.slice(from, to);
     },
-    setSanples(){
+    setSanples() {
       let numberOfpages = Math.ceil(this.samples.length / this.perPage);
-      for(let i=1; i<=numberOfpages; i++){
+      for (let i = 1; i <= numberOfpages; i++) {
         this.pages.push(i);
       }
-    }
+    },
   },
   computed: {
     displaedSamples() {
       return this.paginate(this.samples);
-    }
+    },
   },
   watch: {
-    samples(){
+    samples() {
       this.setSanples();
-    }
-  }
+    },
+  },
 });
 </script>
 
-<style>
+<style scoped>
 .tableSample {
   width: 100%;
   border-spacing: 0;
@@ -129,7 +142,7 @@ export default defineComponent({
   color: #213140;
 }
 
-.tableSample thead tr th{
+.tableSample thead tr th {
   padding-left: 10px;
 }
 
@@ -145,12 +158,12 @@ export default defineComponent({
   border-top: 1px solid rgba(33, 49, 64, 0.5);
 }
 
-.tableSample tbody tr td{
+.tableSample tbody tr td {
   padding-left: 10px;
   /* margin-left: 10px; */
 }
 
-.tableSample .btnSample{
+.tableSample .btnSample {
   text-align: right;
   padding-right: 10px;
 }
@@ -179,6 +192,28 @@ export default defineComponent({
 .inLaptop,
 .inDesktop {
   display: none;
+}
+
+.area-pagination {
+  width: 100%;
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.area-pagination .pag-btnArrow i {
+  color: #130f26;
+}
+
+.area-pagination button {
+  background: none;
+  border: none;
+  font-weight: 400;
+  font-size: 14px;
+  color: #999898;
+}
+
+.isPage {
 }
 
 @media screen and (min-width: 481px) {

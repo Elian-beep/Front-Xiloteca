@@ -11,7 +11,6 @@
     <section class="area-table">
       <SubTitle text="Amostras" />
       <TableSample />
-      <!-- !! AQUI DEVE VIR A PAGINAÇÃO !! -->
     </section>
   </Content>
 </template>
