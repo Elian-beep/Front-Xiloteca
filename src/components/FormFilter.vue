@@ -85,7 +85,8 @@ export default defineComponent({
   width: 80%;
   border: none;
   height: 33px;
-  border-bottom: 0.5px solid #213140;
+  background: #f3f3f3;
+  border: 0.5px solid #213140;
   border-radius: 2px;
   padding-left: 8px;
   outline: none;
@@ -117,61 +118,61 @@ export default defineComponent({
     font-size: 16px;
   }
 
-  .area-search{
+  .area-search {
     justify-content: space-between;
     gap: 3%;
   }
 
-  .inptText{
+  .inptText {
     width: 57%;
     font-size: 14px;
   }
 
-  .btnSearch{
+  .btnSearch {
     width: 10%;
   }
 }
 
 @media screen and (min-width: 769px) {
   /* LAPTOP */
-  form{
+  form {
     display: flex;
     justify-content: space-between;
   }
 
-  .area-radios{
+  .area-radios {
     width: 45%;
     max-width: 520px;
   }
 
-  .area-search{
+  .area-search {
     width: 80%;
     max-width: 750px;
     gap: 10px;
     justify-content: end;
   }
 
-  .inptText{
+  .inptText {
     width: 85%;
     font-size: 16px;
   }
 
-  .btnSearch{
+  .btnSearch {
     width: 10%;
     max-width: 40px;
   }
 }
 
-@media screen and (min-width: 1024px){
-  form{
+@media screen and (min-width: 1024px) {
+  form {
     justify-content: space-evenly;
   }
   /* DESKTOP */
-  .inptText::placeholder{
-    font-size: 18px;
+  .inptText::placeholder {
+    font-size: 14px;
   }
 
-  .area-opc label{
+  .area-opc label {
     font-size: 18px;
   }
 }
