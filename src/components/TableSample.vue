@@ -73,7 +73,7 @@ export default defineComponent({
       },
       samples: [],
       page: 1,
-      perPage: 5,
+      perPage: 10,
       pages: [],
       isPage: true,
     };
@@ -213,13 +213,18 @@ export default defineComponent({
   color: #999898;
 }
 
-.isPage {
-}
-
 @media screen and (min-width: 481px) {
   /* TABLET */
   .inTablet {
     display: table-cell;
+  }
+
+  .area-pagination {
+    margin-top: 28px;
+  }
+
+  .area-pagination button {
+    font-size: 16px;
   }
 }
 
@@ -228,6 +233,15 @@ export default defineComponent({
   .inLaptop {
     display: table-cell;
   }
+
+  .area-pagination {
+    margin-top: 40px;
+    gap: 16px;
+  }
+
+  .area-pagination button {
+    font-size: 18px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -235,6 +249,11 @@ export default defineComponent({
   .inDesktop {
     display: table-cell;
   }
+
+  .area-pagination {
+    margin-top: 48px;
+  }
+
 }
 </style>
   
