@@ -11,6 +11,7 @@
           <th class="btnSample">Ver mais</th>
         </tr>
       </thead>
+
       <tbody>
         <tr v-for="sample in displaedSamples" :key="sample._id">
           <td>{{ sample.cod }}</td>
@@ -24,6 +25,9 @@
         </tr>
       </tbody>
     </table>
+    <div class="loading" :class="{ 'stopLoading' : inLoading }">
+        <div class="c-loader"></div>
+      </div>
   </div>
 
   <div class="area-pagination">
@@ -79,6 +83,7 @@ export default defineComponent({
       perPage: 30,
       pages: [],
       isPage: true,
+      inLoading: true,
     };
   },
   mounted() {
@@ -99,6 +104,7 @@ export default defineComponent({
     },
     listAll() {
       Samples.findAll().then((response) => {
+        this.inLoading = false;
         this.samples = response.data;
       });
     },
@@ -220,6 +226,32 @@ export default defineComponent({
 .area-pagination .isPage:hover{
   color: #213140;
   cursor: pointer;
+}
+
+.loading{
+  display: none;
+}
+
+.loading.stopLoading{
+  display: flex;
+  margin-top: 92px;
+  justify-content: center;
+  width: 100%;
+}
+
+.c-loader{
+  animation: is-rotating 1s infinite;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: 6px solid #e5e5e5;
+  border-top-color: #51d4db;
+}
+
+@keyframes is-rotating{
+  to{
+    transform: rotate(1turn);
+  }
 }
 
 @media screen and (min-width: 481px) {

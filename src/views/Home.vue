@@ -19,6 +19,7 @@
         <TableSample />
       </section>
     </Content>
+    <Footer />
   </section>
 </template>
 
@@ -31,6 +32,7 @@ import Logo from "@/components/Titles/Logo.vue";
 import FormFilter from "@/components/FormFilter.vue";
 import SubTitle from "@/components/Titles/SubTitle.vue";
 import TableSample from "@/components/TableSample.vue";
+import Footer from "@/components/Footer.vue";
 
 export default defineComponent({
   name: "HomeView",
@@ -42,6 +44,7 @@ export default defineComponent({
     FormFilter,
     SubTitle,
     TableSample,
+    Footer
   },
   data(){
     return{

@@ -23,7 +23,6 @@ main{
 @media screen and (min-width: 481px){
   /* TABLET */
   main{
-    height: 100vh;
     width: 100%;
     padding: 24px 40px;
   }
@@ -39,12 +38,12 @@ main{
   main::-webkit-scrollbar {
     background: #999999;
     width: 4px;
-    border-radius: 2px;
+    border-radius: 1px;
   }
 
   main::-webkit-scrollbar-thumb{
     background: #213140;
-    border-radius: 2px;
+    border-radius: 1px;
   }
 }
 
