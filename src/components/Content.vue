@@ -14,15 +14,11 @@ export default defineComponent({
   
 <style scoped>
 main{
-    height: 1008px;
-    max-height: 1008px;
+    /* height: 1008px;
+    max-height: 1008px; */
     width: 100vw;
     padding: 16px 24px;
 }
-
-/* main::-webkit-scrollbar{
-  display: none;
-} */
 
 @media screen and (min-width: 481px){
   /* TABLET */
@@ -39,6 +35,17 @@ main{
     padding: 32px 80px;
     /* background: blue; */
   }
+
+  main::-webkit-scrollbar {
+    background: #999999;
+    width: 4px;
+    border-radius: 2px;
+  }
+
+  main::-webkit-scrollbar-thumb{
+    background: #213140;
+    border-radius: 2px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -46,6 +53,10 @@ main{
   main{
     padding: 48px 96px;
     /* background: green; */
+  }
+
+  main::-webkit-scrollbar {
+    width: 6px;
   }
 }
 </style>

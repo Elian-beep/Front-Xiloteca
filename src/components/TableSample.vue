@@ -3,7 +3,7 @@
     <table class="tableSample">
       <thead>
         <tr>
-          <th class="inDesktop">Código</th>
+          <th>Código</th>
           <th class="inLaptop">Família</th>
           <th>Nome Vulgar</th>
           <th class="inTablet">Nome Científico</th>
@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <tr v-for="sample in displaedSamples" :key="sample._id">
-          <td class="inDesktop">{{ sample.cod }}</td>
+          <td>{{ sample.cod }}</td>
           <td class="inLaptop">{{ sample.familia }}</td>
           <td>{{ sample.nomeVulgar }}</td>
           <td class="inTablet">{{ sample.nomeCientifico }}</td>
@@ -131,10 +131,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.table {
-  overflow-y: scroll;
-  max-height: 70vh;
-}
 
 .tableSample {
   width: 100%;
@@ -221,12 +217,14 @@ export default defineComponent({
   color: #999898;
 }
 
+.area-pagination .isPage:hover{
+  color: #213140;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 481px) {
   /* TABLET */
 
-  .table {
-    max-height: 70vh;
-  }
   .inTablet {
     display: table-cell;
   }
@@ -243,16 +241,6 @@ export default defineComponent({
 @media screen and (min-width: 769px) {
   /* LAPTOP */
 
-  .table::-webkit-scrollbar {
-    background: #999999;
-    width: 4px;
-    border-radius: 2px;
-  }
-
-  .table::-webkit-scrollbar-thumb{
-    background: #213140;
-    border-radius: 2px;
-  }
   .inLaptop {
     display: table-cell;
   }
@@ -269,10 +257,6 @@ export default defineComponent({
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
-
-  .table::-webkit-scrollbar {
-    width: 6px;
-  }
 
   .inDesktop {
     display: table-cell;

@@ -38,6 +38,7 @@ import ItemMenu from "./ItemMenu.vue";
 export default defineComponent({
   name: "MenuSandwich",
   components: { ItemMenu },
+  emits: ["blockScroll"],
   props: {
     isHome: {
       type: Boolean,
@@ -60,6 +61,7 @@ export default defineComponent({
   methods: {
     clickMenu() {
       this.isOpen = !this.isOpen;
+      this.$emit("blockScroll", this.isOpen);
     },
   },
 });
@@ -80,10 +82,9 @@ export default defineComponent({
   z-index: 99;
   position: absolute;
   left: -250px;
-  width: 60vw;
+  width: 100vw;
   opacity: 0;
-  height: 1008px;
-
+  
   transition-property: all;
   transition-duration: 200ms;
   transition-timing-function: ease-out;
@@ -91,6 +92,8 @@ export default defineComponent({
 
 .items-menu.isOpen {
   opacity: 1;
+  height: 100vh;
+  overflow: hidden;
   left: 0px;
 
   box-shadow: 0px 10px 20px rgba(33, 49, 64, 0.25);

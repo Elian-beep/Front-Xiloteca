@@ -1,7 +1,7 @@
 <template>
   <header>
     <Logo :isVisible="false" class="logo" />
-    <MenuSandwich :isHome="true" :isAbout="false" :isLogin="false" />
+    <MenuSandwich @block-scroll="sendBlockScroll" :isHome="true" :isAbout="false" :isLogin="false" />
   </header>
   <Content>
     <MainTitle text="Filtrar Dados" />
@@ -27,7 +27,20 @@ import TableSample from "@/components/TableSample.vue";
 
 export default defineComponent({
   name: "HomeView",
-  components: { MenuSandwich, Content, MainTitle, Logo, FormFilter, SubTitle, TableSample },
+  components: {
+    MenuSandwich,
+    Content,
+    MainTitle,
+    Logo,
+    FormFilter,
+    SubTitle,
+    TableSample,
+  },
+  methods: {
+    sendBlockScroll(isOpen : boolean){
+      console.log(`Menu aberto: ${isOpen}`);
+    }
+  }
 });
 </script>
 
@@ -43,6 +56,17 @@ export default defineComponent({
 
 @media screen and (min-width: 481px) {
   /* TABLET */
+
+  .container::-webkit-scrollbar {
+    background: #999999;
+    width: 4px;
+    border-radius: 2px;
+  }
+
+  .container::-webkit-scrollbar-thumb {
+    background: #213140;
+    border-radius: 2px;
+  }
   .area-formFilter {
     margin-top: 22px;
   }
@@ -61,18 +85,23 @@ export default defineComponent({
     border-bottom: 0.5px solid #213140;
   }
 
-  .area-formFilter{
+  .area-formFilter {
     margin-top: 32px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
+
+  .container::-webkit-scrollbar {
+    width: 6px;
+  }
+
   header {
     justify-content: space-around;
   }
 
-  .area-formFilter{
+  .area-formFilter {
     margin-top: 48px;
   }
 }
