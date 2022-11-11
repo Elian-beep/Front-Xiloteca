@@ -82,7 +82,9 @@ export default defineComponent({
   z-index: 99;
   position: absolute;
   left: -250px;
-  width: 100vw;
+  width: 60vw;
+  height: 100vh;
+  max-height: calc(100vh - 54px);
   opacity: 0;
   
   transition-property: all;
@@ -92,10 +94,7 @@ export default defineComponent({
 
 .items-menu.isOpen {
   opacity: 1;
-  height: 100vh;
-  overflow: hidden;
   left: 0px;
-
   box-shadow: 0px 10px 20px rgba(33, 49, 64, 0.25);
 }
 

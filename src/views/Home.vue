@@ -1,18 +1,25 @@
 <template>
   <header>
     <Logo :isVisible="false" class="logo" />
-    <MenuSandwich @block-scroll="sendBlockScroll" :isHome="true" :isAbout="false" :isLogin="false" />
+    <MenuSandwich
+      @block-scroll="sendBlockScroll"
+      :isHome="true"
+      :isAbout="false"
+      :isLogin="false"
+    />
   </header>
-  <Content>
-    <MainTitle text="Filtrar Dados" />
-    <section class="area-formFilter">
-      <FormFilter />
-    </section>
-    <section class="area-table">
-      <SubTitle text="Amostras" />
-      <TableSample />
-    </section>
-  </Content>
+  <section class="container" :class="{ 'blockScroll' : blockScroll }">
+    <Content>
+      <MainTitle text="Filtrar Dados" />
+      <section class="area-formFilter">
+        <FormFilter />
+      </section>
+      <section class="area-table">
+        <SubTitle text="Amostras" />
+        <TableSample />
+      </section>
+    </Content>
+  </section>
 </template>
 
 <script lang="ts">
@@ -36,15 +43,29 @@ export default defineComponent({
     SubTitle,
     TableSample,
   },
-  methods: {
-    sendBlockScroll(isOpen : boolean){
-      console.log(`Menu aberto: ${isOpen}`);
+  data(){
+    return{
+      blockScroll: false
     }
-  }
+  },
+  methods: {
+    sendBlockScroll(isOpen: boolean) {
+      console.log(`Menu aberto: ${isOpen}`);
+      this.blockScroll = isOpen;
+    },
+  },
 });
 </script>
 
 <style scoped>
+
+.container{
+  position: static;
+}
+
+.container.blockScroll{
+  position: fixed;
+}
 .area-formFilter {
   margin-top: 12px;
   width: 100%;
@@ -57,16 +78,6 @@ export default defineComponent({
 @media screen and (min-width: 481px) {
   /* TABLET */
 
-  .container::-webkit-scrollbar {
-    background: #999999;
-    width: 4px;
-    border-radius: 2px;
-  }
-
-  .container::-webkit-scrollbar-thumb {
-    background: #213140;
-    border-radius: 2px;
-  }
   .area-formFilter {
     margin-top: 22px;
   }
@@ -92,10 +103,6 @@ export default defineComponent({
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
-
-  .container::-webkit-scrollbar {
-    width: 6px;
-  }
 
   header {
     justify-content: space-around;
