@@ -2,6 +2,7 @@
   <table class="tableSample">
     <thead>
       <tr>
+        <th class="inDesktop">Código</th>
         <th>Nome Vulgar</th>
         <th class="inTablet">Nome Científico</th>
         <th class="inLaptop">Família</th>
@@ -12,6 +13,7 @@
 
     <tbody>
       <tr v-for="sample in displaedSamples" :key="sample._id">
+        <td class="inDesktop">{{ sample.cod }}</td>
         <td>{{ sample.nomeVulgar }}</td>
         <td class="inTablet">{{ sample.nomeCientifico }}</td>
         <td class="inLaptop">{{ sample.familia }}</td>
@@ -73,7 +75,7 @@ export default defineComponent({
       },
       samples: [],
       page: 1,
-      perPage: 10,
+      perPage: 5,
       pages: [],
       isPage: true,
     };
