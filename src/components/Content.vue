@@ -16,14 +16,13 @@ export default defineComponent({
 main{
     height: 1008px;
     max-height: 1008px;
-    overflow-y: scroll;
     width: 100vw;
     padding: 16px 24px;
 }
 
-main::-webkit-scrollbar{
+/* main::-webkit-scrollbar{
   display: none;
-}
+} */
 
 @media screen and (min-width: 481px){
   /* TABLET */

@@ -1,29 +1,30 @@
 <template>
-  <table class="tableSample">
-    <thead>
-      <tr>
-        <th class="inDesktop">Código</th>
-        <th>Nome Vulgar</th>
-        <th class="inTablet">Nome Científico</th>
-        <th class="inLaptop">Família</th>
-        <th class="inDesktop">Coletor</th>
-        <th class="btnSample">Ver mais</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr v-for="sample in displaedSamples" :key="sample._id">
-        <td class="inDesktop">{{ sample.cod }}</td>
-        <td>{{ sample.nomeVulgar }}</td>
-        <td class="inTablet">{{ sample.nomeCientifico }}</td>
-        <td class="inLaptop">{{ sample.familia }}</td>
-        <td class="inDesktop">{{ sample.coletor }}</td>
-        <td class="btnSample">
-          <button><i class="fa-solid fa-caret-down"></i></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table">
+    <table class="tableSample">
+      <thead>
+        <tr>
+          <th class="inDesktop">Código</th>
+          <th class="inLaptop">Família</th>
+          <th>Nome Vulgar</th>
+          <th class="inTablet">Nome Científico</th>
+          <th class="inDesktop">Coletor</th>
+          <th class="btnSample">Ver mais</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="sample in displaedSamples" :key="sample._id">
+          <td class="inDesktop">{{ sample.cod }}</td>
+          <td class="inLaptop">{{ sample.familia }}</td>
+          <td>{{ sample.nomeVulgar }}</td>
+          <td class="inTablet">{{ sample.nomeCientifico }}</td>
+          <td class="inDesktop">{{ sample.coletor }}</td>
+          <td class="btnSample">
+            <button><i class="fa-solid fa-caret-down"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <div class="area-pagination">
     <button class="pag-btnArrow" type="button" v-if="page != 1" @click="page--">
@@ -75,7 +76,7 @@ export default defineComponent({
       },
       samples: [],
       page: 1,
-      perPage: 5,
+      perPage: 30,
       pages: [],
       isPage: true,
     };
@@ -130,6 +131,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.table {
+  overflow-y: scroll;
+  max-height: 70vh;
+}
+
 .tableSample {
   width: 100%;
   border-spacing: 0;
@@ -217,6 +223,10 @@ export default defineComponent({
 
 @media screen and (min-width: 481px) {
   /* TABLET */
+
+  .table {
+    max-height: 70vh;
+  }
   .inTablet {
     display: table-cell;
   }
@@ -232,6 +242,17 @@ export default defineComponent({
 
 @media screen and (min-width: 769px) {
   /* LAPTOP */
+
+  .table::-webkit-scrollbar {
+    background: #999999;
+    width: 4px;
+    border-radius: 2px;
+  }
+
+  .table::-webkit-scrollbar-thumb{
+    background: #213140;
+    border-radius: 2px;
+  }
   .inLaptop {
     display: table-cell;
   }
@@ -248,6 +269,11 @@ export default defineComponent({
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
+
+  .table::-webkit-scrollbar {
+    width: 6px;
+  }
+
   .inDesktop {
     display: table-cell;
   }
@@ -255,7 +281,6 @@ export default defineComponent({
   .area-pagination {
     margin-top: 48px;
   }
-
 }
 </style>
   
