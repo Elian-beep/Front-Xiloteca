@@ -170,13 +170,50 @@ footer.menuOpen {
     padding-left: 70px;
   }
 
-  .credits a, .area-text span{
+  .credits a,
+  .area-text span {
     font-size: 16px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
+  footer{
+    gap: 96px;
+  }
+
+  .area-logos{
+    justify-content: space-between;
+    gap: auto;
+  }
+  .area-logos .logo-fapeam {
+    width: 78px;
+    height: 82px;
+  }
+
+  .area-logos .logo-uea {
+    width: 86px;
+    height: 82px;
+  }
+
+  .area-logos .logo-cc {
+    width: 94px;
+    height: 79px;
+  }
+
+  .area-logos .logo-proex {
+    width: 146px;
+    height: 40px;
+  }
+
+  .area-text{
+    padding-left: 96px;
+  }
+
+  .credits a,
+  .area-text span {
+    font-size: 18px;
+  }
 }
 </style>
     
