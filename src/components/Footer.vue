@@ -3,7 +3,8 @@
     <div class="area-logos">
       <img class="logo-fapeam" src="@/assets/fapeam.png" alt="Logo Fapeam" />
       <img class="logo-uea" src="@/assets/uea.png" alt="Logo UEA" />
-      <img class="logo-cc"
+      <img
+        class="logo-cc"
         src="@/assets/cienciacomputacao.png"
         alt="Logo da turma de Ciência da Computação"
       />
@@ -14,7 +15,7 @@
         <a href="">Dev: Elian Batista</a>
         <a href="">Design: Linda Hillary</a>
       </div>
-      <span>Acadêmicos do curos de Ciência da Computação</span>
+      <span>Acadêmicos do curos de Ciência da Computação - UEA/CESIT</span>
     </div>
   </footer>
 </template>
@@ -54,7 +55,7 @@ footer {
 }
 
 .area-text {
-  border-top: .5px solid rgba(250, 250, 250, 0.5);
+  border-top: 0.5px solid rgba(250, 250, 250, 0.5);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -91,9 +92,10 @@ footer.menuOpen {
   footer {
     flex-direction: row;
     padding: 34px 24px;
+    justify-content: space-between;
   }
 
-  .area-logos{
+  .area-logos {
     max-width: 50%;
     gap: 24px;
     align-items: center;
@@ -138,6 +140,39 @@ footer.menuOpen {
 
 @media screen and (min-width: 769px) {
   /* LAPTOP */
+
+  footer {
+    padding: 78px 60px;
+    gap: 70px;
+  }
+
+  .area-logos .logo-fapeam {
+    width: 64px;
+    height: 67px;
+  }
+
+  .area-logos .logo-uea {
+    width: 64px;
+    height: 62px;
+  }
+
+  .area-logos .logo-cc {
+    width: 72px;
+    height: 60px;
+  }
+
+  .area-logos .logo-proex {
+    width: 116px;
+    height: 33px;
+  }
+
+  .area-text {
+    padding-left: 70px;
+  }
+
+  .credits a, .area-text span{
+    font-size: 16px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
