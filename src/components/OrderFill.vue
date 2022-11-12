@@ -3,9 +3,13 @@
     <option value="" selected>
       <div>Ordenar por</div>
     </option>
-    <option value="Oa">Ordem alfabética (Nome Vulgar)</option>
-    <option value="Ar">Adicionados recentemente</option>
-    <option value="Ma">Mais Antigos</option>
+    <option value="Oa">
+      <button @click="sendOrder('Oa')">Ordem alfabética (Nome Vulgar)</button>
+    </option>
+    <option @click="sendOrder('Ar')" value="Ar">
+      Adicionados recentemente
+    </option>
+    <option @click="sendOrder('Ma')" value="Ma">Mais Antigos</option>
   </select>
 </template>
   
@@ -14,6 +18,13 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "OrderFill",
+  emits: ["chosenOrder"],
+  methods: {
+    sendOrder(order: string) {
+      console.log(`Ordem escolhida: ${order}`);
+      this.$emit("chosenOrder", order);
+    },
+  },
 });
 </script>
   
@@ -30,22 +41,22 @@ select {
   font-size: 14px;
 }
 
-@media screen and (min-width: 481px){
+@media screen and (min-width: 481px) {
   /* TABLET */
-  select{
+  select {
     width: 26%;
   }
 }
 
 @media screen and (min-width: 769px) {
   /* LAPTOP */
-  select{
+  select {
     width: 35%;
     max-width: 120px;
   }
 }
 
-@media screen and (min-width: 1024px){
+@media screen and (min-width: 1024px) {
   /* DESKTOP */
 }
 </style>

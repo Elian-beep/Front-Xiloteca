@@ -235,7 +235,7 @@ export default defineComponent({
 .loading.stopLoading{
   display: flex;
   margin-top: 70px;
-  margin-bottom: 5vh; /*30vh*/
+  margin-bottom: 30vh; /*30vh*/
   justify-content: center;
   width: 100%;
 }
