@@ -234,7 +234,8 @@ export default defineComponent({
 
 .loading.stopLoading{
   display: flex;
-  margin-top: 92px;
+  margin-top: 70px;
+  margin-bottom: 5vh; /*30vh*/
   justify-content: center;
   width: 100%;
 }
@@ -245,7 +246,7 @@ export default defineComponent({
   width: 50px;
   height: 50px;
   border: 6px solid #e5e5e5;
-  border-top-color: #51d4db;
+  border-top-color: #130f26;
 }
 
 @keyframes is-rotating{

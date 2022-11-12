@@ -8,7 +8,7 @@
       :isLogin="false"
     />
   </header>
-  <section class="container" :class="{ 'blockScroll' : blockScroll }">
+  <section class="container" :class="{ blockScroll: blockScroll }">
     <Content>
       <MainTitle text="Filtrar Dados" />
       <section class="area-formFilter">
@@ -19,8 +19,8 @@
         <TableSample />
       </section>
     </Content>
-    <Footer />
   </section>
+  <Footer :menuOpen="blockScroll" />
 </template>
 
 <script lang="ts">
@@ -44,29 +44,28 @@ export default defineComponent({
     FormFilter,
     SubTitle,
     TableSample,
-    Footer
+    Footer,
   },
-  data(){
-    return{
-      blockScroll: false
-    }
+  data() {
+    return {
+      blockScroll: false,
+    };
   },
   methods: {
     sendBlockScroll(isOpen: boolean) {
       console.log(`Menu aberto: ${isOpen}`);
       this.blockScroll = isOpen;
-    },
+    }
   },
 });
 </script>
 
 <style scoped>
-
-.container{
+.container {
   position: static;
 }
 
-.container.blockScroll{
+.container.blockScroll {
   position: fixed;
 }
 .area-formFilter {
