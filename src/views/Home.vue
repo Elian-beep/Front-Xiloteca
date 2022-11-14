@@ -60,11 +60,9 @@ export default defineComponent({
     },
     getOpcInput(opcInput: string){
       this.opcInput = opcInput;
-      console.log(`Modo de pesquisa: ${this.opcInput}`);
     },
     getSearchInput(searchInput: string){
       this.searchInput = searchInput;
-      console.log(`Pesquisar: ${this.searchInput}`);
     }
   },
 });

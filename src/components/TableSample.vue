@@ -1,7 +1,5 @@
 <template>
   <div class="table">
-    {{ opcInput }}
-    {{ searchInput }}
     <table class="tableSample">
       <thead>
         <tr>
@@ -27,9 +25,9 @@
         </tr>
       </tbody>
     </table>
-    <div class="loading" :class="{ 'stopLoading' : inLoading }">
-        <div class="c-loader"></div>
-      </div>
+    <div class="loading" :class="{ stopLoading: inLoading }">
+      <div class="c-loader"></div>
+    </div>
   </div>
 
   <div class="area-pagination">
@@ -65,12 +63,12 @@ export default defineComponent({
   props: {
     opcInput: {
       type: String,
-      required: false
+      required: false,
     },
     searchInput: {
       type: String,
-      required: false
-    }
+      required: false,
+    },
   },
   data() {
     return {
@@ -91,6 +89,7 @@ export default defineComponent({
         obs: "",
       },
       samples: [],
+      newSamples: [],
       page: 1,
       perPage: 30,
       pages: [],
@@ -99,18 +98,31 @@ export default defineComponent({
     };
   },
   mounted() {
-    this.list("all");
+    this.list('');
   },
   methods: {
-    list(opcShowSample) {
-      if (opcShowSample == "Oa") {
-        console.log("Exibir em ordem alfabética");
-      } else if (opcShowSample == "Ar") {
-        console.log("Exibir os adicionados recentemente");
-      } else if (opcShowSample == "Ma") {
-        console.log("Exibir os mais antigos");
-      } else if (opcShowSample == "all") {
-        console.log("Está exibindo todos");
+    list(opc) {
+      // if (opcShowSample == "Oa") {
+      //   console.log("Exibir em ordem alfabética");
+      // } else if (opcShowSample == "Ar") {
+      //   console.log("Exibir os adicionados recentemente");
+      // } else if (opcShowSample == "Ma") {
+      //   console.log("Exibir os mais antigos");
+      // } else if (opcShowSample == "all") {
+      //   console.log("Está exibindo todos");
+      //   this.listAll();
+      // }
+
+      if (opc == "cod") {
+        console.log("passou aqui");
+        this.listCod(this.searchInput);
+      } else if (opc == "familia") {
+        // Listar a familia buscada
+      } else if (opc == "nomeVulgar") {
+        // Listar o nome vulgar buscado
+      } else if (opc == "nomeCientifico") {
+        // Listar o nome cientifico buscado
+      } else {
         this.listAll();
       }
     },
@@ -118,6 +130,12 @@ export default defineComponent({
       Samples.findAll().then((response) => {
         this.inLoading = false;
         this.samples = response.data;
+      });
+    },
+    listCod(codSearch) {
+      Samples.findAll().then((response) => {
+        this.samples = response.data;
+        console.log(this.samples[1]);
       });
     },
     paginate(samples) {
@@ -137,6 +155,11 @@ export default defineComponent({
   },
   computed: {
     displaedSamples() {
+      if (this.opcInput == "cod"){
+        console.log('vai exibir com opc');
+      }else if(this.opcInput == "familia"){
+        console.log('vai exibir com familia');
+      }
       return this.paginate(this.samples);
     },
   },
@@ -149,7 +172,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 .tableSample {
   width: 100%;
   border-spacing: 0;
@@ -235,16 +257,16 @@ export default defineComponent({
   color: #999898;
 }
 
-.area-pagination .isPage:hover{
+.area-pagination .isPage:hover {
   color: #213140;
   cursor: pointer;
 }
 
-.loading{
+.loading {
   display: none;
 }
 
-.loading.stopLoading{
+.loading.stopLoading {
   display: flex;
   margin-top: 70px;
   margin-bottom: 30vh; /*30vh*/
@@ -252,7 +274,7 @@ export default defineComponent({
   width: 100%;
 }
 
-.c-loader{
+.c-loader {
   animation: is-rotating 1s infinite;
   border-radius: 50%;
   width: 50px;
@@ -261,8 +283,8 @@ export default defineComponent({
   border-top-color: #130f26;
 }
 
-@keyframes is-rotating{
-  to{
+@keyframes is-rotating {
+  to {
     transform: rotate(1turn);
   }
 }
