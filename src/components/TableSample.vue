@@ -1,5 +1,7 @@
 <template>
   <div class="table">
+    {{ opcInput }}
+    {{ searchInput }}
     <table class="tableSample">
       <thead>
         <tr>
@@ -60,6 +62,16 @@ import Samples from "../services/samples.js";
 
 export default defineComponent({
   name: "TableSample",
+  props: {
+    opcInput: {
+      type: String,
+      required: false
+    },
+    searchInput: {
+      type: String,
+      required: false
+    }
+  },
   data() {
     return {
       sample: {

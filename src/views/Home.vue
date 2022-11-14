@@ -12,11 +12,11 @@
     <Content>
       <MainTitle text="Filtrar Dados" />
       <section class="area-formFilter">
-        <FormFilter />
+        <FormFilter @send-opc-input="getOpcInput" @send-search-input="getSearchInput" />
       </section>
       <section class="area-table">
         <SubTitle text="Amostras" />
-        <TableSample />
+        <TableSample :opcInput="opcInput" :searchInput="searchInput" />
       </section>
     </Content>
   </section>
@@ -49,12 +49,22 @@ export default defineComponent({
   data() {
     return {
       blockScroll: false,
+      opcInput: '',
+      searchInput: ''
     };
   },
   methods: {
     sendBlockScroll(isOpen: boolean) {
       console.log(`Menu aberto: ${isOpen}`);
       this.blockScroll = isOpen;
+    },
+    getOpcInput(opcInput: string){
+      this.opcInput = opcInput;
+      console.log(`Modo de pesquisa: ${this.opcInput}`);
+    },
+    getSearchInput(searchInput: string){
+      this.searchInput = searchInput;
+      console.log(`Pesquisar: ${this.searchInput}`);
     }
   },
 });

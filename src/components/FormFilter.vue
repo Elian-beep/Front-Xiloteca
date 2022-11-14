@@ -1,26 +1,26 @@
 <template>
-  <form @submit.prevent="">
+  <form @submit.prevent="search">
     <div class="area-radios">
       <div class="area-opc">
-        <input type="radio" value="cod" id="opcCod" name="opcFill" />
+        <input type="radio" v-model="opcInput" value="cod" id="opcCod" name="opcFill" />
         <label for="opcCod">Código</label>
       </div>
       <div class="area-opc">
-        <input type="radio" value="familia" id="opcFamilia" name="opcFill" />
+        <input type="radio" v-model="opcInput" value="familia" id="opcFamilia" name="opcFill" />
         <label for="opcFamilia">Família</label>
       </div>
       <div class="area-opc">
-        <input type="radio" value="nomeVulgar" id="opcNV" name="opcFill" />
+        <input type="radio" v-model="opcInput" value="nomeVulgar" id="opcNV" name="opcFill" />
         <label for="opcNV">Nome Vulgar</label>
       </div>
       <div class="area-opc">
-        <input type="radio" value="nomeCientifico" id="opcNC" name="opcFill" />
+        <input type="radio" v-model="opcInput" value="nomeCientifico" id="opcNC" name="opcFill" />
         <label for="opcNC">Nome Científico</label>
       </div>
     </div>
 
     <div class="area-search">
-      <input class="inptText" type="search" placeholder="Digite sua pesquisa" />
+      <input class="inptText" v-model="searchInput" type="search" placeholder="Digite sua pesquisa" />
       <button class="btnSearch" type="submit">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
@@ -35,7 +35,21 @@ import OrderFill from "./OrderFill.vue";
 
 export default defineComponent({
   name: "FormFill",
+  emits: ["sendOpcInput", "sendSearchInput"],
   components: { OrderFill },
+  data(){
+    return{
+      opcInput: '',
+      searchInput: ''
+    }
+  },
+  methods: {
+    search(){
+      console.log(`Pesquisar "${this.searchInput}" como "${this.opcInput}"`);
+      this.$emit('sendOpcInput', this.opcInput);
+      this.$emit('sendSearchInput', this.searchInput);
+    }
+  }
 });
 </script>
   
