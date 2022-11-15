@@ -45,7 +45,7 @@ export default defineComponent({
   },
   methods: {
     search(){
-      console.log(`Pesquisar "${this.searchInput}" como "${this.opcInput}"`);
+      // console.log(`Pesquisar "${this.searchInput}" como "${this.opcInput}"`);
       this.$emit('sendOpcInput', this.opcInput);
       this.$emit('sendSearchInput', this.searchInput);
     }

@@ -63,11 +63,11 @@ export default defineComponent({
   props: {
     opcInput: {
       type: String,
-      required: false,
+      required: true,
     },
     searchInput: {
       type: String,
-      required: false,
+      required: true,
     },
   },
   data() {
@@ -101,28 +101,16 @@ export default defineComponent({
     this.list('');
   },
   methods: {
-    list(opc) {
-      // if (opcShowSample == "Oa") {
-      //   console.log("Exibir em ordem alfabética");
-      // } else if (opcShowSample == "Ar") {
-      //   console.log("Exibir os adicionados recentemente");
-      // } else if (opcShowSample == "Ma") {
-      //   console.log("Exibir os mais antigos");
-      // } else if (opcShowSample == "all") {
-      //   console.log("Está exibindo todos");
-      //   this.listAll();
-      // }
-
+    list(opc, text) {
       if (opc == "cod") {
-        console.log("passou aqui");
-        this.listCod(this.searchInput);
+        console.log(`pesquisar ${text} baseado em: ${opc}`);
       } else if (opc == "familia") {
-        // Listar a familia buscada
+        console.log(`pesquisar ${text} baseado em: ${opc}`);
       } else if (opc == "nomeVulgar") {
-        // Listar o nome vulgar buscado
+        console.log(`pesquisar ${text} baseado em: ${opc}`);
       } else if (opc == "nomeCientifico") {
-        // Listar o nome cientifico buscado
-      } else {
+        console.log(`pesquisar ${text} baseado em:${opc}`);
+       } else {
         this.listAll();
       }
     },
@@ -130,12 +118,6 @@ export default defineComponent({
       Samples.findAll().then((response) => {
         this.inLoading = false;
         this.samples = response.data;
-      });
-    },
-    listCod(codSearch) {
-      Samples.findAll().then((response) => {
-        this.samples = response.data;
-        console.log(this.samples[1]);
       });
     },
     paginate(samples) {
@@ -155,11 +137,6 @@ export default defineComponent({
   },
   computed: {
     displaedSamples() {
-      if (this.opcInput == "cod"){
-        console.log('vai exibir com opc');
-      }else if(this.opcInput == "familia"){
-        console.log('vai exibir com familia');
-      }
       return this.paginate(this.samples);
     },
   },
@@ -167,6 +144,12 @@ export default defineComponent({
     samples() {
       this.setSanples();
     },
+    opcInput(opc){
+      this.list(opc, this.searchInput);
+    },
+    searchInput(text){
+      this.list(this.opcInput, text);
+    }
   },
 });
 </script>
