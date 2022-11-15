@@ -105,10 +105,9 @@ export default defineComponent({
   methods: {
     list(opc, text) {
       if (opc == "cod") {
-        console.log(`pesquisar ${text} baseado em: ${opc}`);
         this.listCod(text);
       } else if (opc == "familia") {
-        console.log(`pesquisar ${text} baseado em: ${opc}`);
+        this.listFamilia(text);
       } else if (opc == "nomeVulgar") {
         console.log(`pesquisar ${text} baseado em: ${opc}`);
       } else if (opc == "nomeCientifico") {
@@ -126,6 +125,7 @@ export default defineComponent({
     },
     listCod(text){
       this.pages = []
+      text = text.toUpperCase();
       Samples.findAll().then((response) => {
         this.samples = Object.freeze(response.data);
         for (this.sample of this.samples){
@@ -136,7 +136,22 @@ export default defineComponent({
         this.samples = this.newSamples;
         this.newSamples = [];
       });
-
+    },
+    listFamilia(text){
+      this.pages = [];
+      text = text.toLowerCase(); 
+      Samples.findAll().then((response) => {
+        this.samples = Object.freeze(response.data);
+        for (this.sample of this.samples){
+          this.sample.familia = this.sample.familia.toLowerCase();
+          if (this.sample.familia == text) { 
+            this.sample.familia = this.sample.familia[0].toUpperCase() + this.sample.familia.substring(1);
+            this.newSamples.push(this.sample);
+          }
+        }
+        this.samples = this.newSamples;
+        this.newSamples = [];
+      });
     },
     paginate(samples) {
       let page = this.page;

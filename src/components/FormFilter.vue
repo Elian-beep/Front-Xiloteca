@@ -2,25 +2,25 @@
   <form @submit.prevent="search">
     <div class="area-radios">
       <div class="area-opc">
-        <input type="radio" v-model="opcInput" value="cod" id="opcCod" name="opcFill" />
+        <input type="radio" required v-model="opcInput" value="cod" id="opcCod" name="opcFill" />
         <label for="opcCod">Código</label>
       </div>
       <div class="area-opc">
-        <input type="radio" v-model="opcInput" value="familia" id="opcFamilia" name="opcFill" />
+        <input type="radio" required v-model="opcInput" value="familia" id="opcFamilia" name="opcFill" />
         <label for="opcFamilia">Família</label>
       </div>
       <div class="area-opc">
-        <input type="radio" v-model="opcInput" value="nomeVulgar" id="opcNV" name="opcFill" />
+        <input type="radio" required v-model="opcInput" value="nomeVulgar" id="opcNV" name="opcFill" />
         <label for="opcNV">Nome Vulgar</label>
       </div>
       <div class="area-opc">
-        <input type="radio" v-model="opcInput" value="nomeCientifico" id="opcNC" name="opcFill" />
+        <input type="radio" required v-model="opcInput" value="nomeCientifico" id="opcNC" name="opcFill" />
         <label for="opcNC">Nome Científico</label>
       </div>
     </div>
 
     <div class="area-search">
-      <input class="inptText" v-model="searchInput" type="search" placeholder="Digite sua pesquisa" />
+      <input required class="inptText" v-model="searchInput" type="search" placeholder="Digite sua pesquisa" />
       <button class="btnSearch" type="submit">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>

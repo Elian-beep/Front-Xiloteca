@@ -53,7 +53,7 @@ li.selected {
 @media screen and (min-width: 481px) {
   /* TABLET */
   li {
-    padding: 0;
+    padding: 4px;
     list-style: none;
     border: none;
     margin: auto;
@@ -63,7 +63,7 @@ li.selected {
   li.selected {
     border: none;
     background: none;
-    border-bottom: 1px solid #213140;
+    border-bottom: .5px solid #213140;
   }
 }
 
@@ -76,10 +76,11 @@ li.selected {
 
   li:hover {
     cursor: pointer;
-    border-left: 0.5px solid #d9d9d9;
-    border-right: 0.5px solid #d9d9d9;
+    /* border-left: 0.5px solid #d9d9d9;
+    border-right: 0.5px solid #d9d9d9; */
+    border-bottom: 0.5px solid #d9d9d9;
     transition: 0.1s ease-in-out;
-    padding: 16px;
+    /* padding: 16px; */
   }
 }
 
