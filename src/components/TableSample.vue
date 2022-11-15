@@ -90,6 +90,8 @@ export default defineComponent({
       },
       samples: [],
       newSamples: [],
+      oldOpc: '',
+      textSearch: '',
       page: 1,
       perPage: 30,
       pages: [],
@@ -104,6 +106,7 @@ export default defineComponent({
     list(opc, text) {
       if (opc == "cod") {
         console.log(`pesquisar ${text} baseado em: ${opc}`);
+        this.listCod(text);
       } else if (opc == "familia") {
         console.log(`pesquisar ${text} baseado em: ${opc}`);
       } else if (opc == "nomeVulgar") {
@@ -115,10 +118,25 @@ export default defineComponent({
       }
     },
     listAll() {
+      this.pages = []
       Samples.findAll().then((response) => {
         this.inLoading = false;
         this.samples = response.data;
       });
+    },
+    listCod(text){
+      this.pages = []
+      Samples.findAll().then((response) => {
+        this.samples = Object.freeze(response.data);
+        for (this.sample of this.samples){
+          if (this.sample.cod == text) {
+            this.newSamples.push(this.sample);
+          }
+        }
+        this.samples = this.newSamples;
+        this.newSamples = [];
+      });
+
     },
     paginate(samples) {
       let page = this.page;
