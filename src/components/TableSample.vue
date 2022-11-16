@@ -20,7 +20,7 @@
           <td class="inTablet">{{ sample.nomeCientifico }}</td>
           <td class="inDesktop">{{ sample.coletor }}</td>
           <td class="btnSample">
-            <button><i class="fa-solid fa-caret-down"></i></button>
+            <button @click="openModal(sample)" ><i class="fa-solid fa-caret-down"></i></button>
           </td>
         </tr>
       </tbody>
@@ -52,14 +52,21 @@
       <i class="fa-solid fa-chevron-right"></i>
     </button>
   </div>
+
+  <ModalContainer @closedModal="closedModal" mainTitle="Titulo de teste" :showModal="showModal">
+    body container
+  </ModalContainer>
+
 </template>
   
 <script>
 import { defineComponent } from "vue";
 import Samples from "../services/samples.js";
+import ModalContainer from '../components/Modal.vue';
 
 export default defineComponent({
   name: "TableSample",
+  components: { ModalContainer },
   props: {
     opcInput: {
       type: String,
@@ -87,6 +94,7 @@ export default defineComponent({
         remetente: "",
         desc: "",
         obs: "",
+        showModal: false
       },
       samples: [],
       newSamples: [],
@@ -97,12 +105,20 @@ export default defineComponent({
       pages: [],
       isPage: true,
       inLoading: true,
+      showModal: false
     };
   },
   mounted() {
     this.list('');
   },
   methods: {
+    openModal(sample){
+      console.log(sample);
+      this.showModal = true;
+    },
+    closedModal(closedModal){
+        this.showModal = closedModal;
+    },
     list(opc, text) {
       if (opc == "cod") {
         this.listCod(text);

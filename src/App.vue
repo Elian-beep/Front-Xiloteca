@@ -11,12 +11,13 @@ export default defineComponent({
 </script>
 
 <style>
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body, html {
+body,
+html {
   font-family: "Inter", sans-serif;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /*pode ser transparent também*/
 }
