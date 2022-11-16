@@ -67,6 +67,7 @@
       <p><span>Família: </span>{{ sample.familia }}</p>
       <p><span>Procedência: </span>{{ sample.procedencia }}</p>
     </div>
+  </div>
     <div class="area-info">
       <p><span>Descrição: </span>{{ sample.desc }}</p>
       <p><span>Código: </span>{{ sample.cod }}</p>
@@ -78,14 +79,13 @@
       <p><span>Remetente: </span>{{ sample.remetente }}</p>
       <p><span>Obs: </span>{{ sample.obs }}</p>
     </div>
-  </div>
   </ModalContainer>
 </template>
   
 <script>
 import { defineComponent } from "vue";
 import Samples from "../services/samples.js";
-import ModalContainer from "../components/Modal.vue";
+import ModalContainer from "./Modals/Modal.vue";
 
 export default defineComponent({
   name: "TableSample",
@@ -118,7 +118,6 @@ export default defineComponent({
         remetente: "",
         desc: "",
         obs: "",
-        showModal: false,
       },
       samples: [],
       newSamples: [],
@@ -137,25 +136,15 @@ export default defineComponent({
     this.list("");
   },
   methods: {
-    openModal(sample) {
-      this.titleForModal = sample.nomeVulgar;
-      this.sample = sample;
-      this.showModal = true;
-      this.$emit("blockScroll", this.showModal);
-    },
-    closedModal(closedModal) {
-      this.showModal = closedModal;
-      this.$emit("blockScroll", this.showModal);
-    },
     list(opc, text) {
       if (opc == "cod") {
         this.listCod(text);
       } else if (opc == "familia") {
         this.listFamilia(text);
       } else if (opc == "nomeVulgar") {
-        console.log(`pesquisar ${text} baseado em: ${opc}`);
+        this.listNV(text);
       } else if (opc == "nomeCientifico") {
-        console.log(`pesquisar ${text} baseado em:${opc}`);
+        this.listNC(text);
       } else {
         this.listAll();
       }
@@ -170,34 +159,56 @@ export default defineComponent({
     listCod(text) {
       this.pages = [];
       text = text.toUpperCase();
-      Samples.findAll().then((response) => {
-        this.samples = Object.freeze(response.data);
-        for (this.sample of this.samples) {
-          if (this.sample.cod == text) {
-            this.newSamples.push(this.sample);
-          }
-        }
-        this.samples = this.newSamples;
-        this.newSamples = [];
+      Samples.findCod(text).then((response) => {
+        this.samples = response.data;
+        this.inLoading = false;
       });
     },
     listFamilia(text) {
       this.pages = [];
-      text = text.toLowerCase();
-      Samples.findAll().then((response) => {
-        this.samples = Object.freeze(response.data);
-        for (this.sample of this.samples) {
-          this.sample.familia = this.sample.familia.toLowerCase();
-          if (this.sample.familia == text) {
-            this.sample.familia =
-              this.sample.familia[0].toUpperCase() +
-              this.sample.familia.substring(1);
-            this.newSamples.push(this.sample);
-          }
-        }
-        this.samples = this.newSamples;
-        this.newSamples = [];
+      Samples.findFamilia(text).then((response) => {
+        this.samples = response.data;
+        this.inLoading = false;
       });
+      // text = text.toLowerCase();
+      // Samples.findAll().then((response) => {
+      //   this.samples = Object.freeze(response.data);
+      //   for (this.sample of this.samples) {
+      //     this.sample.familia = this.sample.familia.toLowerCase();
+      //     if (this.sample.familia == text) {
+      //       this.sample.familia =
+      //       this.sample.familia[0].toUpperCase() +
+      //         this.sample.familia.substring(1);
+      //         this.newSamples.push(this.sample);
+      //       }
+      //   }
+      //   this.samples = this.newSamples;
+      //   this.newSamples = [];
+      // });
+    },
+    listNV(text){
+      this.pages = [];
+      Samples.findNV(text).then((response) => {
+        this.samples = response.data;
+        this.inLoading = false;
+      });
+    },
+    listNC(text){
+      this.pages = [];
+      Samples.findNC(text).then((response) => {
+        this.samples = response.data;
+        this.inLoading = false;
+      });
+    },
+    openModal(sample) {
+      this.titleForModal = sample.nomeVulgar;
+      this.sample = sample;
+      this.showModal = true;
+      this.$emit("blockScroll", this.showModal);
+    },
+    closedModal(closedModal) {
+      this.showModal = closedModal;
+      this.$emit("blockScroll", this.showModal);
     },
     paginate(samples) {
       let page = this.page;

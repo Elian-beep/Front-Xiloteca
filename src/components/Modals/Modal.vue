@@ -15,7 +15,7 @@
   
 <script lang="ts">
 import { defineComponent } from "vue";
-import MainTitle from "./Titles/MainTitle.vue";
+import MainTitle from "../Titles/MainTitle.vue";
 
 export default defineComponent({
   name: "ModalContainer",
@@ -31,29 +31,30 @@ export default defineComponent({
       required: true,
     },
   },
-  data(){
-    return{
+  data() {
+    return {
       dataShowModal: false,
-      dataMainTitle: ''
-    }
+      dataMainTitle: "",
+    };
   },
   methods: {
-    closeModal(){
-      this.$emit('closedModal', false);
+    closeModal() {
+      this.$emit("closedModal", false);
       this.dataShowModal = false;
-    }
+    },
   },
   mounted() {
     this.dataShowModal = this.showModal;
   },
   watch: {
-    showModal(newShowModal){
+    showModal(newShowModal) {
       this.dataShowModal = newShowModal;
     },
-    MainTitle(newMainTitle){
+    mainTitle(newMainTitle) {
       this.dataMainTitle = newMainTitle;
     }
-  }
+
+  },
 });
 </script>
   
@@ -92,7 +93,7 @@ export default defineComponent({
   gap: 40px;
 }
 
-.modal-btnClose{
+.modal-btnClose {
   background: none;
   padding: none;
   border: none;
@@ -100,10 +101,9 @@ export default defineComponent({
   font-size: 15px;
 }
 
-.modal-btnClose:hover{
+.modal-btnClose:hover {
   cursor: pointer;
 }
-
 
 @media screen and (min-width: 769px) {
   /* LAPTOP */

@@ -4,14 +4,17 @@ export default {
     findAll:() => {
         return http.get('amostras')
     },
-
-    sortOa:(sample) => {
-        return sample.sort(function(a, b){
-            if (a.nomeVulgar < b.nomeVulgar) {
-                return -1;
-            }else{
-                return true;
-            }
-        })
+    findCod:(text) => {
+        return http.get(`amostras/busca/cod?cod=${text}`)
+    },
+    findFamilia:(text) => {
+        return http.get(`amostras/busca/familia?familia=${text}`)
+    },
+    findNV:(text) => {
+        return http.get(`amostras/busca/nv?nomeVulgar=${text}`)
+    },
+    findNC:(text) => {
+        return http.get(`amostras/busca/nc?nomeCientifico=${text}`)
     }
+
 }
