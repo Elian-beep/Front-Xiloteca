@@ -16,7 +16,7 @@
       </section>
       <section class="area-table">
         <SubTitle text="Amostras" />
-        <TableSample :opcInput="opcInput" :searchInput="searchInput" />
+        <TableSample @blockScroll="sendBlockScroll" :opcInput="opcInput" :searchInput="searchInput" />
       </section>
     </Content>
   </section>
@@ -55,7 +55,7 @@ export default defineComponent({
   },
   methods: {
     sendBlockScroll(isOpen: boolean) {
-      console.log(`Menu aberto: ${isOpen}`);
+      console.log(`Block scroll: ${isOpen}`);
       this.blockScroll = isOpen;
     },
     getOpcInput(opcInput: string){

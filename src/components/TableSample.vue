@@ -13,14 +13,16 @@
       </thead>
 
       <tbody>
-        <tr v-for="sample in displaedSamples" :key="sample._id">
+        <tr v-for="sample in displaedSamples" :key="sample._id" @click="openModal(sample)">
           <td>{{ sample.cod }}</td>
           <td class="inLaptop">{{ sample.familia }}</td>
           <td>{{ sample.nomeVulgar }}</td>
           <td class="inTablet">{{ sample.nomeCientifico }}</td>
           <td class="inDesktop">{{ sample.coletor }}</td>
           <td class="btnSample">
-            <button @click="openModal(sample)" ><i class="fa-solid fa-caret-down"></i></button>
+            <button @click="openModal(sample)">
+              <i class="fa-solid fa-caret-down"></i>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -53,20 +55,42 @@
     </button>
   </div>
 
-  <ModalContainer @closedModal="closedModal" mainTitle="Titulo de teste" :showModal="showModal">
-    body container
+  <ModalContainer
+    @closedModal="closedModal"
+    :mainTitle="titleForModal"
+    :showModal="showModal"
+  >
+  <div class="modal-subHe">
+    <img src="@/assets/sampleDefault.svg" alt="Imagem ilustrativa de amostras cadastradas">
+    <div class="area-mainTitles">
+      <p><span>Nome científico: </span>{{ sample.nomeCientifico }}</p>
+      <p><span>Família: </span>{{ sample.familia }}</p>
+      <p><span>Procedência: </span>{{ sample.procedencia }}</p>
+    </div>
+    <div class="area-info">
+      <p><span>Descrição: </span>{{ sample.desc }}</p>
+      <p><span>Código: </span>{{ sample.cod }}</p>
+      <p><span>Lâmina: </span>{{ sample.lamina }}</p>
+      <p><span>Herbrário: </span>{{ sample.herb }}</p>
+      <p><span>Coletor: </span>{{ sample.coletor }}</p>
+      <p><span>Data de coleta: </span>{{ sample.dataColeta }}</p>
+      <p><span>Determinador: </span>{{ sample.determinador }}</p>
+      <p><span>Remetente: </span>{{ sample.remetente }}</p>
+      <p><span>Obs: </span>{{ sample.obs }}</p>
+    </div>
+  </div>
   </ModalContainer>
-
 </template>
   
 <script>
 import { defineComponent } from "vue";
 import Samples from "../services/samples.js";
-import ModalContainer from '../components/Modal.vue';
+import ModalContainer from "../components/Modal.vue";
 
 export default defineComponent({
   name: "TableSample",
   components: { ModalContainer },
+  emits: ["blockScroll"],
   props: {
     opcInput: {
       type: String,
@@ -94,30 +118,34 @@ export default defineComponent({
         remetente: "",
         desc: "",
         obs: "",
-        showModal: false
+        showModal: false,
       },
       samples: [],
       newSamples: [],
-      oldOpc: '',
-      textSearch: '',
+      oldOpc: "",
+      textSearch: "",
       page: 1,
       perPage: 30,
       pages: [],
       isPage: true,
       inLoading: true,
-      showModal: false
+      showModal: false, //Deve ser false
+      titleForModal: "",
     };
   },
   mounted() {
-    this.list('');
+    this.list("");
   },
   methods: {
-    openModal(sample){
-      console.log(sample);
+    openModal(sample) {
+      this.titleForModal = sample.nomeVulgar;
+      this.sample = sample;
       this.showModal = true;
+      this.$emit("blockScroll", this.showModal);
     },
-    closedModal(closedModal){
-        this.showModal = closedModal;
+    closedModal(closedModal) {
+      this.showModal = closedModal;
+      this.$emit("blockScroll", this.showModal);
     },
     list(opc, text) {
       if (opc == "cod") {
@@ -128,23 +156,23 @@ export default defineComponent({
         console.log(`pesquisar ${text} baseado em: ${opc}`);
       } else if (opc == "nomeCientifico") {
         console.log(`pesquisar ${text} baseado em:${opc}`);
-       } else {
+      } else {
         this.listAll();
       }
     },
     listAll() {
-      this.pages = []
+      this.pages = [];
       Samples.findAll().then((response) => {
         this.inLoading = false;
         this.samples = response.data;
       });
     },
-    listCod(text){
-      this.pages = []
+    listCod(text) {
+      this.pages = [];
       text = text.toUpperCase();
       Samples.findAll().then((response) => {
         this.samples = Object.freeze(response.data);
-        for (this.sample of this.samples){
+        for (this.sample of this.samples) {
           if (this.sample.cod == text) {
             this.newSamples.push(this.sample);
           }
@@ -153,15 +181,17 @@ export default defineComponent({
         this.newSamples = [];
       });
     },
-    listFamilia(text){
+    listFamilia(text) {
       this.pages = [];
-      text = text.toLowerCase(); 
+      text = text.toLowerCase();
       Samples.findAll().then((response) => {
         this.samples = Object.freeze(response.data);
-        for (this.sample of this.samples){
+        for (this.sample of this.samples) {
           this.sample.familia = this.sample.familia.toLowerCase();
-          if (this.sample.familia == text) { 
-            this.sample.familia = this.sample.familia[0].toUpperCase() + this.sample.familia.substring(1);
+          if (this.sample.familia == text) {
+            this.sample.familia =
+              this.sample.familia[0].toUpperCase() +
+              this.sample.familia.substring(1);
             this.newSamples.push(this.sample);
           }
         }
@@ -193,12 +223,12 @@ export default defineComponent({
     samples() {
       this.setSanples();
     },
-    opcInput(opc){
+    opcInput(opc) {
       this.list(opc, this.searchInput);
     },
-    searchInput(text){
+    searchInput(text) {
       this.list(this.opcInput, text);
-    }
+    },
   },
 });
 </script>

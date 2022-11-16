@@ -34,6 +34,7 @@ export default defineComponent({
   data(){
     return{
       dataShowModal: false,
+      dataMainTitle: ''
     }
   },
   methods: {
@@ -48,6 +49,9 @@ export default defineComponent({
   watch: {
     showModal(newShowModal){
       this.dataShowModal = newShowModal;
+    },
+    MainTitle(newMainTitle){
+      this.dataMainTitle = newMainTitle;
     }
   }
 });
@@ -61,9 +65,9 @@ export default defineComponent({
   height: 100vh;
   width: 100vw;
 
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
 
   display: none;
 }
@@ -78,6 +82,7 @@ export default defineComponent({
 .content {
   background: #fafafa;
   padding: 24px 16px;
+  max-width: 90vw;
 }
 
 .modal-header {
