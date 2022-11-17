@@ -252,6 +252,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+/* TABELA */
 .tableSample {
   width: 100%;
   border-spacing: 0;
@@ -318,6 +319,7 @@ export default defineComponent({
   display: none;
 }
 
+/* PAGINAÇÃO */
 .area-pagination {
   width: 100%;
   margin-top: 24px;
@@ -342,6 +344,7 @@ export default defineComponent({
   cursor: pointer;
 }
 
+/* ICONE DE LOADING */
 .loading {
   display: none;
 }
@@ -363,6 +366,7 @@ export default defineComponent({
   border-top-color: #130f26;
 }
 
+/* MODAL INFO */
 .modal-subHe {
   display: flex;
   gap: 18px;
@@ -422,6 +426,29 @@ export default defineComponent({
   .area-pagination button {
     font-size: 16px;
   }
+
+  /* MODAL INFO */
+  .modal-subHe {
+    margin-top: 32px;
+  }
+
+  .modal-subHe img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .area-mainTitles p {
+    font-size: 18px;
+  }
+
+  .area-info {
+    margin-top: 32px;
+    gap: 8px;
+  }
+
+  .area-info p {
+    font-size: 15px;
+  }
 }
 
 @media screen and (min-width: 769px) {
@@ -439,6 +466,21 @@ export default defineComponent({
   .area-pagination button {
     font-size: 18px;
   }
+
+  /* MODAL INFO */
+
+  .modal-subHe img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .area-mainTitles p {
+    font-size: 20px;
+  }
+
+  .area-info p {
+    font-size: 17px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -450,6 +492,17 @@ export default defineComponent({
 
   .area-pagination {
     margin-top: 48px;
+  }
+
+  /* MODAL INFO */
+
+  .modal-subHe img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .area-info p {
+    font-size: 16px;
   }
 }
 </style>
