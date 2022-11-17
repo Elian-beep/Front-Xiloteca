@@ -12,7 +12,7 @@
     </div>
   </section>
 </template>
-  
+
 <script lang="ts">
 import { defineComponent } from "vue";
 import MainTitle from "../Titles/MainTitle.vue";
@@ -52,12 +52,11 @@ export default defineComponent({
     },
     mainTitle(newMainTitle) {
       this.dataMainTitle = newMainTitle;
-    }
-
+    },
   },
 });
 </script>
-  
+
 <style scoped>
 .container {
   position: fixed;
@@ -105,12 +104,38 @@ export default defineComponent({
   cursor: pointer;
 }
 
+@media screen and (min-width: 481px) {
+  .content {
+    padding: 32px 24px;
+  }
+
+  .modal-btnClose {
+    font-size: 20px;
+  }
+}
+
 @media screen and (min-width: 769px) {
   /* LAPTOP */
+  .content {
+    padding: 32px 28px;
+    max-width: 65vw;
+  }
+
+  .modal-btnClose {
+    font-size: 24px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
+
+  .container {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .content {
+    max-width: 800px;
+  }
 }
 </style>
-  

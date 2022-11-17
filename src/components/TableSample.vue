@@ -501,6 +501,12 @@ export default defineComponent({
     height: 140px;
   }
 
+  .area-mainTitles{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
   .area-info p {
     font-size: 16px;
   }
