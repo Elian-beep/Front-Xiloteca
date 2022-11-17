@@ -13,7 +13,11 @@
       </thead>
 
       <tbody>
-        <tr v-for="sample in displaedSamples" :key="sample._id" @click="openModal(sample)">
+        <tr
+          v-for="sample in displaedSamples"
+          :key="sample._id"
+          @click="openModal(sample)"
+        >
           <td>{{ sample.cod }}</td>
           <td class="inLaptop">{{ sample.familia }}</td>
           <td>{{ sample.nomeVulgar }}</td>
@@ -60,21 +64,24 @@
     :mainTitle="titleForModal"
     :showModal="showModal"
   >
-  <div class="modal-subHe">
-    <img src="@/assets/sampleDefault.svg" alt="Imagem ilustrativa de amostras cadastradas">
-    <div class="area-mainTitles">
-      <p><span>Nome científico: </span>{{ sample.nomeCientifico }}</p>
-      <p><span>Família: </span>{{ sample.familia }}</p>
-      <p><span>Procedência: </span>{{ sample.procedencia }}</p>
+    <div class="modal-subHe">
+      <img
+        src="@/assets/sampleDefault.svg"
+        alt="Imagem ilustrativa de amostras cadastradas"
+      />
+      <div class="area-mainTitles">
+        <p><span>Nome científico: </span>{{ sample.nomeCientifico }}</p>
+        <p><span>Família: </span>{{ sample.familia }}</p>
+        <p><span>Data de coleta: </span>{{ sample.dataColeta }}</p>
+      </div>
     </div>
-  </div>
     <div class="area-info">
       <p><span>Descrição: </span>{{ sample.desc }}</p>
       <p><span>Código: </span>{{ sample.cod }}</p>
       <p><span>Lâmina: </span>{{ sample.lamina }}</p>
       <p><span>Herbrário: </span>{{ sample.herb }}</p>
       <p><span>Coletor: </span>{{ sample.coletor }}</p>
-      <p><span>Data de coleta: </span>{{ sample.dataColeta }}</p>
+      <p><span>Procedência: </span>{{ sample.procedencia }}</p>
       <p><span>Determinador: </span>{{ sample.determinador }}</p>
       <p><span>Remetente: </span>{{ sample.remetente }}</p>
       <p><span>Obs: </span>{{ sample.obs }}</p>
@@ -186,14 +193,14 @@ export default defineComponent({
       //   this.newSamples = [];
       // });
     },
-    listNV(text){
+    listNV(text) {
       this.pages = [];
       Samples.findNV(text).then((response) => {
         this.samples = response.data;
         this.inLoading = false;
       });
     },
-    listNC(text){
+    listNC(text) {
       this.pages = [];
       Samples.findNC(text).then((response) => {
         this.samples = response.data;
@@ -354,6 +361,44 @@ export default defineComponent({
   height: 50px;
   border: 6px solid #e5e5e5;
   border-top-color: #130f26;
+}
+
+.modal-subHe {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.modal-subHe img {
+  width: 110px;
+  height: 110px;
+  border-radius: 2px;
+}
+
+.area-mainTitles p{
+  font-size: 15px;
+  font-weight: 400;
+  color: #213140;
+}
+
+.area-mainTitles span{
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.area-info{
+  margin-top: 16px;
+}
+
+.area-info p{
+  font-size: 14px;
+  font-weight: 400;
+  color: #213140;
+}
+
+.area-info span {
+  font-weight: 600;
 }
 
 @keyframes is-rotating {
