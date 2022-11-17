@@ -371,34 +371,35 @@ export default defineComponent({
 }
 
 .modal-subHe img {
-  width: 110px;
-  height: 110px;
+  width: 90px;
+  height: 90px;
   border-radius: 2px;
 }
 
-.area-mainTitles p{
+.area-mainTitles p,
+.area-info p {
+  font-weight: 400;
+  color: #213140;
+}
+
+.area-mainTitles p {
   font-size: 15px;
-  font-weight: 400;
-  color: #213140;
 }
 
-.area-mainTitles span{
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.area-info{
-  margin-top: 16px;
-}
-
-.area-info p{
-  font-size: 14px;
-  font-weight: 400;
-  color: #213140;
-}
-
+.area-mainTitles span,
 .area-info span {
   font-weight: 600;
+}
+
+.area-info {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.area-info p {
+  font-size: 14px;
 }
 
 @keyframes is-rotating {
