@@ -131,7 +131,7 @@ export default defineComponent({
       oldOpc: "",
       textSearch: "",
       page: 1,
-      perPage: 30,
+      perPage: 50,
       pages: [],
       isPage: true,
       inLoading: true,
