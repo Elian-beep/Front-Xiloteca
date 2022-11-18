@@ -8,15 +8,12 @@
           <th>Nome Vulgar</th>
           <th class="inTablet">Nome Científico</th>
           <th class="inDesktop">Coletor</th>
-          <th @click="openModal" class="btnSample">Ver mais</th>
+          <th class="btnSample">Ver mais</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr
-          v-for="sample in displaedSamples"
-          :key="sample._id"
-        >
+        <tr v-for="sample in displaedSamples" :key="sample._id">
           <td>{{ sample.cod }}</td>
           <td class="inLaptop">{{ sample.familia }}</td>
           <td>{{ sample.nomeVulgar }}</td>
@@ -40,7 +37,7 @@
       <i class="fa-solid fa-chevron-left"></i>
     </button>
     <button
-      v-for="pageNumber in pages.slice(page - 1, page + 4)"
+      v-for="pageNumber in pages.slice(page - 1, page + 6)"
       :key="pageNumber"
       class="isPage"
       type="button"
@@ -130,7 +127,7 @@ export default defineComponent({
       oldOpc: "",
       textSearch: "",
       page: 1,
-      perPage: 50,
+      perPage: 100,
       pages: [],
       isPage: true,
       inLoading: true,
@@ -252,6 +249,11 @@ export default defineComponent({
 
 <style scoped>
 /* TABELA */
+
+.table {
+  max-height: 800px;
+  overflow-y: scroll;
+}
 .tableSample {
   width: 100%;
   border-spacing: 0;
@@ -338,7 +340,7 @@ export default defineComponent({
   color: #999898;
 }
 
-.area-pagination .isPage:hover {
+.area-pagination .isPage:hover, .isPage:focus {
   color: #213140;
   cursor: pointer;
 }
@@ -414,6 +416,10 @@ export default defineComponent({
 @media screen and (min-width: 481px) {
   /* TABLET */
 
+  .table {
+    max-height: 900px;
+  }
+
   .inTablet {
     display: table-cell;
   }
@@ -453,6 +459,22 @@ export default defineComponent({
 @media screen and (min-width: 769px) {
   /* LAPTOP */
 
+  .table {
+    max-height: 950px;
+  }
+
+  .table::-webkit-scrollbar{
+    margin-left: 6px;
+    background: none;
+    width: 10px;
+  }
+  
+  .table::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background: #213140;
+    width: 10px;
+  }
+
   .inLaptop {
     display: table-cell;
   }
@@ -485,6 +507,11 @@ export default defineComponent({
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
 
+  .table {
+    max-height: 1000px;
+  }
+
+
   .inDesktop {
     display: table-cell;
   }
@@ -500,7 +527,7 @@ export default defineComponent({
     height: 140px;
   }
 
-  .area-mainTitles{
+  .area-mainTitles {
     display: flex;
     flex-direction: column;
     gap: 14px;
