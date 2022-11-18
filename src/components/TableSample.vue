@@ -8,7 +8,7 @@
           <th>Nome Vulgar</th>
           <th class="inTablet">Nome Científico</th>
           <th class="inDesktop">Coletor</th>
-          <th class="btnSample">Ver mais</th>
+          <th @click="openModal" class="btnSample">Ver mais</th>
         </tr>
       </thead>
 
@@ -16,7 +16,6 @@
         <tr
           v-for="sample in displaedSamples"
           :key="sample._id"
-          @click="openModal(sample)"
         >
           <td>{{ sample.cod }}</td>
           <td class="inLaptop">{{ sample.familia }}</td>
