@@ -24,6 +24,7 @@
       <button class="btnSearch" type="submit">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
+      <button>Listar todos</button>
       <OrderFill />
     </div>
   </form>
