@@ -103,6 +103,10 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    allSamples: {
+      type: Boolean,
+      required: true,
+    }
   },
   data() {
     return {
@@ -133,6 +137,7 @@ export default defineComponent({
       inLoading: true,
       showModal: false, //Deve ser false
       titleForModal: "",
+      showAllSamples: true
     };
   },
   mounted() {
@@ -140,15 +145,15 @@ export default defineComponent({
   },
   methods: {
     list(opc, text) {
-      if (opc == "cod") {
+      if (!this.showAllSamples && opc == "cod") {
         this.listCod(text);
-      } else if (opc == "familia") {
+      } else if (!this.showAllSamples && opc == "familia") {
         this.listFamilia(text);
-      } else if (opc == "nomeVulgar") {
+      } else if (!this.showAllSamples && opc == "nomeVulgar") {
         this.listNV(text);
-      } else if (opc == "nomeCientifico") {
+      } else if (!this.showAllSamples && opc == "nomeCientifico") {
         this.listNC(text);
-      } else {
+      } else if (this.showAllSamples){
         this.listAll();
       }
     },
@@ -173,21 +178,6 @@ export default defineComponent({
         this.samples = response.data;
         this.inLoading = false;
       });
-      // text = text.toLowerCase();
-      // Samples.findAll().then((response) => {
-      //   this.samples = Object.freeze(response.data);
-      //   for (this.sample of this.samples) {
-      //     this.sample.familia = this.sample.familia.toLowerCase();
-      //     if (this.sample.familia == text) {
-      //       this.sample.familia =
-      //       this.sample.familia[0].toUpperCase() +
-      //         this.sample.familia.substring(1);
-      //         this.newSamples.push(this.sample);
-      //       }
-      //   }
-      //   this.samples = this.newSamples;
-      //   this.newSamples = [];
-      // });
     },
     listNV(text) {
       this.pages = [];
@@ -238,11 +228,21 @@ export default defineComponent({
       this.setSanples();
     },
     opcInput(opc) {
+      this.showAllSamples = false;
       this.list(opc, this.searchInput);
     },
     searchInput(text) {
+      this.showAllSamples = false;
       this.list(this.opcInput, text);
     },
+    allSamples(isListAll){
+      if (isListAll) {
+        this.showAllSamples = isListAll;
+        this.list('', '');
+      }else{
+        this.showAllSamples = false;
+      }
+    }
   },
 });
 </script>
@@ -340,7 +340,8 @@ export default defineComponent({
   color: #999898;
 }
 
-.area-pagination .isPage:hover, .isPage:focus {
+.area-pagination .isPage:hover,
+.isPage:focus {
   color: #213140;
   cursor: pointer;
 }
@@ -463,13 +464,13 @@ export default defineComponent({
     max-height: 950px;
   }
 
-  .table::-webkit-scrollbar{
+  .table::-webkit-scrollbar {
     margin-left: 6px;
     background: none;
     width: 10px;
   }
-  
-  .table::-webkit-scrollbar-thumb{
+
+  .table::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: #213140;
     width: 10px;
@@ -510,7 +511,6 @@ export default defineComponent({
   .table {
     max-height: 1000px;
   }
-
 
   .inDesktop {
     display: table-cell;

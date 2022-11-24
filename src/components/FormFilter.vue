@@ -2,29 +2,63 @@
   <form @submit.prevent="search">
     <div class="area-radios">
       <div class="area-opc">
-        <input type="radio" required v-model="opcInput" value="cod" id="opcCod" name="opcFill" />
+        <input
+          type="radio"
+          required
+          v-model="opcInput"
+          value="cod"
+          id="opcCod"
+          name="opcFill"
+        />
         <label for="opcCod">Código</label>
       </div>
       <div class="area-opc">
-        <input type="radio" required v-model="opcInput" value="familia" id="opcFamilia" name="opcFill" />
+        <input
+          type="radio"
+          required
+          v-model="opcInput"
+          value="familia"
+          id="opcFamilia"
+          name="opcFill"
+        />
         <label for="opcFamilia">Família</label>
       </div>
       <div class="area-opc">
-        <input type="radio" required v-model="opcInput" value="nomeVulgar" id="opcNV" name="opcFill" />
+        <input
+          type="radio"
+          required
+          v-model="opcInput"
+          value="nomeVulgar"
+          id="opcNV"
+          name="opcFill"
+        />
         <label for="opcNV">Nome Vulgar</label>
       </div>
       <div class="area-opc">
-        <input type="radio" required v-model="opcInput" value="nomeCientifico" id="opcNC" name="opcFill" />
+        <input
+          type="radio"
+          required
+          v-model="opcInput"
+          value="nomeCientifico"
+          id="opcNC"
+          name="opcFill"
+        />
         <label for="opcNC">Nome Científico</label>
       </div>
     </div>
 
     <div class="area-search">
-      <input required class="inptText" v-model="searchInput" type="search" placeholder="Digite sua pesquisa" />
+      <input
+        required
+        class="inptText"
+        v-model="searchInput"
+        type="search"
+        placeholder="Digite sua pesquisa"
+      />
       <button class="btnSearch" type="submit">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
-      <button>Listar todos</button>
+      <button class="btnListAll" @click="listAll">Listar todos</button>
       <OrderFill />
     </div>
   </form>
@@ -36,21 +70,27 @@ import OrderFill from "./OrderFill.vue";
 
 export default defineComponent({
   name: "FormFill",
-  emits: ["sendOpcInput", "sendSearchInput"],
+  emits: ["sendOpcInput", "sendSearchInput", "listAll"],
   components: { OrderFill },
-  data(){
-    return{
-      opcInput: '',
-      searchInput: ''
-    }
+  data() {
+    return {
+      opcInput: "",
+      searchInput: "",
+      isListAll: false
+    };
   },
   methods: {
-    search(){
+    search() {
       // console.log(`Pesquisar "${this.searchInput}" como "${this.opcInput}"`);
-      this.$emit('sendOpcInput', this.opcInput);
-      this.$emit('sendSearchInput', this.searchInput);
-    }
-  }
+      this.$emit("sendOpcInput", this.opcInput);
+      this.$emit("sendSearchInput", this.searchInput);
+    },
+    listAll() {
+      this.isListAll = true;
+      this.$emit("listAll", this.isListAll);
+      this.isListAll = false;
+    },
+  },
 });
 </script>
   
@@ -122,6 +162,17 @@ export default defineComponent({
   color: #fafafa;
 }
 
+.btnListAll {
+  height: 33px;
+  width: 6rem;
+  background: #fafafa;
+  border-radius: 2px;
+  border: 0.5px solid #213140;
+  padding: 8px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
 @media screen and (min-width: 481px) {
   /* TABLET */
   .area-opc input {
@@ -135,7 +186,7 @@ export default defineComponent({
 
   .area-search {
     justify-content: space-between;
-    gap: 3%;
+    gap: .5rem;
   }
 
   .inptText {
