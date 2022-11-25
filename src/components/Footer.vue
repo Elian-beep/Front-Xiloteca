@@ -1,14 +1,18 @@
 <template>
   <footer :class="{ menuOpen: menuOpen }">
     <div class="area-logos">
-      <img class="logo-fapeam" src="@/assets/fapeam.png" alt="Logo Fapeam" />
-      <img class="logo-uea" src="@/assets/uea.png" alt="Logo UEA" />
-      <img
+      <span class="logo logo-fapeam"></span>
+      <!-- <img class="logo-fapeam" src="@/assets/fapeam.png" alt="Logo Fapeam" /> -->
+      <span class="logo logo-uea"></span>
+      <!-- <img class="logo-uea" src="@/assets/uea.png" alt="Logo UEA" /> -->
+      <span class="logo logo-cc"></span>
+      <!-- <img
         class="logo-cc"
         src="@/assets/cienciacomputacao.png"
         alt="Logo da turma de Ciência da Computação"
-      />
-      <img class="logo-proex" src="@/assets/proex.png" alt="Logo Proex" />
+      /> -->
+      <span class="logo logo-proex"></span>
+      <!-- <img class="logo-proex" src="@/assets/proex.png" alt="Logo Proex" /> -->
     </div>
     <div class="area-text">
       <div class="credits">
@@ -52,6 +56,34 @@ footer {
   display: flex;
   gap: 28px;
   justify-content: center;
+}
+
+.logo {
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+.logo-fapeam {
+  background-image: url(@/assets/fapeam.png);
+  width: 24px;
+  height: 25px;
+}
+
+.logo-uea {
+  background-image: url(@/assets/uea.png);
+  width: 27px;
+  height: 26px;
+}
+
+.logo-cc {
+  background-image: url(@/assets/cienciacomputacao.png);
+  width: 32px;
+  height: 26.67px;
+}
+
+.logo-proex {
+  background-image: url(@/assets/proex.png);
+  width: 56px;
+  height: 16.33px;
 }
 
 .area-text {
@@ -178,11 +210,11 @@ footer.menuOpen {
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
-  footer{
+  footer {
     gap: 96px;
   }
 
-  .area-logos{
+  .area-logos {
     justify-content: space-between;
     gap: auto;
   }
@@ -206,7 +238,7 @@ footer.menuOpen {
     height: 40px;
   }
 
-  .area-text{
+  .area-text {
     padding-left: 96px;
   }
 
