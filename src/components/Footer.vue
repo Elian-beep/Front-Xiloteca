@@ -2,18 +2,11 @@
   <footer :class="{ menuOpen: menuOpen }">
     <div class="area-logos">
       <span class="logo logo-fapeam"></span>
-      <!-- <img class="logo-fapeam" src="@/assets/fapeam.png" alt="Logo Fapeam" /> -->
       <span class="logo logo-uea"></span>
-      <!-- <img class="logo-uea" src="@/assets/uea.png" alt="Logo UEA" /> -->
       <span class="logo logo-cc"></span>
-      <!-- <img
-        class="logo-cc"
-        src="@/assets/cienciacomputacao.png"
-        alt="Logo da turma de Ciência da Computação"
-      /> -->
       <span class="logo logo-proex"></span>
-      <!-- <img class="logo-proex" src="@/assets/proex.png" alt="Logo Proex" /> -->
     </div>
+    <span class="whiteBar"></span>
     <div class="area-text">
       <div class="credits">
         <a href="">Dev: Elian Batista</a>
@@ -56,42 +49,46 @@ footer {
   display: flex;
   gap: 28px;
   justify-content: center;
+  align-items: center;
 }
 
 .logo {
-  background-size: auto;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 .logo-fapeam {
   background-image: url(@/assets/fapeam.png);
-  width: 24px;
-  height: 25px;
+  width: 32px;
+  height: 33px;
 }
 
 .logo-uea {
   background-image: url(@/assets/uea.png);
-  width: 27px;
-  height: 26px;
+  width: 33px;
+  height: 32px;
 }
 
 .logo-cc {
   background-image: url(@/assets/cienciacomputacao.png);
-  width: 32px;
-  height: 26.67px;
+  width: 39px;
+  height: 33.67px;
 }
 
 .logo-proex {
   background-image: url(@/assets/proex.png);
-  width: 56px;
-  height: 16.33px;
+  width: 61px;
+  height: 21.33px;
 }
 
 .area-text {
-  border-top: 0.5px solid rgba(250, 250, 250, 0.5);
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding-top: 10px;
+  padding-top: 8px;
+}
+
+.whiteBar{
+  border-top: 0.5px solid rgba(250, 250, 250, 0.5);
 }
 
 .credits {
@@ -134,30 +131,36 @@ footer.menuOpen {
   }
 
   .area-logos .logo-fapeam {
-    width: 38px;
-    height: 40px;
+    background-image: url(@/assets/fapeam-tablet.svg);
+    width: 40px;
+    height: 42px;
   }
 
   .area-logos .logo-uea {
-    width: 38px;
-    height: 37px;
-  }
-
-  .area-logos .logo-cc {
-    width: 47px;
+    background-image: url(@/assets/uea-tablet.svg);
+    width: 40px;
     height: 39px;
   }
 
+  .area-logos .logo-cc {
+    background-image: url(@/assets/cienciacomputacao-tablet.svg);
+    width: 49px;
+    height: 41px;
+  }
+
   .area-logos .logo-proex {
+    background-image: url(@/assets/proex-tablet.svg);
     width: 70px;
     height: 19px;
   }
 
+  .whiteBar{
+    border-left: 1px solid rgba(250, 250, 250, 0.5);
+  }
+
   .area-text {
-    padding-left: 24px;
     width: 50%;
     border-top: none;
-    border-left: 1px solid rgba(250, 250, 250, 0.5);
   }
 
   .credits {
@@ -174,32 +177,32 @@ footer.menuOpen {
   /* LAPTOP */
 
   footer {
-    padding: 78px 60px;
+    padding: 78px 48px;
     gap: 70px;
   }
 
   .area-logos .logo-fapeam {
-    width: 64px;
+    background-image: url(@/assets/fapeam-laptop.svg);
+    width: 63.81px;
     height: 67px;
   }
 
   .area-logos .logo-uea {
+    background-image: url(@/assets/uea-laptop.svg);
     width: 64px;
     height: 62px;
   }
 
   .area-logos .logo-cc {
+    background-image: url(@/assets/cienciacomputacao-laptop.svg);
     width: 72px;
     height: 60px;
   }
 
   .area-logos .logo-proex {
+    background-image: url(@/assets/proex-laptop.svg);
     width: 116px;
     height: 33px;
-  }
-
-  .area-text {
-    padding-left: 70px;
   }
 
   .credits a,
@@ -211,35 +214,39 @@ footer.menuOpen {
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
   footer {
-    gap: 96px;
+    display: flex;
+    justify-content: space-around;
   }
 
   .area-logos {
     justify-content: space-between;
-    gap: auto;
+    gap: 60px;
   }
   .area-logos .logo-fapeam {
-    width: 78px;
-    height: 82px;
+    background-image: url(@/assets/fapeam-desktop.svg);
+    width: 80px;
+    height: 84px;
   }
 
   .area-logos .logo-uea {
-    width: 86px;
-    height: 82px;
+    background-image: url(@/assets/uea-desktop.svg);
+    width: 88px;
+    height: 84px;
   }
 
   .area-logos .logo-cc {
-    width: 94px;
-    height: 79px;
+    background-image: url(@/assets/cienciacomputacao-desktop.svg);
+    width: 96px;
+    height: 81px;
   }
 
   .area-logos .logo-proex {
-    width: 146px;
-    height: 40px;
+    background-image: url(@/assets/proex-desktop.svg);
+    width: 148px;
+    height: 42px;
   }
-
-  .area-text {
-    padding-left: 96px;
+  .area-text{
+    width: auto;
   }
 
   .credits a,

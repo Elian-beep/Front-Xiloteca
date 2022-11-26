@@ -38,12 +38,10 @@ main{
   main::-webkit-scrollbar {
     background: #999999;
     width: 4px;
-    border-radius: 1px;
   }
 
   main::-webkit-scrollbar-thumb{
     background: #213140;
-    border-radius: 1px;
   }
 }
 
