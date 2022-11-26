@@ -323,7 +323,8 @@ export default defineComponent({
 /* PAGINAÇÃO */
 .area-pagination {
   width: 100%;
-  margin-top: 24px;
+  /* margin-top: 24px; */
+  margin: 52px auto;
   display: flex;
   justify-content: center;
   gap: 10px;
