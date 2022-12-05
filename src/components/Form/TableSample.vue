@@ -87,8 +87,8 @@
   
 <script>
 import { defineComponent } from "vue";
-import Samples from "../services/samples.js";
-import ModalContainer from "./Modals/Modal.vue";
+import Samples from "../../services/samples.js";
+import ModalContainer from "../Modals/Modal.vue";
 
 export default defineComponent({
   name: "TableSample",

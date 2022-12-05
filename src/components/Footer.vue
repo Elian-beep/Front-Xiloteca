@@ -25,7 +25,7 @@ export default defineComponent({
   props: {
     menuOpen: {
       type: Boolean,
-      require: true,
+      require: false,
     },
   },
 });
