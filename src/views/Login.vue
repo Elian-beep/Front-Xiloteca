@@ -5,7 +5,7 @@
   </header>
   <Content>
     <LogoSX :is-visible="true" />
-    <MainTitle text="Sobre a Xiloteca" />
+    <MainTitle text="Fazer Login" />
   </Content>
 </template>
 

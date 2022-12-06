@@ -19,7 +19,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 .area-logo {
   display: none;
 }
@@ -42,41 +42,38 @@ export default defineComponent({
 .area-logo span {
   font-weight: 400;
   font-size: 10px;
+  text-align: center  ;
   margin: 0;
   color: #213140;
 }
 
 @media screen and (min-width: 481px){
+  /* TABLET */
   .area-logo h1{
     font-size: 40px;
+  }
+
+  .area-logo span{
+    font-size: 14px;
   }
 }
 
 @media screen and (min-width: 769px) {
   /* LAPTOP */
-  .area-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 250px;
-    margin-left: 24px;
-  }
 
   .area-logo h1 {
-    font-size: 28px;
+    font-size: 52px;
+  }
+
+  .area-logo span{
+    font-size: 16px;
   }
 }
 
 @media screen and (min-width: 1024px){
   /* DESKTOP */
   .area-logo h1{
-    font-size: 32px;
-  }
-
-  .area-logo span{
-    font-size: 12px;
-    text-align: center;
+    font-size: 60px;
   }
 }
 </style>
