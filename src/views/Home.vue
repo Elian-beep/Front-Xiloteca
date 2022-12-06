@@ -26,7 +26,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import MenuSandwich from "@/components/Navbar/MenuSandwich.vue";
-import Content from "@/components/Content.vue";
+import Content from "@/components/ContentsAiners/Container.vue";
 import MainTitle from "@/components/Titles/MainTitle.vue";
 import Logo from "@/components/Titles/Logo.vue";
 import FormFilter from "@/components/Form/FormFilter.vue";

@@ -12,7 +12,7 @@
 import { defineComponent } from "vue";
 import MenuSandwich from "@/components/Navbar/MenuSandwich.vue";
 import Logo from "@/components/Titles/Logo.vue";
-import Content from "@/components/Content.vue";
+import Content from "@/components/ContentsAiners/Container.vue";
 import MainTitle from "@/components/Titles/MainTitle.vue";
 
 export default defineComponent({

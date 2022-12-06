@@ -4,7 +4,7 @@
     <MenuSandwich :isHome="false" :isAbout="false" :isLogin="true" />
   </header>
   <Content>
-    <Logo :isVisible="true" />
+    <LogoSX :is-visible="true" />
     <MainTitle text="Sobre a Xiloteca" />
   </Content>
 </template>
@@ -12,13 +12,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import MenuSandwich from "@/components/Navbar/MenuSandwich.vue";
-import Logo from "@/components/Titles/Logo.vue";
-import Content from "@/components/Content.vue";
+import LogoSX from "@/components/Titles/LogoSX.vue";
+import Content from "@/components/ContentsAiners/Container.vue";
 import MainTitle from "@/components/Titles/MainTitle.vue";
 
 export default defineComponent({
   name: "LoginView",
-  components: { MenuSandwich, Logo, Content, MainTitle },
+  components: { MenuSandwich, Content, LogoSX, MainTitle },
 });
 </script>
 
