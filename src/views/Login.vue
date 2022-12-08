@@ -5,7 +5,6 @@
   </header>
   <Content>
     <LogoSX :is-visible="true" />
-    <MainTitle text="Fazer Login" />
   </Content>
 </template>
 
@@ -14,11 +13,10 @@ import { defineComponent } from "vue";
 import MenuSandwich from "@/components/Navbar/MenuSandwich.vue";
 import LogoSX from "@/components/Titles/LogoSX.vue";
 import Content from "@/components/ContentsAiners/Container.vue";
-import MainTitle from "@/components/Titles/MainTitle.vue";
 
 export default defineComponent({
   name: "LoginView",
-  components: { MenuSandwich, Content, LogoSX, MainTitle },
+  components: { MenuSandwich, Content, LogoSX },
 });
 </script>
 
