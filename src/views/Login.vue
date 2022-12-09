@@ -5,7 +5,7 @@
   </header>
     <ContentLogin>
       <LogoSX :is-visible="true" />
-      <div>aaaaaaaaaa</div>
+      <FormLogin />
     </ContentLogin>
 </template>
 
@@ -14,12 +14,12 @@ import { defineComponent } from "vue";
 import MenuSandwich from "@/components/Navbar/MenuSandwich.vue";
 import Logo from "@/components/Titles/Logo.vue";
 import LogoSX from "@/components/Titles/LogoSX.vue";
-import Container from "@/components/ContentsAiners/Container.vue";
 import ContentLogin from "@/components/ContentsAiners/ContentLogin.vue";
+import FormLogin from "@/components/Form/FormLogin.vue";
 
 export default defineComponent({
   name: "LoginView",
-  components: { MenuSandwich, ContentLogin, Logo, LogoSX },
+  components: { MenuSandwich, ContentLogin, Logo, LogoSX, FormLogin },
 });
 </script>
 

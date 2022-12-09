@@ -15,20 +15,13 @@ export default defineComponent({
 <style scoped>
 .content{
     width: 100%;
-    background: green;
-    padding-top: 96px;
+    height: 100vh;
+    background: #F3F3F3;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 32px;
-}
-
-@media screen and (min-width: 769px) {
-  /* LAPTOP */
-  .content{
-    padding-top: 120px;
-  }
 }
 </style>

@@ -41,8 +41,8 @@ export default defineComponent({
 
 .area-logo span {
   font-weight: 400;
-  font-size: 10px;
-  text-align: center  ;
+  font-size: 12px;
+  text-align: center;
   margin: 0;
   color: #213140;
 }
