@@ -16,9 +16,11 @@
       </div>
       <button class="btn-forgetPassword">Esqueci minha senha</button>
 
-      <button>Entrar</button>
+      <button class="btn-login">Entrar</button>
       <!-- COMPONENTE -->
-      <span>Ainda não tem uma conta? <button>Cadastrar</button></span>
+      <span class="btn-newAcc"
+        >Ainda não tem uma conta? <button>Cadastrar</button></span
+      >
     </form>
   </div>
 </template>
@@ -68,5 +70,32 @@ export default defineComponent({
   color: #213140;
   text-decoration: underline;
   margin-bottom: 33px;
+}
+
+.btn-login {
+  background: #213140;
+  border-radius: 2px;
+  padding: 8px 34px;
+  font-size: 14px;
+  color: #fafafa;
+  margin-bottom: 23px;
+}
+
+.btn-newAcc {
+  font-weight: 400;
+  font-size: 12px;
+  color: #213140;
+
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-newAcc button{
+  background: none;
+  font-weight: 600;
+  border: none;
+  border-bottom: 1px solid #213140;
 }
 </style>
