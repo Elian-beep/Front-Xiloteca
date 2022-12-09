@@ -3,20 +3,23 @@
     <Logo :isVisible="false" class="logo" />
     <MenuSandwich :isHome="false" :isAbout="false" :isLogin="true" />
   </header>
-  <Content>
-    <LogoSX :is-visible="true" />
-  </Content>
+    <ContentLogin>
+      <LogoSX :is-visible="true" />
+      <div>aaaaaaaaaa</div>
+    </ContentLogin>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import MenuSandwich from "@/components/Navbar/MenuSandwich.vue";
+import Logo from "@/components/Titles/Logo.vue";
 import LogoSX from "@/components/Titles/LogoSX.vue";
-import Content from "@/components/ContentsAiners/Container.vue";
+import Container from "@/components/ContentsAiners/Container.vue";
+import ContentLogin from "@/components/ContentsAiners/ContentLogin.vue";
 
 export default defineComponent({
   name: "LoginView",
-  components: { MenuSandwich, Content, LogoSX },
+  components: { MenuSandwich, ContentLogin, Logo, LogoSX },
 });
 </script>
 
@@ -33,7 +36,7 @@ export default defineComponent({
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
-  header{
+  header {
     justify-content: space-around;
   }
 }
