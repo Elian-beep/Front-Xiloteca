@@ -14,7 +14,7 @@
           placeholderInput="Senha"
         />
       </div>
-      <button>Esqueci minha senha</button>
+      <button class="btn-forgetPassword">Esqueci minha senha</button>
 
       <button>Entrar</button>
       <!-- COMPONENTE -->
@@ -38,6 +38,8 @@ export default defineComponent({
 .area-form {
   width: 296px;
   background: #fafafa;
+  box-shadow: 0px 0px 20px 2px rgba(52, 115, 85, 0.1);
+  border-radius: 4px;
   padding: 40px 24px;
 }
 
@@ -51,9 +53,20 @@ export default defineComponent({
 
 .inputs {
   margin-top: 40px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.btn-forgetPassword {
+  border: none;
+  background: none;
+  text-align: left;
+
+  font-size: 12px;
+  color: #213140;
+  text-decoration: underline;
+  margin-bottom: 33px;
 }
 </style>

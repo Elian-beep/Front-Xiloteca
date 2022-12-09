@@ -1,12 +1,13 @@
 <template>
   <header>
-    <Logo :isVisible="false" class="logo" />
-    <MenuSandwich :isHome="false" :isAbout="false" :isLogin="true" />
+    <!-- <Logo :isVisible="false" class="logo" /> -->
+    <!-- <MenuSandwich :isHome="false" :isAbout="false" :isLogin="true" /> -->
+    <router-link to="/" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Voltar</router-link>
   </header>
-    <ContentLogin>
-      <LogoSX :is-visible="true" />
-      <FormLogin />
-    </ContentLogin>
+  <ContentLogin>
+    <LogoSX :is-visible="true" />
+    <FormLogin />
+  </ContentLogin>
 </template>
 
 <script lang="ts">
@@ -19,25 +20,26 @@ import FormLogin from "@/components/Form/FormLogin.vue";
 
 export default defineComponent({
   name: "LoginView",
-  components: { MenuSandwich, ContentLogin, Logo, LogoSX, FormLogin },
+  components: { ContentLogin, LogoSX, FormLogin },
 });
 </script>
 
 <style scoped>
-@media screen and (min-width: 769px) {
-  /* LAPTOP */
-  header {
-    display: flex;
-    justify-content: space-between;
-    background: #fafafa;
-    border-bottom: 0.5px solid #213140;
-  }
+
+header {
+  height: 60px;
+  background: #f3f3f3;
+  padding: 12px;
+  display: flex;
+  justify-content: left;
 }
 
-@media screen and (min-width: 1024px) {
-  /* DESKTOP */
-  header {
-    justify-content: space-around;
-  }
+.btn-back{
+  border: 1px solid #213140;
+  color: #213140;
+  background: none;
+  padding: 8px;
+  text-decoration: none;
 }
+
 </style>

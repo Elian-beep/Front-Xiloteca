@@ -15,12 +15,12 @@ export default defineComponent({
 <style scoped>
 .content{
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 60px);
     background: #F3F3F3;
+    padding-top: 96px;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     gap: 32px;
 }
