@@ -24,4 +24,12 @@ export default defineComponent({
     align-items: center;
     gap: 32px;
 }
+
+@media screen and (min-width: 769px) {
+    /* LAPTOP */
+    .content{
+        padding-top: 50px;
+        gap: 30px;
+    }
+}
 </style>

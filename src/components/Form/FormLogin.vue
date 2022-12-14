@@ -92,10 +92,35 @@ export default defineComponent({
   align-items: center;
 }
 
-.btn-newAcc button{
+.btn-newAcc button {
   background: none;
   font-weight: 600;
   border: none;
   border-bottom: 1px solid #213140;
+}
+
+@media screen and (min-width: 769px) {
+  .area-form {
+    width: 359px;
+    padding: 54px 24px;
+  }
+
+  .inputs {
+    gap: 24px;
+  }
+
+  .btn-forgetPassword {
+    margin-bottom: 40px;
+  }
+
+  .btn-login {
+    padding: 12px 34px;
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+
+  .btn-newAcc {
+    font-size: 14px;
+  }
 }
 </style>
