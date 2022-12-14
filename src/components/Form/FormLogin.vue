@@ -123,4 +123,24 @@ export default defineComponent({
     font-size: 14px;
   }
 }
+
+@media screen and (min-width: 1024px){
+  .area-form {
+    width: 471px;
+    padding: 54px 32px;
+  }
+
+  .btn-forgetPassword {
+    margin-bottom: 48px;
+    font-size: 14px;
+  }
+
+  .btn-login {
+    font-size: 24px;
+  }
+
+  .btn-newAcc {
+    font-size: 16px;
+  }
+}
 </style>

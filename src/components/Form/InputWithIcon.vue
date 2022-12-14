@@ -50,6 +50,7 @@ input {
 }
 
 @media screen and (min-width: 769px){
+  /* LAPTOP */
   .area-input{
     font-size: 16px;  
   }
@@ -59,7 +60,14 @@ input {
   }
 
   input{
-    padding: 12px 20px 12px 50px;
+    padding: 12px 20px 12px 56px;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  /* DESKTOP */
+  .area-input{
+    font-size: 18px;
   }
 }
 </style>

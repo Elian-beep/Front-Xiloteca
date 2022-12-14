@@ -32,4 +32,13 @@ export default defineComponent({
         gap: 30px;
     }
 }
+
+@media screen and (min-width: 1024px){
+  /* DESKTOP */
+  .content{
+    flex-direction: row;
+    justify-content: center;
+    gap: 300px;
+  }
+}
 </style>
