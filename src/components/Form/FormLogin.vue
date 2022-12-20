@@ -17,7 +17,6 @@
       <button class="btn-forgetPassword">Esqueci minha senha</button>
 
       <button class="btn-login">Entrar</button>
-      <!-- COMPONENTE -->
       <span class="btn-newAcc"
         >Ainda não tem uma conta? <button>Cadastrar</button></span
       >
@@ -33,6 +32,13 @@ import InputWithIcon from "./InputWithIcon.vue";
 export default defineComponent({
   name: "FormLogin",
   components: { SubTitle, InputWithIcon },
+  // methods: {
+  //   openModal(modal: string){
+  //     if (modal == 'mInsert') {
+        
+  //     }
+  //   }
+  // }
 });
 </script>
 

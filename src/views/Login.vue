@@ -7,6 +7,12 @@
   <ContentLogin>
     <LogoSX :is-visible="true" />
     <FormLogin />
+    <ModalContainer :showModal="showMInsert" mainTitle="Cadastrar">
+      formulario de cadastro
+    </ModalContainer>
+    <ModalContainer :showModal="showMPass" mainTitle="Esqueceu sua senha de acesso?">
+      formulario de nova senha
+    </ModalContainer>
   </ContentLogin>
 </template>
 
@@ -15,10 +21,23 @@ import { defineComponent } from "vue";
 import LogoSX from "@/components/Titles/LogoSX.vue";
 import ContentLogin from "@/components/ContentsAiners/ContentLogin.vue";
 import FormLogin from "@/components/Form/FormLogin.vue";
+import ModalContainer from "@/components/Modals/Modal.vue";
 
 export default defineComponent({
   name: "LoginView",
-  components: { ContentLogin, LogoSX, FormLogin },
+  components: { ContentLogin, LogoSX, FormLogin, ModalContainer },
+  data(){
+    return{
+      showMInsert: false,
+      showMPass: false
+    }
+  },
+  methods: {
+    closeModal(){
+      this.showMInsert = false;
+      this.showMPass = false
+    }
+  }
 });
 </script>
 
