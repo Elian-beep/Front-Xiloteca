@@ -14,11 +14,11 @@
           placeholderInput="Senha"
         />
       </div>
-      <button class="btn-forgetPassword">Esqueci minha senha</button>
+      <button @click="openModal('mPass')" class="btn-forgetPassword">Esqueci minha senha</button>
 
       <button class="btn-login">Entrar</button>
       <span class="btn-newAcc"
-        >Ainda não tem uma conta? <button>Cadastrar</button></span
+        >Ainda não tem uma conta? <button @click="openModal('mInsert')">Cadastrar</button></span
       >
     </form>
   </div>
@@ -32,13 +32,12 @@ import InputWithIcon from "./InputWithIcon.vue";
 export default defineComponent({
   name: "FormLogin",
   components: { SubTitle, InputWithIcon },
-  // methods: {
-  //   openModal(modal: string){
-  //     if (modal == 'mInsert') {
-        
-  //     }
-  //   }
-  // }
+  emits: ["openModals"],
+  methods: {
+    openModal(modal: string){
+        this.$emit("openModals", modal);
+    }
+  }
 });
 </script>
 

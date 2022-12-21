@@ -6,11 +6,11 @@
   </header>
   <ContentLogin>
     <LogoSX :is-visible="true" />
-    <FormLogin />
-    <ModalContainer :showModal="showMInsert" mainTitle="Cadastrar">
+    <FormLogin @open-modals="whyModal" />
+    <ModalContainer @closed-modal="closeModal" :showModal="showMInsert" mainTitle="Cadastrar">
       formulario de cadastro
     </ModalContainer>
-    <ModalContainer :showModal="showMPass" mainTitle="Esqueceu sua senha de acesso?">
+    <ModalContainer @closed-modal="closeModal" :showModal="showMPass" mainTitle="Esqueceu sua senha de acesso?">
       formulario de nova senha
     </ModalContainer>
   </ContentLogin>
@@ -33,9 +33,18 @@ export default defineComponent({
     }
   },
   methods: {
-    closeModal(){
-      this.showMInsert = false;
-      this.showMPass = false
+    whyModal(modal: string){
+      if (modal == 'mInsert') {
+        this.showMInsert = true;
+      }else if(modal == 'mPass'){
+        this.showMPass = true;
+      }
+    },
+    closeModal(closeModal: boolean){
+      if (!closeModal) {
+        this.showMInsert = false;
+        this.showMPass = false
+      }
     }
   }
 });
