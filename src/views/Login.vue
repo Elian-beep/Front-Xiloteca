@@ -11,7 +11,7 @@
       <FormNewUser @closeModal="closeModal" />
     </ModalContainer>
     <ModalContainer @closed-modal="closeModal" :showModal="showMPass" mainTitle="Esqueceu sua senha de acesso?">
-      formulario de nova senha
+      <FormNewPass @closeModal="closeModal" />
     </ModalContainer>
   </ContentLogin>
 </template>
@@ -23,10 +23,11 @@ import ContentLogin from "@/components/ContentsAiners/ContentLogin.vue";
 import FormLogin from "@/components/Form/FormLogin.vue";
 import ModalContainer from "@/components/Modals/Modal.vue";
 import FormNewUser from "@/components/Form/FormNewUser.vue";
+import FormNewPass from "@/components/Form/FormNewPass.vue";
 
 export default defineComponent({
   name: "LoginView",
-  components: { ContentLogin, LogoSX, FormLogin, ModalContainer, FormNewUser },
+  components: { ContentLogin, LogoSX, FormLogin, ModalContainer, FormNewUser, FormNewPass },
   data(){
     return{
       showMInsert: false,
