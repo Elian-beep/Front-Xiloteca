@@ -105,6 +105,7 @@ export default defineComponent({
 }
 
 @media screen and (min-width: 769px) {
+  /* LAPTOP */
   .area-form {
     width: 359px;
     padding: 54px 24px;
@@ -127,9 +128,14 @@ export default defineComponent({
   .btn-newAcc {
     font-size: 14px;
   }
+
+  .btn-forgetPassword:hover, .btn-login:hover, .btn-newAcc button:hover{
+    cursor: pointer;
+  }
 }
 
 @media screen and (min-width: 1024px){
+  /* DESKTOP */
   .area-form {
     width: 471px;
     padding: 54px 32px;

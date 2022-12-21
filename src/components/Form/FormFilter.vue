@@ -58,8 +58,8 @@
       <button class="btnSearch" type="submit">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
+      <!-- <OrderFill /> -->
       <button class="btnListAll" @click="listAll">Listar todos</button>
-      <OrderFill />
     </div>
   </form>
 </template>
@@ -71,7 +71,7 @@ import OrderFill from "./OrderFill.vue";
 export default defineComponent({
   name: "FormFill",
   emits: ["sendOpcInput", "sendSearchInput", "listAll"],
-  components: { OrderFill },
+  // components: { OrderFill },
   data() {
     return {
       opcInput: "",
@@ -221,6 +221,10 @@ export default defineComponent({
   .inptText {
     width: 85%;
     font-size: 16px;
+  }
+
+  .area-opc input:hover, .btnSearch:hover, .btnListAll:hover{
+    cursor: pointer;
   }
 
   .btnSearch {

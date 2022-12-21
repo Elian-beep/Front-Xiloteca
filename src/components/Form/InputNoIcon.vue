@@ -1,22 +1,17 @@
 <template>
   <div class="area-input">
-    <i :class="icon"></i>
     <input :v-model="vmodel" :type="typeInput" :placeholder="placeholderInput" />
     <!-- <i class=""></i> -->
   </div>
 </template>
-
-<script lang="ts">
+  
+  <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "InputWithIcon",
+  name: "InputNoIcon",
   props: {
     typeInput: {
-      type: String,
-      required: true,
-    },
-    placeholderInput: {
       type: String,
       required: true,
     },
@@ -24,15 +19,15 @@ export default defineComponent({
       type: String,
       required: false,
     },
-    icon: {
+    placeholderInput: {
       type: String,
-      required: false,
-    },
+      required: true,
+    }
   },
 });
 </script>
-
-<style scoped>
+  
+  <style scoped>
 .area-input {
   position: relative;
   display: flex;
@@ -41,36 +36,23 @@ export default defineComponent({
   border-radius: 2px;
 }
 
-i {
-  position: absolute;
-  left: 16px;
-}
-
 input {
   width: 100%;
-  padding: 8px 16px 8px 40px;
+  padding: 12px 16px;
   background: none;
   border: none;
 }
 
-@media screen and (min-width: 769px){
+@media screen and (min-width: 769px) {
   /* LAPTOP */
-  .area-input{
-    font-size: 16px;  
-  }
-
-  i{
-    left: 20px;
-  }
-
-  input{
-    padding: 12px 20px 12px 56px;
+  .area-input {
+    font-size: 16px;
   }
 }
 
-@media screen and (min-width: 1024px){
+@media screen and (min-width: 1024px) {
   /* DESKTOP */
-  .area-input{
+  .area-input {
     font-size: 18px;
   }
 }
