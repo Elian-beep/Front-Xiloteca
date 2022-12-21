@@ -8,7 +8,7 @@
     <LogoSX :is-visible="true" />
     <FormLogin @open-modals="whyModal" />
     <ModalContainer @closed-modal="closeModal" :showModal="showMInsert" mainTitle="Cadastrar">
-      <FormNewUser />
+      <FormNewUser @closeModal="closeModal" />
     </ModalContainer>
     <ModalContainer @closed-modal="closeModal" :showModal="showMPass" mainTitle="Esqueceu sua senha de acesso?">
       formulario de nova senha

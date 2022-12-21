@@ -27,6 +27,11 @@
     />
 
     <button class="btn-cadastrar">Cadastrar</button>
+
+    <span class="btn-newAcc"
+      >Já possui uma conta?
+      <button @click="closeModal()">Entrar</button></span
+    >
   </form>
 </template>
   
@@ -37,6 +42,7 @@ import InputNoIcon from "./InputNoIcon.vue";
 export default defineComponent({
   name: "FormNewUser",
   components: { InputNoIcon },
+  emits: ["closeModal"],
   data() {
     return {
       user: {
@@ -49,6 +55,11 @@ export default defineComponent({
       },
     };
   },
+  methods: {
+    closeModal(){
+        this.$emit("closeModal", false)
+    }
+  }
 });
 </script>
   
@@ -69,6 +80,24 @@ form {
   margin-bottom: 23px;
 }
 
+.btn-newAcc {
+  font-weight: 400;
+  font-size: 12px;
+  color: #213140;
+
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-newAcc button {
+  background: none;
+  font-weight: 600;
+  border: none;
+  border-bottom: 1px solid #213140;
+}
+
 @media screen and (min-width: 769px) {
   /* LAPTOP */
   form {
@@ -81,12 +110,24 @@ form {
     font-size: 18px;
     margin-bottom: 32px;
   }
+
+  .btn-newAcc {
+    font-size: 14px;
+  }
+
+  .btn-cadastrar:hover, .btn-newAcc:hover {
+    cursor: pointer;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
-  .btn-cadastrar{
+  .btn-cadastrar {
     font-size: 24px;
+  }
+
+  .btn-newAcc {
+    font-size: 16px;
   }
 }
 </style>
