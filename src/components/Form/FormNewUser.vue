@@ -1,47 +1,65 @@
 <template>
-  <form>
-    <InputNoIcon
-      :vmodel="user.nome"
+  <form @submit.prevent="insertUser">
+    <!-- <InputNoIcon
+      :vmodelsample="user.nome"
       typeInput="text"
       placeholderInput="Nome completo *"
-    />
-    <InputNoIcon
-      :vmodel="user.usuario"
-      typeInput="text"
-      placeholderInput="Usuário *"
-    />
-    <InputNoIcon
-      :vmodel="user.email"
-      typeInput="email"
-      placeholderInput="E-mail *"
-    />
-    <InputNoIcon
-      :vmodel="user.senha"
-      typeInput="password"
-      placeholderInput="Senha *"
-    />
-    <InputNoIcon
-      :vmodel="user.repeatSenha"
-      typeInput="password"
-      placeholderInput="Confirmar senha *"
-    />
+    /> -->
+    <div class="area-input">
+      <input
+        class="inputNoIcon"
+        type="text"
+        v-model="user.nome"
+        placeholder="Nome completo *"
+      />
+    </div>
+    <div class="area-input">
+      <input
+        class="inputNoIcon"
+        type="text"
+        v-model="user.usuario"
+        placeholder="Usuário *"
+      />
+    </div>
+    <div class="area-input">
+      <input
+        class="inputNoIcon"
+        type="email"
+        v-model="user.email"
+        placeholder="E-mail *"
+      />
+    </div>
+    <div class="area-input">
+      <input
+        class="inputNoIcon"
+        type="password"
+        v-model="user.senha"
+        placeholder="Senha *"
+      />
+    </div>
+    <div class="area-input">
+      <input
+        class="inputNoIcon"
+        type="password"
+        v-model="user.repeatSenha"
+        placeholder="Confirmar senha *"
+      />
+    </div>
 
     <button class="btn-cadastrar">Cadastrar</button>
 
     <span class="btn-newAcc"
-      >Já possui uma conta?
-      <button @click="closeModal()">Entrar</button></span
+      >Já possui uma conta? <button @click="closeModal()">Entrar</button></span
     >
   </form>
 </template>
   
 <script>
 import { defineComponent } from "vue";
-import InputNoIcon from "./InputNoIcon.vue";
 
 export default defineComponent({
   name: "FormNewUser",
-  components: { InputNoIcon },
+  components: {  },
   emits: ["closeModal"],
   data() {
     return {
@@ -56,10 +74,13 @@ export default defineComponent({
     };
   },
   methods: {
-    closeModal(){
-        this.$emit("closeModal", false)
-    }
-  }
+    insertUser() {
+      console.log(this.user);
+    },
+    closeModal() {
+      this.$emit("closeModal", false);
+    },
+  },
 });
 </script>
   
@@ -69,6 +90,21 @@ form {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.area-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 0.5px solid #213140;
+  border-radius: 2px;
+}
+
+.inputNoIcon {
+  width: 100%;
+  padding: 12px 16px;
+  background: none;
+  border: none;
 }
 .btn-cadastrar {
   background: #213140;
@@ -115,7 +151,8 @@ form {
     font-size: 14px;
   }
 
-  .btn-cadastrar:hover, .btn-newAcc:hover {
+  .btn-cadastrar:hover,
+  .btn-newAcc:hover {
     cursor: pointer;
   }
 }

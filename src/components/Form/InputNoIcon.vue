@@ -1,7 +1,6 @@
 <template>
   <div class="area-input">
-    <input :v-model="vmodel" :type="typeInput" :placeholder="placeholderInput" />
-    <!-- <i class=""></i> -->
+    <input :v-model="vmodelsample" :type="typeInput" :placeholder="placeholderInput" />
   </div>
 </template>
   
@@ -15,7 +14,7 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    vmodel: {
+    vmodelsample: {
       type: String,
       required: false,
     },
