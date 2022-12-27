@@ -56,11 +56,11 @@
   
 <script>
 import { defineComponent } from "vue";
-import User from '../../services/users.js';
+import User from "../../services/users.js";
 
 export default defineComponent({
   name: "FormNewUser",
-  components: {  },
+  components: {},
   emits: ["closeModal"],
   data() {
     return {
@@ -75,18 +75,29 @@ export default defineComponent({
   },
   methods: {
     insertUser() {
-      User.save(this.user)
-        .then((response) => {
-          this.user = {};
-          console.log(`${response.data.nome} Cadastrado com sucesso`);
-        })
-        .catch((e) => {
-          console.log(`ERROR: ${e.response.data}`);
-        })
+      if (this.user.senha === this.user.repeatSenha) {
+        User.save(this.user)
+          .then((response) => {
+            this.user = {};
+            console.log(`${response.data.nome} Cadastrado com sucesso`);
+          })
+          .catch((e) => {
+            console.log(`ERROR: ${e.response.data}`);
+          });
+      }else{
+        console.log("Senhas incorretas");
+      }
     },
     closeModal() {
       this.$emit("closeModal", false);
     },
+    clearUser(){
+      this.user.nome = "";
+      this.user.usuario = "";
+      this.user.email = "";
+      this.user.senha = "";
+      this.user.repeatSenha = "";
+    }
   },
 });
 </script>
