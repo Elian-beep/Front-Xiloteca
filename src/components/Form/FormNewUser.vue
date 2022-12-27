@@ -56,6 +56,7 @@
   
 <script>
 import { defineComponent } from "vue";
+import User from '../../services/users.js';
 
 export default defineComponent({
   name: "FormNewUser",
@@ -64,7 +65,6 @@ export default defineComponent({
   data() {
     return {
       user: {
-        id: "",
         nome: "",
         usuario: "",
         email: "",
@@ -75,7 +75,14 @@ export default defineComponent({
   },
   methods: {
     insertUser() {
-      console.log(this.user);
+      User.save(this.user)
+        .then((response) => {
+          this.user = {};
+          console.log(`${response.data.nome} Cadastrado com sucesso`);
+        })
+        .catch((e) => {
+          console.log(`ERROR: ${e.response.data}`);
+        })
     },
     closeModal() {
       this.$emit("closeModal", false);
