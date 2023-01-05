@@ -16,5 +16,4 @@ export default {
     findNC:(text) => {
         return http.get(`amostras/busca/nc?nomeCientifico=${text}`)
     }
-
 }

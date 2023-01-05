@@ -64,6 +64,7 @@ export default defineComponent({
   emits: ["closeModal"],
   data() {
     return {
+      userBD: "",
       user: {
         nome: "",
         usuario: "",
@@ -76,14 +77,23 @@ export default defineComponent({
   methods: {
     insertUser() {
       if (this.user.senha === this.user.repeatSenha) {
-        User.save(this.user)
-          .then((response) => {
-            this.user = {};
-            console.log(`${response.data.nome} Cadastrado com sucesso`);
-          })
-          .catch((e) => {
-            console.log(`ERROR: ${e.response.data}`);
-          });
+        User.findEmail(this.user.email).then((response) => {
+          this.userBD = response.data[0].email;
+          // console.log(`email digitado: ${this.user.email} | email encontrado no BD: ${this.userBD}`);
+        });
+        if (this.user.email != this.userBD) {
+          User.save(this.user)
+            .then((response) => {
+              this.user = {};
+              console.log(`${response.data.nome} Cadastrado com sucesso`);
+            })
+            .catch((e) => {
+              console.log(`ERROR: ${e.response.data}`);
+            });
+        }else{
+          console.log('email ja existente');
+          return;
+        }
       }else{
         console.log("Senhas incorretas");
       }
