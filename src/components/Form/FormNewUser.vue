@@ -9,6 +9,7 @@
       <input
         class="inputNoIcon"
         type="text"
+        required
         v-model="user.nome"
         placeholder="Nome completo *"
       />
@@ -17,6 +18,7 @@
       <input
         class="inputNoIcon"
         type="text"
+        required
         v-model="user.usuario"
         placeholder="Usuário *"
       />
@@ -25,22 +27,27 @@
       <input
         class="inputNoIcon"
         type="email"
+        required
         v-model="user.email"
         placeholder="E-mail *"
       />
     </div>
+    <AlertDanger :showAlert="alertEmail" text="E-mail ja existente" />
     <div class="area-input">
       <input
         class="inputNoIcon"
         type="password"
+        required
         v-model="user.senha"
         placeholder="Senha *"
       />
     </div>
+    <AlertDanger :showAlert="alertPassword" text="As senhas devem ser iguais!" />
     <div class="area-input">
       <input
         class="inputNoIcon"
         type="password"
+        required
         v-model="user.repeatSenha"
         placeholder="Confirmar senha *"
       />
@@ -57,10 +64,11 @@
 <script>
 import { defineComponent } from "vue";
 import User from "../../services/users.js";
+import AlertDanger from "../Titles/alertDanger.vue";
 
 export default defineComponent({
   name: "FormNewUser",
-  components: {},
+  components: { AlertDanger },
   emits: ["closeModal"],
   data() {
     return {
@@ -72,30 +80,36 @@ export default defineComponent({
         senha: "",
         repeatSenha: "",
       },
+      alertEmail: true,
+      alertPassword: true
     };
   },
   methods: {
     insertUser() {
-      if (this.user.senha === this.user.repeatSenha) {
+      if (this.user.senha !== this.user.repeatSenha) {
+        this.alertPassword = true;
+        console.log("Senhas incorretas");
+      }else{
+        this.alertPassword = false;
         User.findEmail(this.user.email).then((response) => {
           this.userBD = response.data[0].email;
-          // console.log(`email digitado: ${this.user.email} | email encontrado no BD: ${this.userBD}`);
+          console.log(`email digitado: ${this.user.email} | email encontrado no BD: ${this.userBD}`);
+          if (this.user.email == this.userBD) {
+            console.log('email ja existente');
+            this.alertEmail = true;   
+          }else{
+            User.save(this.user)
+              .then((response) => {
+                this.alertEmail = false;
+                console.log(`${response.data.nome} Cadastrado com sucesso`);
+                this.user = {};
+                this.closeModal();
+              })
+              .catch((e) => {
+                console.log(`ERROR: ${e.response.data}`);
+              });
+          }
         });
-        if (this.user.email != this.userBD) {
-          User.save(this.user)
-            .then((response) => {
-              this.user = {};
-              console.log(`${response.data.nome} Cadastrado com sucesso`);
-            })
-            .catch((e) => {
-              console.log(`ERROR: ${e.response.data}`);
-            });
-        }else{
-          console.log('email ja existente');
-          return;
-        }
-      }else{
-        console.log("Senhas incorretas");
       }
     },
     closeModal() {
