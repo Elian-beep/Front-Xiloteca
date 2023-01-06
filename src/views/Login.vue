@@ -3,12 +3,13 @@
     <!-- <Logo :isVisible="false" class="logo" /> -->
     <!-- <MenuSandwich :isHome="false" :isAbout="false" :isLogin="true" /> -->
     <router-link to="/" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Voltar</router-link>
+    <AlertTemp :showAlert="receivedOpenAlertTemp" />
   </header>
   <ContentLogin>
     <LogoSX :is-visible="true" />
     <FormLogin @open-modals="whyModal" />
     <ModalContainer @closed-modal="closeModal" :showModal="showMInsert" mainTitle="Cadastrar">
-      <FormNewUser @closeModal="closeModal" />
+      <FormNewUser @closeModal="closeModal" @openAlertTemp="openAlertTemp" />
     </ModalContainer>
     <ModalContainer @closed-modal="closeModal" :showModal="showMPass" mainTitle="Esqueceu sua senha de acesso?">
       <FormNewPass @closeModal="closeModal" />
@@ -24,14 +25,16 @@ import FormLogin from "@/components/Form/FormLogin.vue";
 import ModalContainer from "@/components/Modals/Modal.vue";
 import FormNewUser from "@/components/Form/FormNewUser.vue";
 import FormNewPass from "@/components/Form/FormNewPass.vue";
+import AlertTemp from "../components/Alerts/alertTemp.vue";
 
 export default defineComponent({
   name: "LoginView",
-  components: { ContentLogin, LogoSX, FormLogin, ModalContainer, FormNewUser, FormNewPass },
+  components: { ContentLogin, LogoSX, FormLogin, ModalContainer, FormNewUser, FormNewPass, AlertTemp },
   data(){
     return{
       showMInsert: false,
-      showMPass: false
+      showMPass: false,
+      receivedOpenAlertTemp: false,
     }
   },
   methods: {
@@ -47,6 +50,9 @@ export default defineComponent({
         this.showMInsert = false;
         this.showMPass = false
       }
+    },
+    openAlertTemp(openAlertTemp: boolean){
+      this.receivedOpenAlertTemp = openAlertTemp;
     }
   }
 });

@@ -64,12 +64,13 @@
 <script>
 import { defineComponent } from "vue";
 import User from "../../services/users.js";
-import AlertDanger from "../Titles/alertDanger.vue";
+import AlertDanger from "../Alerts/alertDanger.vue";
+
 
 export default defineComponent({
   name: "FormNewUser",
   components: { AlertDanger },
-  emits: ["closeModal"],
+  emits: ["closeModal", "openAlertTemp"],
   data() {
     return {
       userBD: "",
@@ -80,8 +81,8 @@ export default defineComponent({
         senha: "",
         repeatSenha: "",
       },
-      alertEmail: true,
-      alertPassword: true
+      alertEmail: false,
+      alertPassword: false
     };
   },
   methods: {
@@ -103,6 +104,7 @@ export default defineComponent({
                 this.alertEmail = false;
                 console.log(`${response.data.nome} Cadastrado com sucesso`);
                 this.user = {};
+                this.$emit("openAlertTemp", true);
                 this.closeModal();
               })
               .catch((e) => {
