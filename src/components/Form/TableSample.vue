@@ -468,13 +468,13 @@ export default defineComponent({
   .table::-webkit-scrollbar {
     margin-left: 6px;
     background: none;
-    width: 10px;
+    width: 6px;
   }
 
   .table::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: #213140;
-    width: 10px;
+    width: 6px;
   }
 
   .inLaptop {
