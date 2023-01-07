@@ -28,11 +28,6 @@ export default defineComponent({
         this.DataShowAlert = false;
       }, this.timeAlert);
     },
-    timeTest(){
-        setTimeout(() => {
-            console.log('passou 5 segundos');
-        }, this.timeAlert);
-    }
   },
   watch: {
     showAlert(newShowAlert){

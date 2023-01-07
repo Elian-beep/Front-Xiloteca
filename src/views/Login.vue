@@ -48,7 +48,7 @@ export default defineComponent({
     closeModal(closeModal: boolean){
       if (!closeModal) {
         this.showMInsert = false;
-        this.showMPass = false
+        this.showMPass = false;
       }
     },
     openAlertTemp(openAlertTemp: boolean){

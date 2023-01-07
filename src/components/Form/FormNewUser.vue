@@ -1,10 +1,5 @@
 <template>
   <form @submit.prevent="insertUser">
-    <!-- <InputNoIcon
-      :vmodelsample="user.nome"
-      typeInput="text"
-      placeholderInput="Nome completo *"
-    /> -->
     <div class="area-input">
       <input
         class="inputNoIcon"
@@ -94,21 +89,19 @@ export default defineComponent({
         this.alertPassword = false;
         User.findEmail(this.user.email).then((response) => {
           this.userBD = response.data[0].email;
-          console.log(`email digitado: ${this.user.email} | email encontrado no BD: ${this.userBD}`);
           if (this.user.email == this.userBD) {
             console.log('email ja existente');
             this.alertEmail = true;   
           }else{
             User.save(this.user)
-              .then((response) => {
+              .then((responseSave) => {
                 this.alertEmail = false;
-                console.log(`${response.data.nome} Cadastrado com sucesso`);
                 this.user = {};
                 this.$emit("openAlertTemp", true);
                 this.closeModal();
               })
               .catch((e) => {
-                console.log(`ERROR: ${e.response.data}`);
+                console.log(`ERROR: ${e.responseSave.data}`);
               });
           }
         });
