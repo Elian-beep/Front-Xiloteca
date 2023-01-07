@@ -5,8 +5,8 @@
       @block-scroll="sendBlockScroll"
       :isHome="true"
       :isAbout="false"
-      :isLogin="false"
     />
+    <!-- LOGIN: :isLogin="false" -->
   </header>
   <section class="container" :class="{ blockScroll: blockScroll }">
     <Content>

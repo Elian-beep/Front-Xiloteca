@@ -21,12 +21,12 @@
         title="Sobre a Xiloteca"
         icon="fa-sharp fa-solid fa-circle-info"
       />
-      <ItemMenu
+      <!-- <ItemMenu
       :selected="isLogin"
         :toHref="'/login'"
         title="Fazer Login"
         icon="fa-solid fa-circle-user"
-      />
+      /> -->
     </ul>
   </div>
 </template>
@@ -48,14 +48,14 @@ export default defineComponent({
       type: Boolean,
       required: false,
     },
-    isLogin: {
-      type: Boolean,
-      required: false
-    }
+    // isLogin: {
+    //   type: Boolean,
+    //   required: false
+    // }
   },
   data() {
     return {
-      isOpen: false, //Iso deve ser false
+      isOpen: false, //Deve ser false
     };
   },
   methods: {

@@ -1,7 +1,8 @@
 <template>
   <header>
     <Logo :isVisible="false" />
-    <MenuSandwich :isHome="false" :isAbout="true" :isLogin="false" />
+    <MenuSandwich :isHome="false" :isAbout="true" />
+    <!-- LOGIN: :isLogin="false" -->
   </header>
   <Content>
     <MainTitle text="Sobre a Xiloteca" />
