@@ -17,7 +17,7 @@ const routes: RouteRecordRaw[] = [
         path: '/about',
         name: 'About',
         component: About
-    }
+    } 
 ];
 
 const router = createRouter({
