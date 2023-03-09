@@ -1,5 +1,6 @@
 <template>
   <div class="table">
+    <!-- REFATORAR -->
     <table class="tableSample">
       <thead>
         <tr>
