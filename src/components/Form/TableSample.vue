@@ -1,6 +1,65 @@
 <template>
-  <div class="table">
-    <!-- REFATORAR -->
+  <!-- ------------------------------- LOOP DE LOADING -->
+  <div class="loading-area" :class="{ 'close-loading-area': tableIsOpen }">
+    <CircleLoading />
+    carregando...
+  </div>
+
+  <!-- ------------------------------- TABELA DAS AMOSTRAS -->
+  <div class="table-area" :class="{ show: tableIsOpen }">
+    <table class="tableSample">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th class="inLaptop"><span>Família</span></th>
+          <th>Nome vulgar</th>
+          <th class="inTablet">Nome Científico</th>
+          <th class="inDesktop">Coletor</th>
+          <th class="inDesktop">Determinador</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="sample of SlicedSamples" :key="sample._id">
+          <td>{{ sample.cod }}</td>
+          <td class="inLaptop">{{ sample.familia }}</td>
+          <td @click="openModalSample(sample)" class="link-modal">
+            {{ sample.nomeVulgar }}
+          </td>
+          <td class="inTablet">{{ sample.nomeCientifico }}</td>
+          <td class="inDesktop">{{ sample.coletor }}</td>
+          <td class="inDesktop">{{ sample.determinador }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ------------------------------- PAGINAÇÃO DA TABELA -->
+  <div class="pag-area" :class="{ show: tableIsOpen }">
+    <button class="pag-btn-action" @click="previousPage">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <div class="pag-numbers">
+      <span
+        v-for="page in pagesToShow"
+        :key="page"
+        @click="goToPage(page)"
+        class="pag-number"
+        :class="{ 'current-page': currentPage === page }"
+        >{{ page }}</span
+      >
+    </div>
+    <button class="pag-btn-action" @click="nextPage">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <ModalSample
+    @closeModal="closedModal"
+    :openModal="openModal"
+    :sample="sample"
+  />
+
+  <!-- <div class="table">
     <table class="tableSample">
       <thead>
         <tr>
@@ -31,9 +90,9 @@
     <div class="loading" :class="{ stopLoading: inLoading }">
       <div class="c-loader"></div>
     </div>
-  </div>
+  </div> -->
 
-  <div class="area-pagination">
+  <!-- <div class="area-pagination">
     <button class="pag-btnArrow" type="button" v-if="page != 1" @click="page--">
       <i class="fa-solid fa-chevron-left"></i>
     </button>
@@ -54,9 +113,9 @@
     >
       <i class="fa-solid fa-chevron-right"></i>
     </button>
-  </div>
+  </div> -->
 
-  <ModalContainer
+  <!-- <ModalContainer
     @closedModal="closedModal"
     :mainTitle="titleForModal"
     :showModal="showModal"
@@ -83,17 +142,18 @@
       <p><span>Remetente: </span>{{ sample.remetente }}</p>
       <p><span>Obs: </span>{{ sample.obs }}</p>
     </div>
-  </ModalContainer>
+  </ModalContainer> -->
 </template>
   
 <script>
 import { defineComponent } from "vue";
 import Samples from "../../services/samples.js";
-import ModalContainer from "../Modals/Modal.vue";
+import CircleLoading from "../Loadings/Loading.vue";
+import ModalSample from "../Modals/ModalSample.vue";
 
 export default defineComponent({
   name: "TableSample",
-  components: { ModalContainer },
+  components: { ModalSample, CircleLoading },
   emits: ["blockScroll"],
   props: {
     opcInput: {
@@ -107,7 +167,7 @@ export default defineComponent({
     allSamples: {
       type: Boolean,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -128,122 +188,190 @@ export default defineComponent({
         obs: "",
       },
       samples: [],
-      newSamples: [],
-      oldOpc: "",
-      textSearch: "",
-      page: 1,
-      perPage: 100,
-      pages: [],
-      isPage: true,
-      inLoading: true,
-      showModal: false, //Deve ser false
-      titleForModal: "",
-      showAllSamples: true
+      cloneSamples: [],
+      currentPage: 1,
+      samplesForPage: 70,
+      openModal: false,
+      tableIsOpen: false,
+      // newSamples: [],
+      // oldOpc: "",
+      // textSearch: "",
+      // page: 1,
+      // perPage: 100,
+      // pages: [],
+      // isPage: true,
+      // inLoading: true,
+      // showModal: false, //Deve ser false
+      // titleForModal: "",
+      // showAllSamples: true,
     };
   },
   mounted() {
-    this.list("");
-  },
-  methods: {
-    list(opc, text) {
-      if (!this.showAllSamples && opc == "cod") {
-        this.listCod(text);
-      } else if (!this.showAllSamples && opc == "familia") {
-        this.listFamilia(text);
-      } else if (!this.showAllSamples && opc == "nomeVulgar") {
-        this.listNV(text);
-      } else if (!this.showAllSamples && opc == "nomeCientifico") {
-        this.listNC(text);
-      } else if (this.showAllSamples){
-        this.listAll();
-      }
-    },
-    listAll() {
-      this.pages = [];
-      Samples.findAll().then((response) => {
-        this.inLoading = false;
-        this.samples = response.data;
-      });
-    },
-    listCod(text) {
-      this.pages = [];
-      text = text.toUpperCase();
-      Samples.findCod(text).then((response) => {
-        this.samples = response.data;
-        this.inLoading = false;
-      });
-    },
-    listFamilia(text) {
-      this.pages = [];
-      Samples.findFamilia(text).then((response) => {
-        this.samples = response.data;
-        this.inLoading = false;
-      });
-    },
-    listNV(text) {
-      this.pages = [];
-      Samples.findNV(text).then((response) => {
-        this.samples = response.data;
-        this.inLoading = false;
-      });
-    },
-    listNC(text) {
-      this.pages = [];
-      Samples.findNC(text).then((response) => {
-        this.samples = response.data;
-        this.inLoading = false;
-      });
-    },
-    openModal(sample) {
-      this.titleForModal = sample.nomeVulgar;
-      this.sample = sample;
-      this.showModal = true;
-      this.$emit("blockScroll", this.showModal);
-    },
-    closedModal(closedModal) {
-      this.showModal = closedModal;
-      this.$emit("blockScroll", this.showModal);
-    },
-    paginate(samples) {
-      let page = this.page;
-      let perPage = this.perPage;
-      let from = page * perPage - perPage;
-      let to = page * perPage;
-      console.log(`Página na tabela: ${page}`);
-      return samples.slice(from, to);
-    },
-    setSanples() {
-      let numberOfpages = Math.ceil(this.samples.length / this.perPage);
-      for (let i = 1; i <= numberOfpages; i++) {
-        this.pages.push(i);
-      }
-    },
+    this.listAll();
   },
   computed: {
-    displaedSamples() {
-      return this.paginate(this.samples);
+    SlicedSamples() {
+      return this.samples.slice(
+        (this.currentPage - 1) * this.samplesForPage,
+        this.currentPage * this.samplesForPage
+      );
     },
+    totalPages() {
+      return Math.ceil(this.samples.length / this.samplesForPage);
+    },
+    pagesToShow() {
+      let pages = [];
+      if (this.currentPage <= 3) {
+        for (let i = 1; i <= 3; i++) {
+          pages.push(i);
+        }
+        pages.push("..");
+        pages.push(this.totalPages);
+      } else if (this.currentPage >= this.totalPages - 2) {
+        pages.push(1);
+        pages.push("..");
+        for (let i = this.totalPages - 2; i <= this.totalPages; i++) {
+          pages.push(i);
+        }
+      } else {
+        pages.push(1);
+        pages.push("..");
+        pages.push(this.currentPage - 1);
+        pages.push(this.currentPage);
+        pages.push(this.currentPage + 1);
+        pages.push("..");
+        pages.push(this.totalPages);
+      }
+      return pages;
+    },
+
+    // displaedSamples() {
+    //   return this.paginate(this.samples);
+    // },
+  },
+  methods: {
+    listAll() {
+      Samples.findAll().then((response) => {
+        this.samples = response.data;
+        this.cloneSamples = this.samples;
+        this.tableIsOpen = true;
+      });
+    },
+    previousPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    },
+    goToPage(page) {
+      if (page != "..") this.currentPage = page;
+    },
+    openModalSample(sample) {
+      this.sample = sample;
+      this.openModal = true;
+    },
+    closedModal(closedModal) {
+      this.openModal = closedModal;
+    },
+
+    // list(opc, text) {
+    //   if (!this.showAllSamples && opc == "cod") {
+    //     this.listCod(text);
+    //   } else if (!this.showAllSamples && opc == "familia") {
+    //     this.listFamilia(text);
+    //   } else if (!this.showAllSamples && opc == "nomeVulgar") {
+    //     this.listNV(text);
+    //   } else if (!this.showAllSamples && opc == "nomeCientifico") {
+    //     this.listNC(text);
+    //   } else if (this.showAllSamples){
+    //     this.listAll();
+    //   }
+    // },
+    // listAll() {
+    //   this.pages = [];
+    //   Samples.findAll().then((response) => {
+    //     this.inLoading = false;
+    //     this.samples = response.data;
+    //   });
+    // },
+    // listCod(text) {
+    //   this.pages = [];
+    //   text = text.toUpperCase();
+    //   Samples.findCod(text).then((response) => {
+    //     this.samples = response.data;
+    //     this.inLoading = false;
+    //   });
+    // },
+    // listFamilia(text) {
+    //   this.pages = [];
+    //   Samples.findFamilia(text).then((response) => {
+    //     this.samples = response.data;
+    //     this.inLoading = false;
+    //   });
+    // },
+    // listNV(text) {
+    //   this.pages = [];
+    //   Samples.findNV(text).then((response) => {
+    //     this.samples = response.data;
+    //     this.inLoading = false;
+    //   });
+    // },
+    // listNC(text) {
+    //   this.pages = [];
+    //   Samples.findNC(text).then((response) => {
+    //     this.samples = response.data;
+    //     this.inLoading = false;
+    //   });
+    // },
+    // openModal(sample) {
+    //   this.titleForModal = sample.nomeVulgar;
+    //   this.sample = sample;
+    //   this.showModal = true;
+    //   this.$emit("blockScroll", this.showModal);
+    // },
+    // closedModal(closedModal) {
+    //   this.showModal = closedModal;
+    //   this.$emit("blockScroll", this.showModal);
+    // },
+    // paginate(samples) {
+    //   let page = this.page;
+    //   let perPage = this.perPage;
+    //   let from = page * perPage - perPage;
+    //   let to = page * perPage;
+    //   console.log(`Página na tabela: ${page}`);
+    //   return samples.slice(from, to);
+    // },
+    // setSanples() {
+    //   let numberOfpages = Math.ceil(this.samples.length / this.perPage);
+    //   for (let i = 1; i <= numberOfpages; i++) {
+    //     this.pages.push(i);
+    //   }
+    // },
   },
   watch: {
-    samples() {
-      this.setSanples();
-    },
-    opcInput(opc) {
-      this.showAllSamples = false;
-      this.list(opc, this.searchInput);
-    },
-    searchInput(text) {
-      this.showAllSamples = false;
-      this.list(this.opcInput, text);
-    },
-    allSamples(isListAll){
-      if (isListAll) {
-        this.showAllSamples = isListAll;
-        this.list('', '');
-      }else{
-        this.showAllSamples = false;
-      }
-    }
+    // samples() {
+    //   this.setSanples();
+    // },
+    // opcInput(opc) {
+    //   this.showAllSamples = false;
+    //   this.list(opc, this.searchInput);
+    // },
+    // searchInput(text) {
+    //   this.showAllSamples = false;
+    //   this.list(this.opcInput, text);
+    // },
+    // allSamples(isListAll) {
+    //   if (isListAll) {
+    //     this.showAllSamples = isListAll;
+    //     this.list("", "");
+    //   } else {
+    //     this.showAllSamples = false;
+    //   }
+    // },
   },
 });
 </script>
@@ -251,10 +379,33 @@ export default defineComponent({
 <style scoped>
 /* TABELA */
 
-.table {
-  max-height: 800px;
-  overflow-y: scroll;
+.inTablet,
+.inLaptop,
+.inDesktop {
+  display: none;
 }
+
+.loading-area {
+  /* padding-top: 200px; */
+  display: block;
+}
+
+.loading-area.close-loading-area {
+  display: none;
+}
+
+/* ----------- AREA DA TABELA DE AMOSTRAS */
+.table-area {
+  margin-top: 1em;
+  max-height: 500px;
+  overflow-y: scroll;
+  display: none;
+}
+
+.table-area.show {
+  display: block;
+}
+
 .tableSample {
   width: 100%;
   border-spacing: 0;
@@ -265,18 +416,18 @@ export default defineComponent({
   height: 55px;
   font-weight: 300;
   text-align: left;
-  font-size: 16px;
+  font-size: 15px;
   color: #213140;
 }
 
-.tableSample thead tr th {
+.tableSample thead t > {
   padding-left: 10px;
 }
 
 .tableSample tbody {
   text-align: left;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 11pt;
   color: #213140;
 }
 
@@ -285,25 +436,19 @@ export default defineComponent({
   border-top: 1px solid rgba(33, 49, 64, 0.5);
 }
 
+.link-modal {
+  text-decoration: underline;
+  font-style: italic;
+}
+
+.link-modal:hover {
+  cursor: pointer;
+}
+
 .tableSample tbody tr td {
+  transition: background-color 0.2s ease-in-out;
   padding-left: 10px;
   /* margin-left: 10px; */
-}
-
-.tableSample .btnSample {
-  text-align: right;
-  padding-right: 10px;
-}
-
-.tableSample tbody tr button {
-  border: none;
-  background: none;
-  font-size: 16px;
-}
-
-.tableSample tbody tr button:hover {
-  color: #fafafa;
-  cursor: pointer;
 }
 
 .tableSample tbody tr:hover > td {
@@ -315,10 +460,18 @@ export default defineComponent({
   background: #f3f3f3;
 }
 
-.inTablet,
-.inLaptop,
-.inDesktop {
-  display: none;
+.table-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 8px 10px 8px 8px;
+}
+
+.table-action {
+  border: none;
+  background: none;
+  color: #213140;
 }
 
 /* PAGINAÇÃO */
@@ -410,133 +563,114 @@ export default defineComponent({
   font-size: 14px;
 }
 
-@keyframes is-rotating {
-  to {
-    transform: rotate(1turn);
-  }
+/* ----------- AREA DA PAGINAÇÃO DA TABELA */
+.pag-area {
+  /* background: green; */
+  display: none;
+  justify-content: center;
+  gap: 15px;
+  padding-top: 1.5em;
+}
+.pag-area.show {
+  display: flex;
+}
+
+.pag-btn-action {
+  border: none;
+  background: none;
+  font-size: 12pt;
+  color: #213140;
+}
+
+.pag-numbers {
+  display: flex;
+  gap: 12px;
+  font-size: 12pt;
+  font-weight: 400;
+  color: #999898;
+}
+
+.current-page {
+  font-weight: bold;
+  color: #213140;
+  border-bottom: 1px solid;
 }
 
 @media screen and (min-width: 481px) {
   /* TABLET */
-
-  .table {
-    max-height: 900px;
-  }
-
   .inTablet {
     display: table-cell;
   }
 
-  .area-pagination {
-    margin-top: 28px;
+  /* ----------- AREA DA TABELA DE AMOSTRAS */
+  .table-area {
+    max-height: 550px;
   }
 
-  .area-pagination button {
+  .tableSample thead {
+    height: 60px;
     font-size: 16px;
   }
 
-  /* MODAL INFO */
-  .modal-subHe {
-    margin-top: 32px;
+  .tableSample thead t > {
+    padding-left: 12px;
   }
 
-  .modal-subHe img {
-    width: 100px;
-    height: 100px;
+  .tableSample tbody t > {
+    padding-left: 12px;
   }
 
-  .area-mainTitles p {
-    font-size: 18px;
+  /* ----------- AREA DA PAGINAÇÃO DA TABELA */
+  .pag-area {
+    gap: 16px;
   }
 
-  .area-info {
-    margin-top: 32px;
-    gap: 8px;
+  .pag-btn-action {
+    font-size: 13pt;
   }
 
-  .area-info p {
-    font-size: 15px;
+  .pag-numbers {
+    gap: 14px;
+    font-size: 13pt;
   }
 }
 
 @media screen and (min-width: 769px) {
   /* LAPTOP */
-
-  .table {
-    max-height: 950px;
-  }
-
-  .table::-webkit-scrollbar {
-    margin-left: 6px;
-    background: none;
-    width: 6px;
-  }
-
-  .table::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: #213140;
-    width: 6px;
-  }
-
   .inLaptop {
     display: table-cell;
   }
 
-  .area-pagination {
-    margin-top: 40px;
-    gap: 16px;
+  /* ----------- AREA DA PAGINAÇÃO DA TABELA */
+
+  .pag-btn-action i {
+    transition: color 0.2s ease-in-out;
   }
 
-  .area-pagination button {
-    font-size: 18px;
+  .pag-btn-action:hover i {
+    cursor: pointer;
+    color: #999898;
   }
 
-  /* MODAL INFO */
-
-  .modal-subHe img {
-    width: 120px;
-    height: 120px;
+  .pag-number {
+    transition: color 0.2s ease-in-out;
   }
-
-  .area-mainTitles p {
-    font-size: 20px;
+  .pag-number:hover {
+    color: rgba(33, 49, 64, 1);
+    cursor: pointer;
   }
-
-  .area-info p {
-    font-size: 17px;
-  }
+  
 }
 
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
 
-  .table {
-    max-height: 1000px;
-  }
-
   .inDesktop {
     display: table-cell;
   }
 
-  .area-pagination {
-    margin-top: 48px;
-  }
-
-  /* MODAL INFO */
-
-  .modal-subHe img {
-    width: 140px;
-    height: 140px;
-  }
-
-  .area-mainTitles {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .area-info p {
-    font-size: 16px;
+  .table-area {
+    max-height: 900px;
   }
 }
 </style>
