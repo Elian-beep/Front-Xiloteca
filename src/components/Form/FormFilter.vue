@@ -76,7 +76,7 @@ export default defineComponent({
     return {
       opcInput: "",
       searchInput: "",
-      isListAll: false
+      isListAll: false,
     };
   },
   methods: {
