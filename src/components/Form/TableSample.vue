@@ -2,7 +2,6 @@
   <!-- ------------------------------- LOOP DE LOADING -->
   <div class="loading-area" :class="{ 'close-loading-area': tableIsOpen }">
     <CircleLoading />
-    carregando...
   </div>
 
   <!-- ------------------------------- TABELA DAS AMOSTRAS -->
@@ -386,7 +385,7 @@ export default defineComponent({
 }
 
 .loading-area {
-  /* padding-top: 200px; */
+  padding: 70px;
   display: block;
 }
 
@@ -499,68 +498,6 @@ export default defineComponent({
 .isPage:focus {
   color: #213140;
   cursor: pointer;
-}
-
-/* ICONE DE LOADING */
-.loading {
-  display: none;
-}
-
-.loading.stopLoading {
-  display: flex;
-  margin-top: 70px;
-  margin-bottom: 30vh; /*30vh*/
-  justify-content: center;
-  width: 100%;
-}
-
-.c-loader {
-  animation: is-rotating 1s infinite;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  border: 6px solid #e5e5e5;
-  border-top-color: #130f26;
-}
-
-/* MODAL INFO */
-.modal-subHe {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  margin-top: 16px;
-}
-
-.modal-subHe img {
-  width: 90px;
-  height: 90px;
-  border-radius: 2px;
-}
-
-.area-mainTitles p,
-.area-info p {
-  font-weight: 400;
-  color: #213140;
-}
-
-.area-mainTitles p {
-  font-size: 15px;
-}
-
-.area-mainTitles span,
-.area-info span {
-  font-weight: 600;
-}
-
-.area-info {
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.area-info p {
-  font-size: 14px;
 }
 
 /* ----------- AREA DA PAGINAÇÃO DA TABELA */
