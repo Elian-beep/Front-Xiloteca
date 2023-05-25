@@ -1,4 +1,4 @@
-0<template>
+<template>
   <header>
     <Logo :isVisible="false" class="logo" />
     <MenuSandwich
@@ -122,6 +122,11 @@ export default defineComponent({
 
   header {
     justify-content: space-around;
+  }
+
+  .container{
+    max-width: 1800px;
+    margin: 0 auto;
   }
 
   .area-formFilter {

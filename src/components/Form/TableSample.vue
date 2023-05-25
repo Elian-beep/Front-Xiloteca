@@ -9,10 +9,10 @@
     <table class="tableSample">
       <thead>
         <tr>
-          <th>Código</th>
+          <th>Cod</th>
           <th class="inLaptop"><span>Família</span></th>
-          <th>Nome vulgar</th>
-          <th class="inTablet">Nome Científico</th>
+          <th>Nome Científico</th>
+          <th class="inTablet">Nome vulgar</th>
           <th class="inDesktop">Coletor</th>
           <th class="inDesktop">Determinador</th>
         </tr>
@@ -21,10 +21,10 @@
         <tr v-for="sample of SlicedSamples" :key="sample._id">
           <td>{{ sample.cod }}</td>
           <td class="inLaptop">{{ sample.familia }}</td>
-          <td @click="openModalSample(sample)" class="link-modal">
+          <td @click="openModalSample(sample)" class="link-modal" >{{ sample.nomeCientifico }}</td>
+          <td class="inTablet">
             {{ sample.nomeVulgar }}
           </td>
-          <td class="inTablet">{{ sample.nomeCientifico }}</td>
           <td class="inDesktop">{{ sample.coletor }}</td>
           <td class="inDesktop">{{ sample.determinador }}</td>
         </tr>
@@ -65,7 +65,6 @@ import Samples from "../../services/samples.js";
 import CircleLoading from "../Loadings/Loading.vue";
 import ModalSample from "../Modals/ModalSample.vue";
 import SearchSamples from "../../services/searchSamples.js";
-import samples from "../../services/samples.js";
 
 export default defineComponent({
   name: "TableSample",
