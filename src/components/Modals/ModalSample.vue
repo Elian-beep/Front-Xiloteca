@@ -25,21 +25,27 @@
       <p><span>Determinador: </span>{{ sample.determinador }}</p>
       <p><span>Remetente: </span>{{ sample.remetente }}</p>
       <p><span>Obs: </span>{{ sample.obs }}</p>
+      <p>
+        <AccordionModel>
+          <div v-for="picture of pictures.data" :key="picture._id">
+            <ItemPictures :linkDrive="picture.linkDrive" :tituloLink="picture.tituloLink" />
+          </div>
+        </AccordionModel>
+      </p>
     </div>
-    <!-- <div class="area-buttons">
-        <button class="btn-del">Excluir</button>
-        <button class="btn-edit">Editar</button>
-      </div> -->
   </ModalContainer>
 </template>
   
   <script>
 import { defineComponent } from "vue";
+import AccordionModel from "../Accordion/AccordionModel.vue";
+import ItemPictures from "../Accordion/ItemPictures.vue";
 import ModalContainer from "./Modal.vue";
+import Pictures from '../../services/pictures.js';
 
 export default defineComponent({
   name: "modalSamples",
-  components: { ModalContainer },
+  components: { ModalContainer, AccordionModel, ItemPictures },
   emits: ["closeModal"],
   props: {
     openModal: {
@@ -67,12 +73,19 @@ export default defineComponent({
         determinador: "",
         remetente: "",
         desc: "",
-        obs: "",
+        obs: ""
       },
+      pictures: [],
       dataOpenModal: false,
     };
   },
   methods: {
+    async findPictures() {
+      console.log(`pegar as imagens de : ${this.sample._id}`);
+        this.pictures = await Pictures.getPictures(this.sample._id);
+        console.log(this.pictures.data);
+        return this.pictures.data;
+    },
     closedModal(closedModal) {
       this.dataOpenModal = closedModal;
       this.$emit("closeModal", false);
@@ -84,6 +97,7 @@ export default defineComponent({
     },
     sample(newSample) {
       this.dataSample = newSample;
+      this.findPictures();
     },
   },
 });
