@@ -1,7 +1,7 @@
 <template>
   <div class="area-logo" :class="{ isVisible: isVisible }">
     <h1>Xiloteca</h1>
-    <span>Centro de Estudos Superiores de Itacoatiara - CESIT</span>
+    <span>Centro de Estudos Superiores de Itacoatiara CESIT</span>
   </div>
 </template>
 
@@ -42,6 +42,7 @@ export default defineComponent({
 .area-logo span {
   font-weight: 400;
   font-size: 10px;
+  text-align: center;
   margin: 0;
   color: #213140;
 }

@@ -1,13 +1,13 @@
 <template>
-  <header>
-    <Logo :isVisible="false" class="logo" />
-    <MenuSandwich
+    <NavBar />
+  <!-- <header> -->
+    <!-- <MenuSandwich
       @block-scroll="sendBlockScroll"
       :isHome="true"
       :isAbout="false"
-    />
+    /> -->
     <!-- LOGIN: :isLogin="false" -->
-  </header>
+  <!-- </header> -->
   <section class="container" :class="{ blockScroll: blockScroll }">
     <Content>
       <MainTitle text="Filtrar Dados" />
@@ -26,9 +26,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import MenuSandwich from "@/components/Navbar/MenuSandwich.vue";
+import NavBar from "@/components/Navbar/NavBar.vue";
 import Content from "@/components/ContentsAiners/Container.vue";
 import MainTitle from "@/components/Titles/MainTitle.vue";
-import Logo from "@/components/Titles/Logo.vue";
 import FormFilter from "@/components/Form/FormFilter.vue";
 import SubTitle from "@/components/Titles/SubTitle.vue";
 import TableSample from "@/components/Form/TableSample.vue";
@@ -37,10 +37,10 @@ import Footer from "@/components/Footer.vue";
 export default defineComponent({
   name: "HomeView",
   components: {
-    MenuSandwich,
+    // MenuSandwich,
+    NavBar,
     Content,
     MainTitle,
-    Logo,
     FormFilter,
     SubTitle,
     TableSample,
