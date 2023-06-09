@@ -67,8 +67,8 @@ export default defineComponent({
       this.listAll = false;
       this.searchInput = searchInput;
     },
-    getListAll(listAll: boolean){
-      this.listAll = listAll;
+    getListAll(newListAll: boolean){
+      this.listAll = newListAll;
     }
   },
 });

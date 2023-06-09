@@ -109,7 +109,7 @@ export default defineComponent({
       openModal: false,
       tableIsOpen: false,
       dataOpcInput: "",
-      dataSearchInput: ""
+      dataSearchInput: "",
     };
   },
   mounted() {
@@ -193,6 +193,11 @@ export default defineComponent({
       this.dataSearchInput = newSearchInput;
       this.search();
     },
+    allSamples(newAllSamples){
+      if (newAllSamples) {        
+        this.listAll();
+      }
+    }
   }
 });
 </script>

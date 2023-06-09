@@ -59,7 +59,7 @@
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
       <!-- <OrderFill /> -->
-      <button class="btnListAll" @click="listAll">Listar todos</button>
+      <button type="button" class="btnListAll" @click="listAll">Listar todos</button>
     </div>
   </form>
 </template>
