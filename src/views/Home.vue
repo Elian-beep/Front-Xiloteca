@@ -25,7 +25,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import MenuSandwich from "@/components/Navbar/MenuSandwich.vue";
 import NavBar from "@/components/Navbar/NavBar.vue";
 import Content from "@/components/ContentsAiners/Container.vue";
 import MainTitle from "@/components/Titles/MainTitle.vue";

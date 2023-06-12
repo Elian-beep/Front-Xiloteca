@@ -27,7 +27,7 @@
       <p><span>Obs: </span>{{ sample.obs }}</p>
       <p>
         <AccordionModel>
-          <div v-for="picture of pictures.data" :key="picture._id">
+          <div v-for="picture of sample.imagens" :key="picture._id">
             <ItemPictures :linkDrive="picture.linkDrive" :tituloLink="picture.tituloLink" />
           </div>
         </AccordionModel>
@@ -73,19 +73,14 @@ export default defineComponent({
         determinador: "",
         remetente: "",
         desc: "",
-        obs: ""
+        obs: "",
+        imagens: []
       },
       pictures: [],
       dataOpenModal: false,
     };
   },
   methods: {
-    async findPictures() {
-      console.log(`pegar as imagens de : ${this.sample._id}`);
-        this.pictures = await Pictures.getPictures(this.sample._id);
-        console.log(this.pictures.data);
-        return this.pictures.data;
-    },
     closedModal(closedModal) {
       this.dataOpenModal = closedModal;
       this.$emit("closeModal", false);
@@ -97,7 +92,6 @@ export default defineComponent({
     },
     sample(newSample) {
       this.dataSample = newSample;
-      this.findPictures();
     },
   },
 });
