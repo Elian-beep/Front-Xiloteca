@@ -162,6 +162,7 @@ export default defineComponent({
     search(){
       this.samples = this.cloneSamples;
       this.samples = SearchSamples.search(this.dataSearchInput, this.samples, this.opcInput);
+      this.currentPage = 1;
     },
     previousPage() {
       if (this.currentPage > 1) {

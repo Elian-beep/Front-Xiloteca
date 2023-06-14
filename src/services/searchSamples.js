@@ -7,12 +7,19 @@ export default {
 
 function containsString(str, substr) {
     if (str != null || str != undefined) {
-        for (let i = 0; i < str.length; i++) {
-            if (str.substring(i, i + substr.length) === substr) {
+        const normalizeStr = normalizeString(str);
+        const normalizeSubstr = normalizeString(substr);
+
+        for (let i = 0; i < normalizeStr.length; i++) {
+            if (normalizeStr.substring(i, i + normalizeSubstr.length).toLowerCase() === normalizeSubstr.toLowerCase()) {
                 return str;
             }
         }
         return false;
     }
     return false;
+}
+
+function normalizeString(str){
+    return str.toLowerCase().replace(/[^a-zA-Z0-9]/g, "").replace(/\s+/g, "");
 }
