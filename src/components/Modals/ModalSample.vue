@@ -41,7 +41,6 @@ import { defineComponent } from "vue";
 import AccordionModel from "../Accordion/AccordionModel.vue";
 import ItemPictures from "../Accordion/ItemPictures.vue";
 import ModalContainer from "./Modal.vue";
-import Pictures from '../../services/pictures.js';
 
 export default defineComponent({
   name: "modalSamples",

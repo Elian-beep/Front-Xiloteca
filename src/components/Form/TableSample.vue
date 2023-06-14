@@ -18,10 +18,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="sample of SlicedSamples" :key="sample._id">
+        <tr class="link-modal" v-for="sample of SlicedSamples" :key="sample._id" @click="openModalSample(sample)">
           <td>{{ sample.cod }}</td>
           <td class="inLaptop">{{ sample.familia }}</td>
-          <td @click="openModalSample(sample)" class="link-modal" >{{ sample.nomeCientifico }}</td>
+          <td class="table-sample-nc" >{{ sample.nomeCientifico }}</td>
           <td class="inTablet">
             {{ sample.nomeVulgar }}
           </td>
@@ -262,13 +262,13 @@ export default defineComponent({
   border-top: 1px solid rgba(33, 49, 64, 0.5);
 }
 
-.link-modal {
-  text-decoration: underline;
-  font-style: italic;
-}
-
 .link-modal:hover {
   cursor: pointer;
+}
+
+.table-sample-nc{
+  text-decoration: underline;
+  font-style: italic;
 }
 
 .tableSample tbody tr td {

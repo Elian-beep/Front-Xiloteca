@@ -1,15 +1,23 @@
 <template>
-  <div class="navbar-container">
-    <div class="navbar-logo">
-      <Logo :isVisible="true" />
+  <nav class="navbar-container">
+    <div class="navbar-content">
+      <div class="navbar-logo">
+        <Logo :isVisible="true" />
+      </div>
+      <div class="navbar-link">
+        <a href="#">
+          <span>Visitar Página</span>
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
     </div>
-    <div class="navbar-link">
-      <a href="#">
-        <span>Visitar Página</span>
-        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-      </a>
+    <div class="navbar-refs">
+      <span
+        >Universidade do Estado do Amazonas | Centro de Estudos Superiores de
+        Itacoatiara | Curso de Engenharia Florestal</span
+      >
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -23,16 +31,35 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+.navbar-container{
   border-bottom: 0.5px solid #213140;
   padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
 }
 
 .navbar-logo {
   width: 50%;
+}
+
+.navbar-refs {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.navbar-refs span {
+  font-weight: 400;
+  font-size: 10px;
+  align-self: baseline;
+  color: #213140;
 }
 
 .navbar-link {
@@ -67,7 +94,7 @@ export default defineComponent({
 
 @media screen and (min-width: 481px) {
   /* TABLET */
-  .navbar-container {
+  .navbar-container{
     padding: 24px 40px;
   }
 
@@ -80,6 +107,11 @@ export default defineComponent({
   /* LAPTOP */
   .navbar-container {
     padding: 32px 80px;
+    gap: 20px;
+  }
+
+  .navbar-refs span{
+    font-size: 10pt;
   }
 
   .navbar-link a {
@@ -91,7 +123,8 @@ export default defineComponent({
 @media screen and (min-width: 1024px) {
   /* DESKTOP */
   .navbar-container {
-    padding: 48px 96px;
+    padding: 40px 96px;
+    gap: 26px;
   }
 
   .navbar-link a {

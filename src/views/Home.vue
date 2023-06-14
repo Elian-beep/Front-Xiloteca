@@ -1,22 +1,31 @@
 <template>
-    <NavBar />
+  <NavBar />
   <!-- <header> -->
-    <!-- <MenuSandwich
+  <!-- <MenuSandwich
       @block-scroll="sendBlockScroll"
       :isHome="true"
       :isAbout="false"
     /> -->
-    <!-- LOGIN: :isLogin="false" -->
+  <!-- LOGIN: :isLogin="false" -->
   <!-- </header> -->
   <section class="container" :class="{ blockScroll: blockScroll }">
     <Content>
       <MainTitle text="Filtrar Dados" />
       <section class="area-formFilter">
-        <FormFilter @send-opc-input="getOpcInput" @send-search-input="getSearchInput" @list-all="getListAll" />
+        <FormFilter
+          @send-opc-input="getOpcInput"
+          @send-search-input="getSearchInput"
+          @list-all="getListAll"
+        />
       </section>
       <section class="area-table">
         <SubTitle text="Amostras" />
-        <TableSample @blockScroll="sendBlockScroll" :opcInput="opcInput" :searchInput="searchInput" :allSamples="listAll" />
+        <TableSample
+          @blockScroll="sendBlockScroll"
+          :opcInput="opcInput"
+          :searchInput="searchInput"
+          :allSamples="listAll"
+        />
       </section>
     </Content>
   </section>
@@ -48,8 +57,8 @@ export default defineComponent({
   data() {
     return {
       blockScroll: false,
-      opcInput: '',
-      searchInput: '',
+      opcInput: "",
+      searchInput: "",
       listAll: false,
     };
   },
@@ -58,17 +67,17 @@ export default defineComponent({
       console.log(`Block scroll: ${isOpen}`);
       this.blockScroll = isOpen;
     },
-    getOpcInput(opcInput: string){
+    getOpcInput(opcInput: string) {
       this.listAll = false;
       this.opcInput = opcInput;
     },
-    getSearchInput(searchInput: string){
+    getSearchInput(searchInput: string) {
       this.listAll = false;
       this.searchInput = searchInput;
     },
-    getListAll(newListAll: boolean){
+    getListAll(newListAll: boolean) {
       this.listAll = newListAll;
-    }
+    },
   },
 });
 </script>
@@ -123,8 +132,8 @@ export default defineComponent({
     justify-content: space-around;
   }
 
-  .container{
-    max-width: 1800px;
+  .container {
+    max-width: 1500px;
     margin: 0 auto;
   }
 

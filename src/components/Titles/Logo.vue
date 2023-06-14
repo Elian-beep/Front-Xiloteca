@@ -1,7 +1,7 @@
 <template>
   <div class="area-logo" :class="{ isVisible: isVisible }">
     <h1>Xiloteca</h1>
-    <span>Centro de Estudos Superiores de Itacoatiara CESIT</span>
+    <span>Professor Narciso da Silva Cardoso</span>
   </div>
 </template>
 
