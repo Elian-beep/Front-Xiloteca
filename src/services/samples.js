@@ -4,6 +4,10 @@ export default {
     findAll:() => {
         return http.get('amostras')
     },
+    findAllPage: (urlDestination = 'amostras/page') => {
+        // if (!urlDestination) urlDestination = 
+        return http.get(`${urlDestination}`)
+    },
     findCod:(text) => {
         return http.get(`amostras/busca/cod?cod=${text}`)
     },

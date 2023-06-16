@@ -18,10 +18,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="link-modal" v-for="sample of SlicedSamples" :key="sample._id" @click="openModalSample(sample)">
+        <tr
+          class="link-modal"
+          v-for="sample of samples"
+          :key="sample._id"
+          @click="openModalSample(sample)"
+        >
           <td>{{ sample.cod }}</td>
           <td class="inLaptop">{{ sample.familia }}</td>
-          <td class="table-sample-nc" >{{ sample.nomeCientifico }}</td>
+          <td class="table-sample-nc">{{ sample.nomeCientifico }}</td>
           <td class="inTablet">
             {{ sample.nomeVulgar }}
           </td>
@@ -104,6 +109,13 @@ export default defineComponent({
       },
       samples: [],
       cloneSamples: [],
+      pages: {
+        previousPage: "",
+        nextPage: "",
+        totalSamples: 0,
+        limit: 1,
+        offset: 0,
+      },
       currentPage: 1,
       samplesForPage: 70,
       openModal: false,
@@ -113,7 +125,8 @@ export default defineComponent({
     };
   },
   mounted() {
-    this.listAll();
+    // this.listAll();
+    this.listaAllPage();
   },
   computed: {
     SlicedSamples() {
@@ -123,7 +136,8 @@ export default defineComponent({
       );
     },
     totalPages() {
-      return Math.ceil(this.samples.length / this.samplesForPage);
+      // return Math.ceil(this.samples.length / this.samplesForPage);
+      return Math.ceil(this.pages.totalSamples / this.pages.limit);
     },
     pagesToShow() {
       let pages = [];
@@ -152,6 +166,19 @@ export default defineComponent({
     },
   },
   methods: {
+    listaAllPage() {
+      Samples.findAllPage().then((response) => {
+        console.log(response.data);
+        console.log(response.data.nextUrl);
+        this.samples = response.data.results;
+        this.pages.totalSamples = response.data.total;
+        this.pages.limit = response.data.limit;
+        this.pages.offset = response.data.offset;
+        this.pages.previousPage = response.data.previousUrl;
+        this.pages.nextPage = response.data.nextUrl;
+        this.tableIsOpen = true;
+      });
+    },
     listAll() {
       Samples.findAll().then((response) => {
         this.samples = response.data;
@@ -159,23 +186,56 @@ export default defineComponent({
         this.tableIsOpen = true;
       });
     },
-    search(){
+    search() {
       this.samples = this.cloneSamples;
-      this.samples = SearchSamples.search(this.dataSearchInput, this.samples, this.opcInput);
+      this.samples = SearchSamples.search(
+        this.dataSearchInput,
+        this.samples,
+        this.opcInput
+      );
       this.currentPage = 1;
     },
     previousPage() {
-      if (this.currentPage > 1) {
-        this.currentPage--;
-      }
+      // if (this.currentPage > 1) {
+      //   this.currentPage--;
+      // }
+      Samples.findAllPage(this.pages.previousPage).then((response) => {
+        this.samples = response.data.results;
+        this.pages.totalSamples = response.data.total;
+        this.pages.offset = response.data.offset;
+        this.pages.previousPage = response.data.previousUrl;
+        this.pages.nextPage = response.data.nextUrl;
+        this.currentPage = this.pages.offset / this.pages.limit + 1;
+        this.tableIsOpen = true;
+      });
     },
     nextPage() {
-      if (this.currentPage < this.totalPages) {
-        this.currentPage++;
-      }
+      // if (this.currentPage < this.totalPages) {
+      //   this.currentPage++;
+      // }
+      Samples.findAllPage(this.pages.nextPage).then((response) => {
+        this.samples = response.data.results;
+        this.pages.totalSamples = response.data.total;
+        this.pages.offset = response.data.offset;
+        this.pages.previousPage = response.data.previousUrl;
+        this.pages.nextPage = response.data.nextUrl;
+        this.currentPage = this.pages.offset / this.pages.limit + 1;
+        this.tableIsOpen = true;
+      });
     },
     goToPage(page) {
-      if (page != "..") this.currentPage = page;
+      // if (page != "..") this.currentPage = page;
+      if (page != "..") {
+        this.pages.offset = (page - 1) * this.pages.limit;
+        const urlPage = `/amostras/page?limit=${this.pages.limit}&offset=${this.pages.offset}`;
+        Samples.findAllPage(urlPage).then((response) => {
+          this.samples = response.data.results;
+          this.pages.previousPage = response.data.previousUrl;
+          this.pages.nextPage = response.data.nextUrl;
+        });
+        this.currentPage = page;
+        console.log(this.pages.offset);
+      }
     },
     openModalSample(sample) {
       this.sample = sample;
@@ -186,20 +246,20 @@ export default defineComponent({
     },
   },
   watch: {
-    opcInput(newOpcInput){
+    opcInput(newOpcInput) {
       this.dataOpcInput = newOpcInput;
       this.search();
     },
-    searchInput(newSearchInput){
+    searchInput(newSearchInput) {
       this.dataSearchInput = newSearchInput;
       this.search();
     },
-    allSamples(newAllSamples){
-      if (newAllSamples) {        
+    allSamples(newAllSamples) {
+      if (newAllSamples) {
         this.listAll();
       }
-    }
-  }
+    },
+  },
 });
 </script>
 
@@ -267,7 +327,7 @@ export default defineComponent({
   cursor: pointer;
 }
 
-.table-sample-nc{
+.table-sample-nc {
   text-decoration: underline;
   font-style: italic;
 }
@@ -364,7 +424,7 @@ export default defineComponent({
 @media screen and (min-width: 481px) {
   /* TABLET */
 
-  .loading-area{
+  .loading-area {
     margin: 100px auto;
   }
 
@@ -429,7 +489,6 @@ export default defineComponent({
     color: rgba(33, 49, 64, 1);
     cursor: pointer;
   }
-  
 }
 
 @media screen and (min-width: 1024px) {
