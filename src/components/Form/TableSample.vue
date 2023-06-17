@@ -126,7 +126,7 @@ export default defineComponent({
   },
   mounted() {
     // this.listAll();
-    this.listaAllPage();
+    this.listAllPage();
   },
   computed: {
     SlicedSamples() {
@@ -166,7 +166,7 @@ export default defineComponent({
     },
   },
   methods: {
-    listaAllPage() {
+    listAllPage() {
       Samples.findAllPage().then((response) => {
         console.log(response.data);
         console.log(response.data.nextUrl);
@@ -186,11 +186,13 @@ export default defineComponent({
         this.tableIsOpen = true;
       });
     },
-    search() {
-      this.samples = this.cloneSamples;
+    async search() {
+      let allSamples = [];
+      await Samples.findAll().then((response) => response.data.map(sample => allSamples.push(sample))),
+      console.log(allSamples);
       this.samples = SearchSamples.search(
         this.dataSearchInput,
-        this.samples,
+        allSamples,
         this.opcInput
       );
       this.currentPage = 1;
@@ -234,7 +236,6 @@ export default defineComponent({
           this.pages.nextPage = response.data.nextUrl;
         });
         this.currentPage = page;
-        console.log(this.pages.offset);
       }
     },
     openModalSample(sample) {
@@ -256,7 +257,7 @@ export default defineComponent({
     },
     allSamples(newAllSamples) {
       if (newAllSamples) {
-        this.listAll();
+        this.listAllPage();
       }
     },
   },
