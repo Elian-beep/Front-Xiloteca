@@ -70,6 +70,7 @@ import Samples from "../../services/samples.js";
 import CircleLoading from "../Loadings/Loading.vue";
 import ModalSample from "../Modals/ModalSample.vue";
 import SearchSamples from "../../services/searchSamples.js";
+import searchSamples from "../../services/searchSamples.js";
 
 export default defineComponent({
   name: "TableSample",
@@ -108,7 +109,7 @@ export default defineComponent({
         obs: "",
       },
       samples: [],
-      cloneSamples: [],
+      samplesSearched: [],
       pages: {
         previousPage: "",
         nextPage: "",
@@ -116,6 +117,7 @@ export default defineComponent({
         limit: 1,
         offset: 0,
       },
+      modeSearch: false,
       currentPage: 1,
       samplesForPage: 70,
       openModal: false,
@@ -125,7 +127,6 @@ export default defineComponent({
     };
   },
   mounted() {
-    // this.listAll();
     this.listAllPage();
   },
   computed: {
@@ -177,64 +178,113 @@ export default defineComponent({
         this.pages.previousPage = response.data.previousUrl;
         this.pages.nextPage = response.data.nextUrl;
         this.tableIsOpen = true;
-      });
-    },
-    listAll() {
-      Samples.findAll().then((response) => {
-        this.samples = response.data;
-        this.cloneSamples = this.samples;
-        this.tableIsOpen = true;
+        this.modeSearch = false;
       });
     },
     async search() {
-      let allSamples = [];
-      await Samples.findAll().then((response) => response.data.map(sample => allSamples.push(sample))),
-      console.log(allSamples);
-      this.samples = SearchSamples.search(
+      let allSamples = []
+      await Samples.findAll().then(response => response.data.map(sample => allSamples.push(sample)));
+      this.samplesSearched = SearchSamples.search(
         this.dataSearchInput,
         allSamples,
-        this.opcInput
-      );
+        this.dataOpcInput
+        );
+      Samples.findSearchPage('amostras/page/busca', this.samplesSearched).then( response => {
+        this.samples = response.data.results;
+        this.pages.totalSamples = response.data.total;
+        this.pages.limit = response.data.limit;
+        this.pages.offset = response.data.offset;
+        this.pages.previousPage = response.data.previousUrl;
+        this.pages.nextPage = response.data.nextUrl;
+      } );
       this.currentPage = 1;
+      this.modeSearch = true;
+      
+      // let allSamples = [];
+      // let samplesSearched;
+      // await Samples.findAll().then((response) => response.data.map(sample => allSamples.push(sample)));
+      // samplesSearched = SearchSamples.search(
+      //   this.dataSearchInput,
+      //   allSamples,
+      //   this.dataOpcInput
+      // );
+      // console.log(samplesSearched);
+      // this.currentPage = 1;
     },
     previousPage() {
       // if (this.currentPage > 1) {
       //   this.currentPage--;
       // }
-      Samples.findAllPage(this.pages.previousPage).then((response) => {
-        this.samples = response.data.results;
-        this.pages.totalSamples = response.data.total;
-        this.pages.offset = response.data.offset;
-        this.pages.previousPage = response.data.previousUrl;
-        this.pages.nextPage = response.data.nextUrl;
-        this.currentPage = this.pages.offset / this.pages.limit + 1;
-        this.tableIsOpen = true;
-      });
+      if(this.pages.previousPage){
+        if(!this.modeSearch){
+          Samples.findAllPage(this.pages.previousPage).then((response) => {
+            this.samples = response.data.results;
+            this.pages.totalSamples = response.data.total;
+            this.pages.offset = response.data.offset;
+            this.pages.previousPage = response.data.previousUrl;
+            this.pages.nextPage = response.data.nextUrl;
+            this.currentPage = this.pages.offset / this.pages.limit + 1;
+            this.tableIsOpen = true;
+          });
+        }else{
+          Samples.findSearchPage(this.pages.previousPage, this.samplesSearched).then((response) => {
+            this.samples = response.data.results;
+            this.pages.totalSamples = response.data.total;
+            this.pages.offset = response.data.offset;
+            this.pages.previousPage = response.data.previousUrl;
+            this.pages.nextPage = response.data.nextUrl;
+            this.currentPage = this.pages.offset / this.pages.limit + 1;
+            this.tableIsOpen = true;
+          });
+        }
+      }
     },
     nextPage() {
       // if (this.currentPage < this.totalPages) {
       //   this.currentPage++;
       // }
-      Samples.findAllPage(this.pages.nextPage).then((response) => {
-        this.samples = response.data.results;
-        this.pages.totalSamples = response.data.total;
-        this.pages.offset = response.data.offset;
-        this.pages.previousPage = response.data.previousUrl;
-        this.pages.nextPage = response.data.nextUrl;
-        this.currentPage = this.pages.offset / this.pages.limit + 1;
-        this.tableIsOpen = true;
-      });
+      if(this.pages.nextPage){
+        if(!this.modeSearch){
+          Samples.findAllPage(this.pages.nextPage).then((response) => {
+            this.samples = response.data.results;
+            this.pages.totalSamples = response.data.total;
+            this.pages.offset = response.data.offset;
+            this.pages.previousPage = response.data.previousUrl;
+            this.pages.nextPage = response.data.nextUrl;
+            this.currentPage = this.pages.offset / this.pages.limit + 1;
+          });
+        }else{
+          Samples.findSearchPage(this.pages.nextPage, this.samplesSearched).then((response) => {
+            this.samples = response.data.results;
+            this.pages.totalSamples = response.data.total;
+            this.pages.offset = response.data.offset;
+            this.pages.previousPage = response.data.previousUrl;
+            this.pages.nextPage = response.data.nextUrl;
+            this.currentPage = this.pages.offset / this.pages.limit + 1;
+          });
+
+        }
+      }
     },
     goToPage(page) {
       // if (page != "..") this.currentPage = page;
       if (page != "..") {
         this.pages.offset = (page - 1) * this.pages.limit;
-        const urlPage = `/amostras/page?limit=${this.pages.limit}&offset=${this.pages.offset}`;
-        Samples.findAllPage(urlPage).then((response) => {
-          this.samples = response.data.results;
-          this.pages.previousPage = response.data.previousUrl;
-          this.pages.nextPage = response.data.nextUrl;
-        });
+        const urlBusca = this.modeSearch ? '/busca' : '';
+        const urlPage = `/amostras/page${urlBusca}?limit=${this.pages.limit}&offset=${this.pages.offset}`;
+        if (!this.modeSearch) {
+          Samples.findAllPage(urlPage).then((response) => {
+            this.samples = response.data.results;
+            this.pages.previousPage = response.data.previousUrl;
+            this.pages.nextPage = response.data.nextUrl;
+          });
+        }else{
+          Samples.findSearchPage(urlPage, this.samplesSearched).then((response) => {
+            this.samples = response.data.results;
+            this.pages.previousPage = response.data.previousUrl;
+            this.pages.nextPage = response.data.nextUrl;
+          });
+        }
         this.currentPage = page;
       }
     },
