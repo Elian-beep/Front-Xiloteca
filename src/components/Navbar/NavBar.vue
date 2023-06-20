@@ -5,7 +5,7 @@
         <Logo :isVisible="true" />
       </div>
       <div class="navbar-link">
-        <a href="#">
+        <a href="https://xilotecauea.wordpress.com">
           <span>Visitar Página</span>
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>

@@ -121,14 +121,12 @@ export default defineComponent({
       samplesForPage: 70,
       openModal: false,
       tableIsOpen: false,
+      // closeLoading: false,
       dataOpcInput: "",
       dataSearchInput: "",
-      ENV_TEST: process.env.VUE_APP_NAME
     };
   },
   mounted() {
-    this.ENV_TEST = process.env.VUE_APP_NAME;
-    console.log(this.ENV_TEST);
     this.listAllPage();
   },
   computed: {
@@ -170,6 +168,7 @@ export default defineComponent({
   },
   methods: {
     listAllPage() {
+      // ativar a imagem de carregamento
       Samples.findAllPage().then((response) => {
         console.log(response.data);
         console.log(response.data.nextUrl);
@@ -181,7 +180,9 @@ export default defineComponent({
         this.pages.nextPage = response.data.nextUrl;
         this.tableIsOpen = true;
         this.modeSearch = false;
+        
       });
+      // desativar a imagem de carregamento
     },
     async search() {
       let allSamples = []
@@ -198,6 +199,7 @@ export default defineComponent({
         this.pages.offset = response.data.offset;
         this.pages.previousPage = response.data.previousUrl;
         this.pages.nextPage = response.data.nextUrl;
+        this.tableIsOpen = true;
       } );
       this.currentPage = 1;
       this.modeSearch = true;
@@ -218,6 +220,7 @@ export default defineComponent({
       //   this.currentPage--;
       // }
       if(this.pages.previousPage){
+        this.tableIsOpen = false;
         if(!this.modeSearch){
           Samples.findAllPage(this.pages.previousPage).then((response) => {
             this.samples = response.data.results;
@@ -246,6 +249,7 @@ export default defineComponent({
       //   this.currentPage++;
       // }
       if(this.pages.nextPage){
+        this.tableIsOpen = false;
         if(!this.modeSearch){
           Samples.findAllPage(this.pages.nextPage).then((response) => {
             this.samples = response.data.results;
@@ -254,6 +258,7 @@ export default defineComponent({
             this.pages.previousPage = response.data.previousUrl;
             this.pages.nextPage = response.data.nextUrl;
             this.currentPage = this.pages.offset / this.pages.limit + 1;
+            this.tableIsOpen = true;
           });
         }else{
           Samples.findSearchPage(this.pages.nextPage, this.samplesSearched).then((response) => {
@@ -263,6 +268,7 @@ export default defineComponent({
             this.pages.previousPage = response.data.previousUrl;
             this.pages.nextPage = response.data.nextUrl;
             this.currentPage = this.pages.offset / this.pages.limit + 1;
+            this.tableIsOpen = true;
           });
 
         }
@@ -271,6 +277,7 @@ export default defineComponent({
     goToPage(page) {
       // if (page != "..") this.currentPage = page;
       if (page != "..") {
+        this.tableIsOpen = false;
         this.pages.offset = (page - 1) * this.pages.limit;
         const urlBusca = this.modeSearch ? '/busca' : '';
         const urlPage = `/amostras/page${urlBusca}?limit=${this.pages.limit}&offset=${this.pages.offset}`;
@@ -279,12 +286,14 @@ export default defineComponent({
             this.samples = response.data.results;
             this.pages.previousPage = response.data.previousUrl;
             this.pages.nextPage = response.data.nextUrl;
+            this.tableIsOpen = true;
           });
         }else{
           Samples.findSearchPage(urlPage, this.samplesSearched).then((response) => {
             this.samples = response.data.results;
             this.pages.previousPage = response.data.previousUrl;
             this.pages.nextPage = response.data.nextUrl;
+            this.tableIsOpen = true;
           });
         }
         this.currentPage = page;
@@ -304,11 +313,13 @@ export default defineComponent({
       this.search();
     },
     searchInput(newSearchInput) {
+      this.tableIsOpen = false;
       this.dataSearchInput = newSearchInput;
       this.search();
     },
     allSamples(newAllSamples) {
       if (newAllSamples) {
+        this.tableIsOpen = false;
         this.listAllPage();
       }
     },

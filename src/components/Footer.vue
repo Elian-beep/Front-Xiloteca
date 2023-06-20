@@ -1,7 +1,7 @@
 <template>
   <footer :class="{ menuOpen: menuOpen }">
     <div class="area-logos">
-      <span class="logo logo-fapeam"></span>
+      <!-- <span class="logo logo-fapeam"></span> -->
       <span class="logo logo-uea"></span>
       <span class="logo logo-cc"></span>
       <span class="logo logo-proex"></span>
