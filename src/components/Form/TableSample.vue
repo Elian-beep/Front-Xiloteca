@@ -109,6 +109,7 @@ export default defineComponent({
       },
       samples: [],
       samplesSearched: [],
+      modeSearch: false,
       pages: {
         previousPage: "",
         nextPage: "",
@@ -116,16 +117,18 @@ export default defineComponent({
         limit: 1,
         offset: 0,
       },
-      modeSearch: false,
       currentPage: 1,
       samplesForPage: 70,
       openModal: false,
       tableIsOpen: false,
       dataOpcInput: "",
       dataSearchInput: "",
+      ENV_TEST: process.env.VUE_APP_NAME
     };
   },
   mounted() {
+    this.ENV_TEST = process.env.VUE_APP_NAME;
+    console.log(this.ENV_TEST);
     this.listAllPage();
   },
   computed: {
