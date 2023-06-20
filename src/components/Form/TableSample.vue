@@ -70,7 +70,6 @@ import Samples from "../../services/samples.js";
 import CircleLoading from "../Loadings/Loading.vue";
 import ModalSample from "../Modals/ModalSample.vue";
 import SearchSamples from "../../services/searchSamples.js";
-import searchSamples from "../../services/searchSamples.js";
 
 export default defineComponent({
   name: "TableSample",
