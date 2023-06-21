@@ -82,7 +82,9 @@ export default defineComponent({
 .content {
   background: #fafafa;
   padding: 24px 16px;
-  max-width: 90vw;
+  max-width: 600px;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 
 .modal-header {
