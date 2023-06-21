@@ -4,10 +4,10 @@ export default {
     findAll: () => {
         return http.get('amostras')
     },
-    findAllPage: (urlDestination = 'amostras/page') => {
+    findAllPage: (urlDestination = process.env.VUE_APP_URL_SAMPLES) => {
         return http.get(urlDestination);
     },
-    findSearchPage: (urlDestination = 'amostras/page/busca', samples) => {
+    findSearchPage: (urlDestination = process.env.VUE_APP_URL_SAMPLES_SEARCH, samples) => {
         return http.post(urlDestination, samples);
     }
 }

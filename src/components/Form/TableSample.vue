@@ -121,12 +121,12 @@ export default defineComponent({
       samplesForPage: 70,
       openModal: false,
       tableIsOpen: false,
-      // closeLoading: false,
       dataOpcInput: "",
       dataSearchInput: "",
     };
   },
   mounted() {
+    console.log(process.env.VUE_APP_NAME);
     this.listAllPage();
   },
   computed: {
