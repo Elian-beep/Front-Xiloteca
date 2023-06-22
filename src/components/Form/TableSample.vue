@@ -179,6 +179,7 @@ export default defineComponent({
         this.pages.previousPage = response.data.previousUrl;
         this.pages.nextPage = response.data.nextUrl;
         this.tableIsOpen = true;
+        this.currentPage = 1;
         this.modeSearch = false;
         
       });

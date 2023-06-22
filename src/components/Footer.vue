@@ -1,10 +1,10 @@
 <template>
   <footer :class="{ menuOpen: menuOpen }">
     <div class="area-logos">
-      <!-- <span class="logo logo-fapeam"></span> -->
       <span class="logo logo-uea"></span>
-      <span class="logo logo-cc"></span>
       <span class="logo logo-proex"></span>
+      <span class="logo logo-cc"></span>
+      <span class="logo logo-florestal"></span>
     </div>
     <span class="whiteBar"></span>
     <div class="area-text">
@@ -56,8 +56,8 @@ footer {
   background-size: contain;
   background-repeat: no-repeat;
 }
-.logo-fapeam {
-  background-image: url(@/assets/fapeam.png);
+.logo-florestal {
+  background-image: url(@/assets/florestal.svg);
   width: 32px;
   height: 33px;
 }
@@ -130,8 +130,8 @@ footer.menuOpen {
     align-items: center;
   }
 
-  .area-logos .logo-fapeam {
-    background-image: url(@/assets/fapeam-tablet.svg);
+  .area-logos .logo-florestal {
+    background-image: url(@/assets/florestal-tablet.svg);
     width: 40px;
     height: 42px;
   }
@@ -181,8 +181,8 @@ footer.menuOpen {
     gap: 70px;
   }
 
-  .area-logos .logo-fapeam {
-    background-image: url(@/assets/fapeam-laptop.svg);
+  .area-logos .logo-florestal {
+    background-image: url(@/assets/florestal-laptop.svg);
     width: 63.81px;
     height: 67px;
   }
@@ -222,8 +222,8 @@ footer.menuOpen {
     justify-content: space-between;
     gap: 60px;
   }
-  .area-logos .logo-fapeam {
-    background-image: url(@/assets/fapeam-desktop.svg);
+  .area-logos .logo-florestal {
+    background-image: url(@/assets/florestal-desktop.svg);
     width: 80px;
     height: 84px;
   }
